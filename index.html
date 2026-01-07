@@ -1,9 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>今日のAIニュース</title>
+<title>AI Daily Timeline - 2025-01-08</title>
 <style>
 * {
   margin: 0;
@@ -12,267 +13,368 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.7;
-  background-color: #f5f5f5;
+  font-family: "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  background: linear-gradient(to bottom, #fafafa 0%, #f5f5f5 100%);
   color: #333;
-  padding: 20px;
-  word-break: break-word;
+  line-height: 1.75;
+  padding: 0;
+  margin: 0;
 }
 
 .container {
-  max-width: 980px;
+  max-width: 1400px;
   margin: 0 auto;
+  display: flex;
+  gap: 3rem;
+  padding: 3rem 2rem;
 }
 
-header {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 30px 20px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+/* LEFT GUIDE */
+.guide {
+  width: 320px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 3rem;
+  height: fit-content;
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
 
-h1 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-  color: #1a1a1a;
-}
-
-.date {
-  font-size: 1rem;
-  color: #666;
-}
-
-.card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  border: 1px solid #e0e0e0;
-}
-
-.card h2 {
-  font-size: 1.4rem;
-  margin-bottom: 12px;
-  color: #1a1a1a;
+.guide h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #E86A8B;
+  margin-bottom: 0.75rem;
   line-height: 1.4;
 }
 
-.meta {
-  font-size: 0.85rem;
-  color: #888;
-  margin-bottom: 14px;
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
+.guide .subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 2rem;
+  line-height: 1.6;
 }
 
-.meta span {
-  display: inline-block;
-}
-
-.summary {
-  margin-bottom: 16px;
-  color: #444;
-  font-size: 0.98rem;
-}
-
-.summary ul {
-  margin-left: 20px;
-  margin-top: 10px;
-}
-
-.summary li {
-  margin-bottom: 6px;
-}
-
-.link {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #007bff;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  transition: background 0.3s;
-}
-
-.link:hover {
-  background: #0056b3;
-}
-
-.no-link {
-  font-size: 0.85rem;
+.guide .meta {
+  font-size: 0.8rem;
   color: #999;
-  font-style: italic;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
+.nav-timeline {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.nav-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #E86A8B, #6BA9E8, #6BC7A4, #F2A65A);
+  border-radius: 3px;
+}
+
+.nav-item {
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #666;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  color: #333;
+  transform: translateX(3px);
+}
+
+.nav-item.start {
+  color: #E86A8B;
+  font-weight: 700;
+}
+
+.nav-item.goal {
+  color: #6BC7A4;
+  font-weight: 700;
+}
+
+/* MAIN TIMELINE */
+.timeline {
+  flex: 1;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e0e0e0;
+  border-radius: 2px;
+}
+
+.category-block {
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.category-header {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  color: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+.category-openai { background: #E86A8B; }
+.category-google { background: #6BA9E8; }
+.category-microsoft { background: #6BC7A4; }
+.category-reddit { background: #F2A65A; }
+
+.news-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  position: relative;
+  transition: all 0.3s;
+  border-left: 5px solid #ddd;
+}
+
+.news-card:hover {
+  box-shadow: 0 6px 28px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+
+.news-card::before {
+  content: "";
+  position: absolute;
+  left: -2rem;
+  top: 2rem;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border: 3px solid #ddd;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #fafafa;
+}
+
+.news-card.openai { border-left-color: #E86A8B; }
+.news-card.openai::before { border-color: #E86A8B; }
+
+.news-card.google { border-left-color: #6BA9E8; }
+.news-card.google::before { border-color: #6BA9E8; }
+
+.news-card.microsoft { border-left-color: #6BC7A4; }
+.news-card.microsoft::before { border-color: #6BC7A4; }
+
+.news-card.reddit { border-left-color: #F2A65A; }
+.news-card.reddit::before { border-color: #F2A65A; }
+
+.card-header {
+  padding: 0.5rem 1rem;
+  border-radius: 8px 8px 0 0;
+  margin: -2rem -2rem 1rem -2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+}
+
+.card-header.openai { background: #E86A8B; }
+.card-header.google { background: #6BA9E8; }
+.card-header.microsoft { background: #6BC7A4; }
+.card-header.reddit { background: #F2A65A; }
+
+.card-content {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.card-text {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.card-meta {
+  font-size: 0.8rem;
+  color: #999;
+  margin-bottom: 1rem;
+}
+
+.card-body {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.card-image {
+  width: 200px;
+  height: 140px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ccc;
+  font-size: 0.8rem;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-button {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background: #333;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.card-button:hover {
+  background: #555;
+  transform: translateY(-1px);
+}
+
+.empty-message {
+  margin-left: 2rem;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+  color: #999;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+    gap: 2rem;
   }
   
-  header, .card {
-    background: #2a2a2a;
-    border-color: #3a3a3a;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  .guide {
+    width: 100%;
+    position: relative;
+    top: 0;
   }
   
-  h1, .card h2 {
-    color: #f0f0f0;
+  .timeline::before {
+    display: none;
   }
   
-  .date {
-    color: #aaa;
+  .news-card {
+    margin-left: 0;
   }
   
-  .meta {
-    color: #999;
+  .news-card::before {
+    display: none;
   }
   
-  .summary {
-    color: #ccc;
-  }
-  
-  .link {
-    background: #0d6efd;
-  }
-  
-  .link:hover {
-    background: #0a58ca;
-  }
-  
-  .no-link {
-    color: #777;
+  .category-header {
+    margin-left: 0;
   }
 }
 
-@media (max-width: 600px) {
-  h1 {
-    font-size: 1.6rem;
+@media (max-width: 640px) {
+  .container {
+    padding: 1.5rem 1rem;
   }
   
-  .card h2 {
-    font-size: 1.2rem;
+  .guide {
+    padding: 1.5rem;
   }
   
-  .card {
-    padding: 18px;
+  .guide h1 {
+    font-size: 1.25rem;
+  }
+  
+  .card-content {
+    flex-direction: column;
+  }
+  
+  .card-image {
+    width: 100%;
+    height: 180px;
+  }
+  
+  .card-title {
+    font-size: 1.15rem;
+  }
+  
+  .news-card {
+    padding: 1.5rem;
   }
 }
 </style>
 </head>
 <body>
+
 <div class="container">
-<header>
-<h1>今日のAIニュース</h1>
-<p class="date">生成日：2026-01-07</p>
-</header>
+  
+  <!-- LEFT GUIDE -->
+  <aside class="guide">
+    <h1>実際、今日のAIは<br>どこが動いたん？</h1>
+    <p class="subtitle">OpenAI → Google → Microsoft → Reddit の順に追うだけでOK</p>
+    <div class="meta">生成日：2025-01-08</div>
+    
+    <nav class="nav-timeline">
+      <div class="nav-item start">START</div>
+      <div class="nav-item">OpenAI</div>
+      <div class="nav-item">Google</div>
+      <div class="nav-item">Microsoft</div>
+      <div class="nav-item">Reddit</div>
+      <div class="nav-item goal">GOAL</div>
+    </nav>
+  </aside>
 
-<div class="card">
-<h2>Claude built me a WebUI to access Cli on my machine via mobile and other desktops</h2>
-<div class="meta">
-<span>📰 Source: reddit</span>
-<span>📅 日時不明</span>
-</div>
-<div class="summary">
-ClaudeがCLIをモバイルやデスクトップから操作できるWebUIを構築した事例が報告されています。機器間でのコマンドライン操作を可能にするインターフェースの実装と考えられます。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q2ti35/claude_built_me_a_webui_to_access_cli_on_my/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
+  <!-- MAIN TIMELINE -->
+  <main class="timeline">
+    
+    <!-- OpenAI -->
+    <section class="category-block" id="openai">
+      <div class="category-header category-openai">OpenAI</div>
+      <div class="empty-message">今日は更新少なめ（最新情報は後日追加予定）</div>
+    </section>
 
-<div class="card">
-<h2>Introduction to Agent Skills</h2>
-<div class="meta">
-<span>📰 Source: reddit</span>
-<span>📅 日時不明</span>
-</div>
-<div class="summary">
-エージェントスキルに関する入門的な投稿です。AI エージェントに特定のスキルや機能を付与する方法についての情報と推測されます。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q303rj/introduction_to_agent_skills/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
-
-<div class="card">
-<h2>How to make claude less eager to write code and more inclined to discuss it first.</h2>
-<div class="meta">
-<span>📰 Source: reddit</span>
-<span>📅 日時不明</span>
-</div>
-<div class="summary">
-Claudeがコードをすぐに書き始めるのではなく、まず議論を優先するようにする方法を探る投稿です。AIの振る舞いをより慎重で対話的にするための設定やプロンプト技法の共有と考えられます。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q30fpf/how_to_make_claude_less_eager_to_write_code_and/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
-
-<div class="card">
-<h2>Claude Overflow - a plugin that turns Claude Code conversations into a personal StackOverflow</h2>
-<div class="meta">
-<span>📰 Source: reddit</span>
-<span>📅 日時不明</span>
-</div>
-<div class="summary">
-Claude Codeの会話を個人用StackOverflowに変換するプラグイン「Claude Overflow」が紹介されています。過去の問題解決をナレッジベース化し、検索・再利用できる仕組みと推測されます。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q31k2p/claude_overflow_a_plugin_that_turns_claude_code/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
-
-<div class="card">
-<h2>27k tokens eaten by MCP tools before I even start - is there a better way?</h2>
-<div class="meta">
-<span>📰 Source: reddit</span>
-<span>📅 日時不明</span>
-</div>
-<div class="summary">
-MCPツールが会話開始前に27,000トークンを消費している問題についての相談です。トークン使用量の最適化や代替手段を求める声と考えられます。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q35kuo/27k_tokens_eaten_by_mcp_tools_before_i_even_start/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
-
-<div class="card">
-<h2>Claude Code Creator Says AI Wrote 100% of His Code Last Month</h2>
-<div class="meta">
-<span>📰 Source: reddit</span>
-<span>📅 日時不明</span>
-</div>
-<div class="summary">
-Claude Codeの開発者が先月のコード100%をAIが書いたと発言したとの報告です。AI支援開発の実用性と影響力を示す事例として注目されています。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q36s9l/claude_code_creator_says_ai_wrote_100_of_his_code/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
-
-<div class="card">
-<h2>Token usage through the roof? Let Anthropic know</h2>
-<div class="meta">
-<span>📰 Source: reddit</span>
-<span>📅 日時不明</span>
-</div>
-<div class="summary">
-トークン使用量が急増している場合、Anthropicにフィードバックを送るよう呼びかける投稿です。利用者からの報告がサービス改善に繋がる可能性を示唆しています。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q39rq8/token_usage_through_the_roof_let_anthropic_know/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
-
-<div class="card">
-<h2>Is Claude Code better on the Terminal?</h2>
-<div class="meta">
-<span>📰 Source: reddit</span>
-<span>📅 日時不明</span>
-</div>
-<div class="summary">
-Claude Codeがターミナル環境でより優れたパフォーマンスを発揮するかどうかを問う投稿です。GUI版との比較や使い分けについての議論と考えられます。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q3dp6c/is_claude_code_better_on_the_terminal/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
-
-<div class="card">
-<h2>They reduced the CC usage so much</h2>
-<div class="meta">
-<span>📰 Source: reddit</span>
-<span>📅 日時不明</span>
-</div>
-<div class="summary">
+    <!-- Google -->
+    <section class="category-block" id="google">
+      <div class="category-header category-google">Google</div>
+      
+      <article class="news-card google">
+        <div class="card-header google">Google</div>
+        <div class="card-content">
+          <div class="card-text">
+            <h2 class="card-title">Google introduces new Gemini for Google TV features.</h2>
