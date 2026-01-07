@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI News Timeline - 2025-01-08</title>
+<title>AI News Timeline - 2025-01-09</title>
 <style>
 * {
   margin: 0;
@@ -13,10 +13,10 @@
 }
 
 body {
-  font-family: "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
+  background: linear-gradient(to bottom, #fafafa 0%, #f5f5f5 100%);
   color: #333;
-  line-height: 1.8;
+  line-height: 1.7;
   padding: 20px;
 }
 
@@ -25,49 +25,50 @@ body {
   margin: 0 auto;
   display: grid;
   grid-template-columns: 320px 1fr;
-  gap: 40px;
-  padding: 40px 0;
+  gap: 60px;
+  padding: 40px 20px;
 }
 
-/* ヘッダー */
-.page-header {
+/* Header */
+.site-header {
+  grid-column: 1 / -1;
   text-align: center;
-  margin-bottom: 50px;
-  padding: 30px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #e0e0e0;
 }
 
-.page-header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 12px;
-  color: #222;
+.site-header h1 {
+  font-size: 2.5rem;
   font-weight: 700;
+  color: #222;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
 }
 
-.page-header .date {
-  color: #888;
+.site-header .date {
   font-size: 0.95rem;
-  letter-spacing: 1px;
+  color: #999;
+  font-weight: 500;
 }
 
-/* 左カラム（ガイド） */
+/* Left Guide */
 .guide {
   position: sticky;
   top: 20px;
   height: fit-content;
   background: white;
-  padding: 32px;
+  padding: 40px 30px;
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
 
 .guide h2 {
   font-size: 1.5rem;
-  margin-bottom: 12px;
+  font-weight: 700;
   color: #222;
-  line-height: 1.5;
+  margin-bottom: 12px;
+  line-height: 1.4;
 }
 
 .guide p {
@@ -76,155 +77,183 @@ body {
   margin-bottom: 30px;
 }
 
-.nav-timeline {
-  position: relative;
-  padding-left: 24px;
+.guide-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.nav-timeline::before {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 10px;
-  bottom: 10px;
-  width: 2px;
-  background: linear-gradient(to bottom, #E86A8B, #6BA9E8, #6BC7A4, #F2A65A);
-}
-
-.nav-item {
-  position: relative;
-  margin-bottom: 20px;
+.guide-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 0.95rem;
+  font-weight: 600;
   color: #555;
-  font-weight: 500;
+  transition: all 0.2s;
 }
 
-.nav-item::before {
-  content: "";
-  position: absolute;
-  left: -20px;
-  top: 6px;
-  width: 8px;
-  height: 8px;
+.guide-nav-item:hover {
+  color: #E86A8B;
+  transform: translateX(4px);
+}
+
+.guide-nav-item .dot {
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background: currentColor;
+  background: #ddd;
+  transition: all 0.2s;
 }
 
-.nav-item.start { color: #999; }
-.nav-item.openai { color: #E86A8B; }
-.nav-item.google { color: #6BA9E8; }
-.nav-item.microsoft { color: #6BC7A4; }
-.nav-item.reddit { color: #F2A65A; }
-.nav-item.goal { color: #999; }
+.guide-nav-item:hover .dot {
+  background: #E86A8B;
+  transform: scale(1.3);
+}
 
-/* タイムライン */
+.guide-nav-item.openai .dot { background: #E86A8B; }
+.guide-nav-item.google .dot { background: #6BA9E8; }
+.guide-nav-item.microsoft .dot { background: #6BC7A4; }
+.guide-nav-item.reddit .dot { background: #F2A65A; }
+.guide-nav-item.start .dot, .guide-nav-item.goal .dot { background: #999; }
+
+/* Timeline */
 .timeline {
   position: relative;
+  padding-left: 40px;
 }
 
 .timeline::before {
-  content: "";
+  content: '';
   position: absolute;
-  left: -20px;
+  left: 0;
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(to bottom, #E86A8B 0%, #E86A8B 25%, #6BA9E8 25%, #6BA9E8 50%, #6BC7A4 50%, #6BC7A4 75%, #F2A65A 75%, #F2A65A 100%);
-  opacity: 0.15;
+  background: linear-gradient(to bottom, #E86A8B 0%, #6BA9E8 33%, #6BC7A4 66%, #F2A65A 100%);
+  opacity: 0.3;
 }
 
 .category-section {
   margin-bottom: 60px;
+  position: relative;
 }
+
+.category-section::before {
+  content: '';
+  position: absolute;
+  left: -40px;
+  top: 10px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 4px solid #E86A8B;
+  box-shadow: 0 0 0 4px rgba(232, 106, 139, 0.1);
+}
+
+.category-section.google::before { border-color: #6BA9E8; box-shadow: 0 0 0 4px rgba(107, 169, 232, 0.1); }
+.category-section.microsoft::before { border-color: #6BC7A4; box-shadow: 0 0 0 4px rgba(107, 199, 164, 0.1); }
+.category-section.reddit::before { border-color: #F2A65A; box-shadow: 0 0 0 4px rgba(242, 166, 90, 0.1); }
 
 .category-header {
   font-size: 1.8rem;
   font-weight: 700;
+  color: #222;
   margin-bottom: 30px;
-  padding-bottom: 12px;
-  border-bottom: 3px solid;
-  display: inline-block;
+  padding-left: 20px;
+  border-left: 6px solid #E86A8B;
 }
 
-.category-header.openai { color: #E86A8B; border-color: #E86A8B; }
-.category-header.google { color: #6BA9E8; border-color: #6BA9E8; }
-.category-header.microsoft { color: #6BC7A4; border-color: #6BC7A4; }
-.category-header.reddit { color: #F2A65A; border-color: #F2A65A; }
+.category-section.google .category-header { border-color: #6BA9E8; }
+.category-section.microsoft .category-header { border-color: #6BC7A4; }
+.category-section.reddit .category-header { border-color: #F2A65A; }
 
-/* ニュースカード */
+/* News Card */
 .news-card {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-  margin-bottom: 24px;
   overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin-bottom: 24px;
+  transition: all 0.3s;
 }
 
 .news-card:hover {
-  transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
 }
 
-.card-category-band {
+.card-category-bar {
   padding: 10px 20px;
-  color: white;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
+  font-size: 0.8rem;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
 }
 
-.card-category-band.openai { background: #E86A8B; }
-.card-category-band.google { background: #6BA9E8; }
-.card-category-band.microsoft { background: #6BC7A4; }
-.card-category-band.reddit { background: #F2A65A; }
+.card-category-bar.openai { background: #E86A8B; }
+.card-category-bar.google { background: #6BA9E8; }
+.card-category-bar.microsoft { background: #6BC7A4; }
+.card-category-bar.reddit { background: #F2A65A; }
 
 .card-content {
   padding: 24px;
   display: grid;
-  grid-template-columns: 1fr 140px;
+  grid-template-columns: 1fr 120px;
   gap: 20px;
+  align-items: start;
 }
 
-.card-text {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.card-title {
-  font-size: 1.3rem;
+.card-text h3 {
+  font-size: 1.25rem;
   font-weight: 700;
   color: #222;
-  line-height: 1.5;
+  margin-bottom: 10px;
+  line-height: 1.4;
 }
 
 .card-meta {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: #999;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+  margin-bottom: 12px;
 }
 
 .card-body {
   font-size: 0.95rem;
   color: #555;
+  margin-bottom: 16px;
   line-height: 1.7;
 }
 
+.card-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #f5f5f5;
+  color: #555;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.card-link:hover {
+  background: #E86A8B;
+  color: white;
+}
+
 .card-image {
-  width: 140px;
-  height: 140px;
-  background: #f0f0f0;
+  width: 120px;
+  height: 120px;
   border-radius: 8px;
-  overflow: hidden;
+  background: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ccc;
-  font-size: 0.8rem;
+  font-size: 2.5rem;
+  overflow: hidden;
 }
 
 .card-image img {
@@ -233,49 +262,30 @@ body {
   object-fit: cover;
 }
 
-.card-button {
-  margin-top: 16px;
-}
-
-.card-button a {
-  display: inline-block;
-  padding: 10px 20px;
-  background: #333;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: background 0.2s;
-}
-
-.card-button a:hover {
-  background: #555;
-}
-
-.empty-message {
-  color: #999;
-  font-style: italic;
-  padding: 20px;
-  text-align: center;
-  background: #fafafa;
-  border-radius: 8px;
-}
-
-/* レスポンシブ */
-@media (max-width: 968px) {
+/* Responsive */
+@media (max-width: 1024px) {
   .container {
     grid-template-columns: 1fr;
     gap: 30px;
   }
   
   .guide {
-    position: relative;
-    top: 0;
+    position: static;
+    margin-bottom: 20px;
+  }
+  
+  .timeline {
+    padding-left: 30px;
   }
   
   .timeline::before {
-    display: none;
+    width: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header h1 {
+    font-size: 1.8rem;
   }
   
   .card-content {
@@ -284,80 +294,70 @@ body {
   
   .card-image {
     width: 100%;
-    height: 200px;
-  }
-}
-
-@media (max-width: 640px) {
-  body {
-    padding: 10px;
-  }
-  
-  .page-header h1 {
-    font-size: 1.6rem;
-  }
-  
-  .guide {
-    padding: 20px;
+    height: 180px;
   }
   
   .guide h2 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   
   .category-header {
-    font-size: 1.4rem;
-  }
-  
-  .card-title {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
   }
 }
 </style>
 </head>
 <body>
 
-<div class="page-header">
-  <h1>📰 AI News Timeline</h1>
-  <p class="date">生成日：2025-01-08</p>
-</div>
-
 <div class="container">
-  <!-- 左カラム：ガイド -->
+  
+  <header class="site-header">
+    <h1>今日のAIニュース📰</h1>
+    <p class="date">生成日：2025-01-09</p>
+  </header>
+
+  <!-- Left Guide -->
   <aside class="guide">
-    <h2>実際、今日のAIは<br>どこが動いたん？</h2>
+    <h2>実際、今日のAIはどこが動いたん？</h2>
     <p>OpenAI → Google → Microsoft → Reddit の順に追うだけでOK</p>
-    
-    <nav class="nav-timeline">
-      <div class="nav-item start">START</div>
-      <div class="nav-item openai">OpenAI</div>
-      <div class="nav-item google">Google</div>
-      <div class="nav-item microsoft">Microsoft</div>
-      <div class="nav-item reddit">Reddit</div>
-      <div class="nav-item goal">GOAL</div>
+    <nav class="guide-nav">
+      <div class="guide-nav-item start">
+        <span class="dot"></span>
+        <span>START</span>
+      </div>
+      <div class="guide-nav-item openai">
+        <span class="dot"></span>
+        <span>OpenAI</span>
+      </div>
+      <div class="guide-nav-item google">
+        <span class="dot"></span>
+        <span>Google</span>
+      </div>
+      <div class="guide-nav-item microsoft">
+        <span class="dot"></span>
+        <span>Microsoft</span>
+      </div>
+      <div class="guide-nav-item reddit">
+        <span class="dot"></span>
+        <span>Reddit</span>
+      </div>
+      <div class="guide-nav-item goal">
+        <span class="dot"></span>
+        <span>GOAL</span>
+      </div>
     </nav>
   </aside>
 
-  <!-- 右カラム：タイムライン -->
+  <!-- Timeline -->
   <main class="timeline">
-    
-    <!-- OpenAI セクション -->
-    <section class="category-section">
-      <h2 class="category-header openai">OpenAI</h2>
-      <div class="empty-message">今日は更新少なめ</div>
-    </section>
 
-    <!-- Google セクション -->
-    <section class="category-section">
-      <h2 class="category-header google">Google</h2>
+    <!-- OpenAI Section -->
+    <section class="category-section openai">
+      <h2 class="category-header">OpenAI</h2>
       
       <article class="news-card">
-        <div class="card-category-band google">Google</div>
+        <div class="card-category-bar openai">OpenAI</div>
         <div class="card-content">
           <div class="card-text">
-            <h3 class="card-title">Google introduces new Gemini for Google TV features.</h3>
-            <div class="card-meta">
-              <span>📰 Google Blog</span>
-            </div>
-            <p class="card-body">Gemini がGoogle TV をさらに便利にし、テレビとのより多くの関わり方を提供します。CES 2026 で新しい Gemini for Google TV の機能がプレビューされました。</p>
-            <div class="card-button">
+            <h3>Introducing OpenAI</h3>
+            <p
