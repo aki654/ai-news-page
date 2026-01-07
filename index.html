@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI News Timeline - 2025-01-09</title>
+<title>Claude Code & AI News Timeline</title>
 <style>
 * {
   margin: 0;
@@ -13,278 +13,279 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
-  background: linear-gradient(to bottom, #fafafa 0%, #f5f5f5 100%);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #fef9f8 0%, #fff5f7 100%);
   color: #333;
   line-height: 1.7;
-  padding: 20px;
+  overflow-x: hidden;
 }
 
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 60px;
   padding: 40px 20px;
 }
 
-/* Header */
-.site-header {
-  grid-column: 1 / -1;
+.header {
   text-align: center;
-  margin-bottom: 40px;
-  padding-bottom: 30px;
-  border-bottom: 2px solid #e0e0e0;
+  margin-bottom: 60px;
+  padding: 30px 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(232, 106, 139, 0.1);
 }
 
-.site-header h1 {
+.header h1 {
   font-size: 2.5rem;
-  font-weight: 700;
-  color: #222;
+  color: #E86A8B;
   margin-bottom: 10px;
-  letter-spacing: -0.5px;
+  font-weight: 700;
 }
 
-.site-header .date {
-  font-size: 0.95rem;
+.header .generated-date {
+  font-size: 0.9rem;
   color: #999;
-  font-weight: 500;
+  font-weight: 400;
 }
 
-/* Left Guide */
-.guide {
+.main-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Left Guide Column */
+.guide-column {
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(232, 106, 139, 0.1);
   position: sticky;
   top: 20px;
-  height: fit-content;
-  background: white;
-  padding: 40px 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
 
-.guide h2 {
-  font-size: 1.5rem;
+.guide-column h2 {
+  font-size: 1.3rem;
+  color: #E86A8B;
+  margin-bottom: 25px;
+  line-height: 1.5;
   font-weight: 700;
-  color: #222;
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-
-.guide p {
-  font-size: 0.95rem;
-  color: #666;
-  margin-bottom: 30px;
 }
 
 .guide-nav {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .guide-nav-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #555;
-  transition: all 0.2s;
+  gap: 15px;
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
 }
 
-.guide-nav-item:hover {
-  color: #E86A8B;
-  transform: translateX(4px);
-}
-
-.guide-nav-item .dot {
-  width: 12px;
-  height: 12px;
+.guide-nav-item .circle {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: #ddd;
-  transition: all 0.2s;
+  background: linear-gradient(135deg, #E86A8B, #f4a5ba);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(232, 106, 139, 0.3);
 }
 
-.guide-nav-item:hover .dot {
-  background: #E86A8B;
-  transform: scale(1.3);
+.guide-nav-item.start .circle {
+  background: linear-gradient(135deg, #ff8fab, #E86A8B);
 }
 
-.guide-nav-item.openai .dot { background: #E86A8B; }
-.guide-nav-item.google .dot { background: #6BA9E8; }
-.guide-nav-item.microsoft .dot { background: #6BC7A4; }
-.guide-nav-item.reddit .dot { background: #F2A65A; }
-.guide-nav-item.start .dot, .guide-nav-item.goal .dot { background: #999; }
+.guide-nav-item.goal .circle {
+  background: linear-gradient(135deg, #d65a7d, #E86A8B);
+}
 
-/* Timeline */
-.timeline {
+.guide-description {
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 2px solid #ffe8ee;
+  font-size: 0.9rem;
+  color: #777;
+  line-height: 1.8;
+}
+
+/* Timeline Column */
+.timeline-column {
   position: relative;
-  padding-left: 40px;
 }
 
-.timeline::before {
-  content: '';
+.timeline-line {
   position: absolute;
-  left: 0;
+  left: 30px;
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(to bottom, #E86A8B 0%, #6BA9E8 33%, #6BC7A4 66%, #F2A65A 100%);
+  background: linear-gradient(180deg, #E86A8B, #f4a5ba);
   opacity: 0.3;
 }
 
-.category-section {
-  margin-bottom: 60px;
-  position: relative;
-}
-
-.category-section::before {
-  content: '';
-  position: absolute;
-  left: -40px;
-  top: 10px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
+.timeline-card {
   background: white;
-  border: 4px solid #E86A8B;
-  box-shadow: 0 0 0 4px rgba(232, 106, 139, 0.1);
-}
-
-.category-section.google::before { border-color: #6BA9E8; box-shadow: 0 0 0 4px rgba(107, 169, 232, 0.1); }
-.category-section.microsoft::before { border-color: #6BC7A4; box-shadow: 0 0 0 4px rgba(107, 199, 164, 0.1); }
-.category-section.reddit::before { border-color: #F2A65A; box-shadow: 0 0 0 4px rgba(242, 166, 90, 0.1); }
-
-.category-header {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #222;
+  border-radius: 20px;
+  padding: 35px;
   margin-bottom: 30px;
-  padding-left: 20px;
-  border-left: 6px solid #E86A8B;
+  box-shadow: 0 4px 20px rgba(232, 106, 139, 0.08);
+  position: relative;
+  margin-left: 60px;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.category-section.google .category-header { border-color: #6BA9E8; }
-.category-section.microsoft .category-header { border-color: #6BC7A4; }
-.category-section.reddit .category-header { border-color: #F2A65A; }
-
-/* News Card */
-.news-card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  margin-bottom: 24px;
-  transition: all 0.3s;
+.timeline-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(232, 106, 139, 0.15);
 }
 
-.news-card:hover {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  transform: translateY(-2px);
-}
-
-.card-category-bar {
-  padding: 10px 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.card-label {
+  position: absolute;
+  left: -90px;
+  top: 35px;
+  background: linear-gradient(135deg, #E86A8B, #f4a5ba);
   color: white;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 3px 10px rgba(232, 106, 139, 0.3);
 }
-
-.card-category-bar.openai { background: #E86A8B; }
-.card-category-bar.google { background: #6BA9E8; }
-.card-category-bar.microsoft { background: #6BC7A4; }
-.card-category-bar.reddit { background: #F2A65A; }
 
 .card-content {
-  padding: 24px;
   display: grid;
-  grid-template-columns: 1fr 120px;
-  gap: 20px;
+  grid-template-columns: 1fr 200px;
+  gap: 25px;
   align-items: start;
 }
 
-.card-text h3 {
-  font-size: 1.25rem;
+.card-text {
+  flex: 1;
+}
+
+.card-title {
+  font-size: 1.4rem;
   font-weight: 700;
-  color: #222;
-  margin-bottom: 10px;
+  color: #2c2c2c;
+  margin-bottom: 12px;
   line-height: 1.4;
 }
 
 .card-meta {
-  font-size: 0.8rem;
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  font-size: 0.85rem;
   color: #999;
-  margin-bottom: 12px;
+}
+
+.card-meta .source {
+  background: #ffe8ee;
+  color: #E86A8B;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .card-body {
-  font-size: 0.95rem;
   color: #555;
-  margin-bottom: 16px;
-  line-height: 1.7;
+  margin-bottom: 18px;
+  line-height: 1.8;
 }
 
 .card-link {
   display: inline-block;
-  padding: 8px 16px;
-  background: #f5f5f5;
-  color: #555;
+  background: linear-gradient(135deg, #E86A8B, #f4a5ba);
+  color: white;
+  padding: 10px 22px;
+  border-radius: 25px;
   text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.85rem;
   font-weight: 600;
-  transition: all 0.2s;
+  font-size: 0.9rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 3px 10px rgba(232, 106, 139, 0.3);
 }
 
 .card-link:hover {
-  background: #E86A8B;
-  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(232, 106, 139, 0.4);
 }
 
 .card-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 8px;
-  background: #f0f0f0;
+  width: 200px;
+  height: 200px;
+  border-radius: 15px;
+  object-fit: cover;
+  background: linear-gradient(135deg, #ffe8ee, #fff5f7);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
-  overflow: hidden;
+  color: #E86A8B;
+  font-size: 3rem;
+  flex-shrink: 0;
 }
 
 .card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 15px;
+}
+
+/* Category sections */
+.category-header {
+  background: linear-gradient(135deg, #E86A8B, #f4a5ba);
+  color: white;
+  padding: 20px 35px;
+  border-radius: 20px;
+  margin: 50px 0 30px 60px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(232, 106, 139, 0.2);
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .container {
+  .main-layout {
     grid-template-columns: 1fr;
-    gap: 30px;
   }
   
-  .guide {
+  .guide-column {
     position: static;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
   
-  .timeline {
-    padding-left: 30px;
+  .timeline-line {
+    left: 15px;
   }
   
-  .timeline::before {
-    width: 2px;
+  .timeline-card {
+    margin-left: 40px;
+  }
+  
+  .card-label {
+    left: -70px;
+    font-size: 0.75rem;
+    padding: 6px 12px;
   }
 }
 
 @media (max-width: 768px) {
-  .site-header h1 {
+  .header h1 {
     font-size: 1.8rem;
   }
   
@@ -295,14 +296,32 @@ body {
   .card-image {
     width: 100%;
     height: 180px;
+    margin-top: 15px;
   }
   
-  .guide h2 {
-    font-size: 1.3rem;
+  .timeline-card {
+    padding: 25px;
+    margin-left: 30px;
+  }
+  
+  .card-label {
+    position: static;
+    display: inline-block;
+    margin-bottom: 15px;
+  }
+  
+  .timeline-line {
+    display: none;
   }
   
   .category-header {
-    font-size: 1.5rem;
+    margin-left: 0;
+    font-size: 1.2rem;
+    padding: 15px 25px;
+  }
+  
+  .card-title {
+    font-size: 1.2rem;
   }
 }
 </style>
@@ -310,54 +329,38 @@ body {
 <body>
 
 <div class="container">
-  
-  <header class="site-header">
-    <h1>今日のAIニュース📰</h1>
-    <p class="date">生成日：2025-01-09</p>
-  </header>
+  <div class="header">
+    <h1>🤖 Claude Code & AI News Timeline</h1>
+    <div class="generated-date">生成日：2025-01-08</div>
+  </div>
 
-  <!-- Left Guide -->
-  <aside class="guide">
-    <h2>実際、今日のAIはどこが動いたん？</h2>
-    <p>OpenAI → Google → Microsoft → Reddit の順に追うだけでOK</p>
-    <nav class="guide-nav">
-      <div class="guide-nav-item start">
-        <span class="dot"></span>
-        <span>START</span>
-      </div>
-      <div class="guide-nav-item openai">
-        <span class="dot"></span>
-        <span>OpenAI</span>
-      </div>
-      <div class="guide-nav-item google">
-        <span class="dot"></span>
-        <span>Google</span>
-      </div>
-      <div class="guide-nav-item microsoft">
-        <span class="dot"></span>
-        <span>Microsoft</span>
-      </div>
-      <div class="guide-nav-item reddit">
-        <span class="dot"></span>
-        <span>Reddit</span>
-      </div>
-      <div class="guide-nav-item goal">
-        <span class="dot"></span>
-        <span>GOAL</span>
-      </div>
-    </nav>
-  </aside>
-
-  <!-- Timeline -->
-  <main class="timeline">
-
-    <!-- OpenAI Section -->
-    <section class="category-section openai">
-      <h2 class="category-header">OpenAI</h2>
+  <div class="main-layout">
+    <!-- Left Guide Column -->
+    <div class="guide-column">
+      <h2>Claude Codeの最新動向と、AI業界の進化をどう追えばいい？</h2>
       
-      <article class="news-card">
-        <div class="card-category-bar openai">OpenAI</div>
-        <div class="card-content">
-          <div class="card-text">
-            <h3>Introducing OpenAI</h3>
-            <p
+      <div class="guide-nav">
+        <div class="guide-nav-item start">
+          <div class="circle">START</div>
+          <span>開発環境の拡張</span>
+        </div>
+        <div class="guide-nav-item">
+          <div class="circle">1</div>
+          <span>使い方とTips</span>
+        </div>
+        <div class="guide-nav-item">
+          <div class="circle">2</div>
+          <span>制限と課題</span>
+        </div>
+        <div class="guide-nav-item">
+          <div class="circle">3</div>
+          <span>実践事例</span>
+        </div>
+        <div class="guide-nav-item goal">
+          <div class="circle">GOAL</div>
+          <span>他社AI動向</span>
+        </div>
+      </div>
+      
+      <div class="guide-description">
+        このタイムラインでは、Claude Codeを中心としたAI開発ツールの最新情報を時系列で整理。WebUI構築からエージェント連携、トークン制限の問題、実践的な活用事例まで、開発者コミュニティの生の声をキャッ
