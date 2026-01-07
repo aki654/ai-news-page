@@ -1,12 +1,278 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI News</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日のAIニュース</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.7;
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 20px;
+  word-break: break-word;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 30px 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.date {
+  font-size: 1rem;
+  color: #666;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid #e0e0e0;
+}
+
+.card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.meta {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.meta span {
+  display: inline-block;
+}
+
+.summary {
+  margin-bottom: 16px;
+  color: #444;
+  font-size: 0.98rem;
+}
+
+.summary ul {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.summary li {
+  margin-bottom: 6px;
+}
+
+.link {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.link:hover {
+  background: #0056b3;
+}
+
+.no-link {
+  font-size: 0.85rem;
+  color: #999;
+  font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+  }
+  
+  header, .card {
+    background: #2a2a2a;
+    border-color: #3a3a3a;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  
+  h1, .card h2 {
+    color: #f0f0f0;
+  }
+  
+  .date {
+    color: #aaa;
+  }
+  
+  .meta {
+    color: #999;
+  }
+  
+  .summary {
+    color: #ccc;
+  }
+  
+  .link {
+    background: #0d6efd;
+  }
+  
+  .link:hover {
+    background: #0a58ca;
+  }
+  
+  .no-link {
+    color: #777;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+  
+  .card h2 {
+    font-size: 1.2rem;
+  }
+  
+  .card {
+    padding: 18px;
+  }
+}
+</style>
 </head>
 <body>
-  <h1>AI News</h1>
-  <p>準備中</p>
-</body>
-</html>
+<div class="container">
+<header>
+<h1>今日のAIニュース</h1>
+<p class="date">生成日：2026-01-07</p>
+</header>
+
+<div class="card">
+<h2>Claude built me a WebUI to access Cli on my machine via mobile and other desktops</h2>
+<div class="meta">
+<span>📰 Source: reddit</span>
+<span>📅 日時不明</span>
+</div>
+<div class="summary">
+ClaudeがCLIをモバイルやデスクトップから操作できるWebUIを構築した事例が報告されています。機器間でのコマンドライン操作を可能にするインターフェースの実装と考えられます。
+</div>
+<a href="https://www.reddit.com/r/ClaudeCode/comments/1q2ti35/claude_built_me_a_webui_to_access_cli_on_my/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
+</div>
+
+<div class="card">
+<h2>Introduction to Agent Skills</h2>
+<div class="meta">
+<span>📰 Source: reddit</span>
+<span>📅 日時不明</span>
+</div>
+<div class="summary">
+エージェントスキルに関する入門的な投稿です。AI エージェントに特定のスキルや機能を付与する方法についての情報と推測されます。
+</div>
+<a href="https://www.reddit.com/r/ClaudeCode/comments/1q303rj/introduction_to_agent_skills/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
+</div>
+
+<div class="card">
+<h2>How to make claude less eager to write code and more inclined to discuss it first.</h2>
+<div class="meta">
+<span>📰 Source: reddit</span>
+<span>📅 日時不明</span>
+</div>
+<div class="summary">
+Claudeがコードをすぐに書き始めるのではなく、まず議論を優先するようにする方法を探る投稿です。AIの振る舞いをより慎重で対話的にするための設定やプロンプト技法の共有と考えられます。
+</div>
+<a href="https://www.reddit.com/r/ClaudeCode/comments/1q30fpf/how_to_make_claude_less_eager_to_write_code_and/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
+</div>
+
+<div class="card">
+<h2>Claude Overflow - a plugin that turns Claude Code conversations into a personal StackOverflow</h2>
+<div class="meta">
+<span>📰 Source: reddit</span>
+<span>📅 日時不明</span>
+</div>
+<div class="summary">
+Claude Codeの会話を個人用StackOverflowに変換するプラグイン「Claude Overflow」が紹介されています。過去の問題解決をナレッジベース化し、検索・再利用できる仕組みと推測されます。
+</div>
+<a href="https://www.reddit.com/r/ClaudeCode/comments/1q31k2p/claude_overflow_a_plugin_that_turns_claude_code/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
+</div>
+
+<div class="card">
+<h2>27k tokens eaten by MCP tools before I even start - is there a better way?</h2>
+<div class="meta">
+<span>📰 Source: reddit</span>
+<span>📅 日時不明</span>
+</div>
+<div class="summary">
+MCPツールが会話開始前に27,000トークンを消費している問題についての相談です。トークン使用量の最適化や代替手段を求める声と考えられます。
+</div>
+<a href="https://www.reddit.com/r/ClaudeCode/comments/1q35kuo/27k_tokens_eaten_by_mcp_tools_before_i_even_start/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
+</div>
+
+<div class="card">
+<h2>Claude Code Creator Says AI Wrote 100% of His Code Last Month</h2>
+<div class="meta">
+<span>📰 Source: reddit</span>
+<span>📅 日時不明</span>
+</div>
+<div class="summary">
+Claude Codeの開発者が先月のコード100%をAIが書いたと発言したとの報告です。AI支援開発の実用性と影響力を示す事例として注目されています。
+</div>
+<a href="https://www.reddit.com/r/ClaudeCode/comments/1q36s9l/claude_code_creator_says_ai_wrote_100_of_his_code/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
+</div>
+
+<div class="card">
+<h2>Token usage through the roof? Let Anthropic know</h2>
+<div class="meta">
+<span>📰 Source: reddit</span>
+<span>📅 日時不明</span>
+</div>
+<div class="summary">
+トークン使用量が急増している場合、Anthropicにフィードバックを送るよう呼びかける投稿です。利用者からの報告がサービス改善に繋がる可能性を示唆しています。
+</div>
+<a href="https://www.reddit.com/r/ClaudeCode/comments/1q39rq8/token_usage_through_the_roof_let_anthropic_know/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
+</div>
+
+<div class="card">
+<h2>Is Claude Code better on the Terminal?</h2>
+<div class="meta">
+<span>📰 Source: reddit</span>
+<span>📅 日時不明</span>
+</div>
+<div class="summary">
+Claude Codeがターミナル環境でより優れたパフォーマンスを発揮するかどうかを問う投稿です。GUI版との比較や使い分けについての議論と考えられます。
+</div>
+<a href="https://www.reddit.com/r/ClaudeCode/comments/1q3dp6c/is_claude_code_better_on_the_terminal/" class="link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
+</div>
+
+<div class="card">
+<h2>They reduced the CC usage so much</h2>
+<div class="meta">
+<span>📰 Source: reddit</span>
+<span>📅 日時不明</span>
+</div>
+<div class="summary">
