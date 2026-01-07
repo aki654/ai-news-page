@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Daily Timeline - 2025-01-08</title>
+<title>AI News Timeline - 2025-01-08</title>
 <style>
 * {
   margin: 0;
@@ -13,236 +13,218 @@
 }
 
 body {
-  font-family: "Segoe UI", "Hiragino Sans", "Noto Sans JP", sans-serif;
-  background: linear-gradient(to bottom, #fafafa 0%, #f5f5f5 100%);
+  font-family: "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
   color: #333;
-  line-height: 1.75;
-  padding: 0;
-  margin: 0;
+  line-height: 1.8;
+  padding: 20px;
 }
 
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  display: flex;
-  gap: 3rem;
-  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  padding: 40px 0;
 }
 
-/* LEFT GUIDE */
-.guide {
-  width: 320px;
-  flex-shrink: 0;
-  position: sticky;
-  top: 3rem;
-  height: fit-content;
+/* ヘッダー */
+.page-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 30px;
   background: white;
-  border-radius: 20px;
-  padding: 2.5rem;
+  border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
 
-.guide h1 {
-  font-size: 1.5rem;
+.page-header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  color: #222;
   font-weight: 700;
-  color: #E86A8B;
-  margin-bottom: 0.75rem;
-  line-height: 1.4;
 }
 
-.guide .subtitle {
+.page-header .date {
+  color: #888;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+
+/* 左カラム（ガイド） */
+.guide {
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+  background: white;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.guide h2 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: #222;
+  line-height: 1.5;
+}
+
+.guide p {
   font-size: 0.95rem;
   color: #666;
-  margin-bottom: 2rem;
-  line-height: 1.6;
-}
-
-.guide .meta {
-  font-size: 0.8rem;
-  color: #999;
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
 }
 
 .nav-timeline {
   position: relative;
-  padding-left: 1.5rem;
+  padding-left: 24px;
 }
 
 .nav-timeline::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 3px;
+  left: 6px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
   background: linear-gradient(to bottom, #E86A8B, #6BA9E8, #6BC7A4, #F2A65A);
-  border-radius: 3px;
 }
 
 .nav-item {
-  margin-bottom: 1.25rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #666;
   position: relative;
-  cursor: pointer;
-  transition: all 0.2s;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: 500;
 }
 
-.nav-item:hover {
-  color: #333;
-  transform: translateX(3px);
+.nav-item::before {
+  content: "";
+  position: absolute;
+  left: -20px;
+  top: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
 }
 
-.nav-item.start {
-  color: #E86A8B;
-  font-weight: 700;
-}
+.nav-item.start { color: #999; }
+.nav-item.openai { color: #E86A8B; }
+.nav-item.google { color: #6BA9E8; }
+.nav-item.microsoft { color: #6BC7A4; }
+.nav-item.reddit { color: #F2A65A; }
+.nav-item.goal { color: #999; }
 
-.nav-item.goal {
-  color: #6BC7A4;
-  font-weight: 700;
-}
-
-/* MAIN TIMELINE */
+/* タイムライン */
 .timeline {
-  flex: 1;
   position: relative;
 }
 
 .timeline::before {
   content: "";
   position: absolute;
-  left: 0;
+  left: -20px;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background: #e0e0e0;
-  border-radius: 2px;
+  width: 3px;
+  background: linear-gradient(to bottom, #E86A8B 0%, #E86A8B 25%, #6BA9E8 25%, #6BA9E8 50%, #6BC7A4 50%, #6BC7A4 75%, #F2A65A 75%, #F2A65A 100%);
+  opacity: 0.15;
 }
 
-.category-block {
-  margin-bottom: 4rem;
-  position: relative;
+.category-section {
+  margin-bottom: 60px;
 }
 
 .category-header {
-  display: inline-block;
-  padding: 0.5rem 1.5rem;
-  border-radius: 30px;
+  font-size: 1.8rem;
   font-weight: 700;
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  margin-left: 2rem;
-  color: white;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  padding-bottom: 12px;
+  border-bottom: 3px solid;
+  display: inline-block;
 }
 
-.category-openai { background: #E86A8B; }
-.category-google { background: #6BA9E8; }
-.category-microsoft { background: #6BC7A4; }
-.category-reddit { background: #F2A65A; }
+.category-header.openai { color: #E86A8B; border-color: #E86A8B; }
+.category-header.google { color: #6BA9E8; border-color: #6BA9E8; }
+.category-header.microsoft { color: #6BC7A4; border-color: #6BC7A4; }
+.category-header.reddit { color: #F2A65A; border-color: #F2A65A; }
 
+/* ニュースカード */
 .news-card {
   background: white;
-  border-radius: 16px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  margin-left: 2rem;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-  position: relative;
-  transition: all 0.3s;
-  border-left: 5px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  margin-bottom: 24px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .news-card:hover {
-  box-shadow: 0 6px 28px rgba(0,0,0,0.12);
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
-.news-card::before {
-  content: "";
-  position: absolute;
-  left: -2rem;
-  top: 2rem;
-  width: 12px;
-  height: 12px;
-  background: white;
-  border: 3px solid #ddd;
-  border-radius: 50%;
-  box-shadow: 0 0 0 4px #fafafa;
-}
-
-.news-card.openai { border-left-color: #E86A8B; }
-.news-card.openai::before { border-color: #E86A8B; }
-
-.news-card.google { border-left-color: #6BA9E8; }
-.news-card.google::before { border-color: #6BA9E8; }
-
-.news-card.microsoft { border-left-color: #6BC7A4; }
-.news-card.microsoft::before { border-color: #6BC7A4; }
-
-.news-card.reddit { border-left-color: #F2A65A; }
-.news-card.reddit::before { border-color: #F2A65A; }
-
-.card-header {
-  padding: 0.5rem 1rem;
-  border-radius: 8px 8px 0 0;
-  margin: -2rem -2rem 1rem -2rem;
-  font-size: 0.85rem;
-  font-weight: 600;
+.card-category-band {
+  padding: 10px 20px;
   color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
-.card-header.openai { background: #E86A8B; }
-.card-header.google { background: #6BA9E8; }
-.card-header.microsoft { background: #6BC7A4; }
-.card-header.reddit { background: #F2A65A; }
+.card-category-band.openai { background: #E86A8B; }
+.card-category-band.google { background: #6BA9E8; }
+.card-category-band.microsoft { background: #6BC7A4; }
+.card-category-band.reddit { background: #F2A65A; }
 
 .card-content {
-  display: flex;
-  gap: 1.5rem;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: 1fr 140px;
+  gap: 20px;
 }
 
 .card-text {
-  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .card-title {
-  font-size: 1.35rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: #222;
-  margin-bottom: 0.75rem;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .card-meta {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: #999;
-  margin-bottom: 1rem;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .card-body {
   font-size: 0.95rem;
   color: #555;
   line-height: 1.7;
-  margin-bottom: 1.25rem;
 }
 
 .card-image {
-  width: 200px;
+  width: 140px;
   height: 140px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
-  flex-shrink: 0;
+  background: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ccc;
   font-size: 0.8rem;
-  overflow: hidden;
 }
 
 .card-image img {
@@ -252,41 +234,42 @@ body {
 }
 
 .card-button {
-  display: inline-block;
-  padding: 0.6rem 1.5rem;
-  background: #333;
-  color: white;
-  border-radius: 8px;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 600;
-  transition: all 0.2s;
+  margin-top: 16px;
 }
 
-.card-button:hover {
+.card-button a {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.card-button a:hover {
   background: #555;
-  transform: translateY(-1px);
 }
 
 .empty-message {
-  margin-left: 2rem;
-  padding: 1.5rem;
-  background: #f9f9f9;
-  border-radius: 12px;
   color: #999;
-  font-size: 0.9rem;
+  font-style: italic;
+  padding: 20px;
   text-align: center;
+  background: #fafafa;
+  border-radius: 8px;
 }
 
-/* RESPONSIVE */
-@media (max-width: 1024px) {
+/* レスポンシブ */
+@media (max-width: 968px) {
   .container {
-    flex-direction: column;
-    gap: 2rem;
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
   
   .guide {
-    width: 100%;
     position: relative;
     top: 0;
   }
@@ -295,86 +278,86 @@ body {
     display: none;
   }
   
-  .news-card {
-    margin-left: 0;
-  }
-  
-  .news-card::before {
-    display: none;
-  }
-  
-  .category-header {
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 640px) {
-  .container {
-    padding: 1.5rem 1rem;
-  }
-  
-  .guide {
-    padding: 1.5rem;
-  }
-  
-  .guide h1 {
-    font-size: 1.25rem;
-  }
-  
   .card-content {
-    flex-direction: column;
+    grid-template-columns: 1fr;
   }
   
   .card-image {
     width: 100%;
-    height: 180px;
+    height: 200px;
+  }
+}
+
+@media (max-width: 640px) {
+  body {
+    padding: 10px;
+  }
+  
+  .page-header h1 {
+    font-size: 1.6rem;
+  }
+  
+  .guide {
+    padding: 20px;
+  }
+  
+  .guide h2 {
+    font-size: 1.2rem;
+  }
+  
+  .category-header {
+    font-size: 1.4rem;
   }
   
   .card-title {
-    font-size: 1.15rem;
-  }
-  
-  .news-card {
-    padding: 1.5rem;
+    font-size: 1.1rem;
   }
 }
 </style>
 </head>
 <body>
 
+<div class="page-header">
+  <h1>📰 AI News Timeline</h1>
+  <p class="date">生成日：2025-01-08</p>
+</div>
+
 <div class="container">
-  
-  <!-- LEFT GUIDE -->
+  <!-- 左カラム：ガイド -->
   <aside class="guide">
-    <h1>実際、今日のAIは<br>どこが動いたん？</h1>
-    <p class="subtitle">OpenAI → Google → Microsoft → Reddit の順に追うだけでOK</p>
-    <div class="meta">生成日：2025-01-08</div>
+    <h2>実際、今日のAIは<br>どこが動いたん？</h2>
+    <p>OpenAI → Google → Microsoft → Reddit の順に追うだけでOK</p>
     
     <nav class="nav-timeline">
       <div class="nav-item start">START</div>
-      <div class="nav-item">OpenAI</div>
-      <div class="nav-item">Google</div>
-      <div class="nav-item">Microsoft</div>
-      <div class="nav-item">Reddit</div>
+      <div class="nav-item openai">OpenAI</div>
+      <div class="nav-item google">Google</div>
+      <div class="nav-item microsoft">Microsoft</div>
+      <div class="nav-item reddit">Reddit</div>
       <div class="nav-item goal">GOAL</div>
     </nav>
   </aside>
 
-  <!-- MAIN TIMELINE -->
+  <!-- 右カラム：タイムライン -->
   <main class="timeline">
     
-    <!-- OpenAI -->
-    <section class="category-block" id="openai">
-      <div class="category-header category-openai">OpenAI</div>
-      <div class="empty-message">今日は更新少なめ（最新情報は後日追加予定）</div>
+    <!-- OpenAI セクション -->
+    <section class="category-section">
+      <h2 class="category-header openai">OpenAI</h2>
+      <div class="empty-message">今日は更新少なめ</div>
     </section>
 
-    <!-- Google -->
-    <section class="category-block" id="google">
-      <div class="category-header category-google">Google</div>
+    <!-- Google セクション -->
+    <section class="category-section">
+      <h2 class="category-header google">Google</h2>
       
-      <article class="news-card google">
-        <div class="card-header google">Google</div>
+      <article class="news-card">
+        <div class="card-category-band google">Google</div>
         <div class="card-content">
           <div class="card-text">
-            <h2 class="card-title">Google introduces new Gemini for Google TV features.</h2>
+            <h3 class="card-title">Google introduces new Gemini for Google TV features.</h3>
+            <div class="card-meta">
+              <span>📰 Google Blog</span>
+            </div>
+            <p class="card-body">Gemini がGoogle TV をさらに便利にし、テレビとのより多くの関わり方を提供します。CES 2026 で新しい Gemini for Google TV の機能がプレビューされました。</p>
+            <div class="card-button">
