@@ -1,276 +1,353 @@
+# 📊 AI業界ウィークリーレポート
+
+**Claude Code コミュニティの最新動向と主要テック企業のAI戦略**
+
+<出典> Reddit r/ClaudeCode / Google AI Blog / Microsoft AI / OpenAI
+
+---
+
+## 今週、AI開発の現場で何が起きているのか？
+
+---
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>今日のAIニュース</title>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI業界ウィークリーレポート - Claude Code & Tech Giants</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=M+PLUS+Rounded+1c:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
-  background-color: #f5f5f5;
-  color: #333;
-  padding: 20px;
-  word-break: break-word;
-}
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 50%, #F48FB1 100%);
+            padding: 40px 20px;
+            color: #333;
+            line-height: 1.8;
+        }
 
-.container {
-  max-width: 980px;
-  margin: 0 auto;
-}
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(233, 30, 99, 0.3);
+            overflow: hidden;
+        }
 
-header {
-  text-align: center;
-  margin-bottom: 40px;
-  padding: 30px 20px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
+        /* ヘッダー */
+        .header {
+            background: linear-gradient(135deg, #E91E63 0%, #F06292 100%);
+            color: white;
+            padding: 60px 40px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
 
-h1 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-  color: #2c3e50;
-}
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 15s infinite;
+        }
 
-.date {
-  font-size: 1rem;
-  color: #7f8c8d;
-}
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
 
-.article-card {
-  background: #fff;
-  border-radius: 12px;
-  padding: 24px;
-  margin-bottom: 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  border: 1px solid #e0e0e0;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
+        .header h1 {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 2.8em;
+            font-weight: 900;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
 
-.article-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+        }
 
-.article-title {
-  font-size: 1.4rem;
-  margin-bottom: 12px;
-  color: #2c3e50;
-  font-weight: 600;
-}
+        .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.25);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
 
-.article-meta {
-  font-size: 0.85rem;
-  color: #7f8c8d;
-  margin-bottom: 16px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #ecf0f1;
-}
+        /* リード文 */
+        .lead {
+            padding: 40px;
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-left: 6px solid #FF9800;
+            margin: 40px;
+            border-radius: 15px;
+            font-size: 1.15em;
+            font-weight: 700;
+            color: #E65100;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.2);
+        }
 
-.article-meta span {
-  margin-right: 16px;
-}
+        /* メインコンテンツ */
+        .content {
+            padding: 20px 40px 60px;
+        }
 
-.article-summary {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 16px;
-  line-height: 1.7;
-}
+        /* タイムラインブロック */
+        .timeline-block {
+            position: relative;
+            margin-bottom: 50px;
+            padding-left: 80px;
+            transition: transform 0.3s ease;
+        }
 
-.article-summary ul {
-  margin-left: 20px;
-  margin-top: 8px;
-}
+        .timeline-block:hover {
+            transform: translateX(5px);
+        }
 
-.article-summary li {
-  margin-bottom: 4px;
-}
+        .timeline-block::before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 50px;
+            bottom: -40px;
+            width: 3px;
+            background: linear-gradient(180deg, #F48FB1 0%, #FCE4EC 100%);
+        }
 
-.article-link {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #3498db;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  transition: background-color 0.2s;
-}
+        .timeline-block:last-child::before {
+            display: none;
+        }
 
-.article-link:hover {
-  background-color: #2980b9;
-}
+        .block-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #E91E63 0%, #F06292 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 1.4em;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+            border: 4px solid white;
+        }
 
-.no-link {
-  color: #e74c3c;
-  font-size: 0.9rem;
-  font-style: italic;
-}
+        .block-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 2px solid #FCE4EC;
+            transition: all 0.3s ease;
+        }
 
-.source-badge {
-  display: inline-block;
-  padding: 4px 10px;
-  background-color: #ecf0f1;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-}
+        .block-content:hover {
+            box-shadow: 0 8px 30px rgba(233, 30, 99, 0.2);
+            border-color: #F48FB1;
+        }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1a1a1a;
-    color: #e0e0e0;
-  }
-  
-  header, .article-card {
-    background: #2d2d2d;
-    border-color: #404040;
-  }
-  
-  h1, .article-title {
-    color: #f0f0f0;
-  }
-  
-  .date, .article-meta {
-    color: #aaa;
-  }
-  
-  .article-summary {
-    color: #ccc;
-  }
-  
-  .source-badge {
-    background-color: #404040;
-    color: #e0e0e0;
-  }
-  
-  .article-meta {
-    border-bottom-color: #404040;
-  }
-}
+        .block-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
 
-@media (max-width: 768px) {
-  body {
-    padding: 12px;
-  }
-  
-  h1 {
-    font-size: 1.8rem;
-  }
-  
-  .article-card {
-    padding: 18px;
-  }
-  
-  .article-title {
-    font-size: 1.2rem;
-  }
-}
-</style>
-</head>
-<body>
-<div class="container">
-<header>
-<h1>今日のAIニュース</h1>
-<p class="date">2026-01-07</p>
-</header>
+        .block-title {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 1.8em;
+            font-weight: 800;
+            color: #E91E63;
+            margin-bottom: 8px;
+        }
 
-<div class="article-card">
-<h2 class="article-title">Claude built me a WebUI to access Cli on my machine via mobile and other desktops</h2>
-<div class="article-meta">
-<span class="source-badge">reddit</span>
-<span>日時不明</span>
-</div>
-<div class="article-summary">
-ClaudeがコマンドラインインターフェースにモバイルやデスクトップからアクセスできるWebUIを構築したという報告です。リモート環境からローカルマシンのCLIを操作できるようになりました。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q2ti35/claude_built_me_a_webui_to_access_cli_on_my/" class="article-link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
+        .block-subtitle {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
 
-<div class="article-card">
-<h2 class="article-title">Introduction to Agent Skills</h2>
-<div class="article-meta">
-<span class="source-badge">reddit</span>
-<span>日時不明</span>
-</div>
-<div class="article-summary">
-エージェントスキルの導入に関する記事です。Claudeにスキルを設定することで、より専門的で効率的な作業が可能になると考えられます。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q303rj/introduction_to_agent_skills/" class="article-link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
+        .block-list {
+            list-style: none;
+            margin-top: 20px;
+        }
 
-<div class="article-card">
-<h2 class="article-title">How to make claude less eager to write code and more inclined to discuss it first.</h2>
-<div class="article-meta">
-<span class="source-badge">reddit</span>
-<span>日時不明</span>
-</div>
-<div class="article-summary">
-Claudeがコードを書く前に、まず議論するよう促す方法についての質問です。すぐに実装に入るのではなく、設計や方針を先に話し合いたいというニーズがあります。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q30fpf/how_to_make_claude_less_eager_to_write_code_and/" class="article-link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
+        .block-list li {
+            padding: 12px 0 12px 30px;
+            position: relative;
+            color: #444;
+            border-bottom: 1px solid #FCE4EC;
+        }
 
-<div class="article-card">
-<h2 class="article-title">Claude Overflow - a plugin that turns Claude Code conversations into a personal StackOverflow</h2>
-<div class="article-meta">
-<span class="source-badge">reddit</span>
-<span>日時不明</span>
-</div>
-<div class="article-summary">
-Claude Codeの会話を個人用StackOverflowに変換するプラグイン「Claude Overflow」が紹介されています。過去の質問と回答を検索可能なナレッジベースとして活用できます。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q31k2p/claude_overflow_a_plugin_that_turns_claude_code/" class="article-link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
+        .block-list li:last-child {
+            border-bottom: none;
+        }
 
-<div class="article-card">
-<h2 class="article-title">27k tokens eaten by MCP tools before I even start - is there a better way?</h2>
-<div class="article-meta">
-<span class="source-badge">reddit</span>
-<span>日時不明</span>
-</div>
-<div class="article-summary">
-MCPツールが作業開始前に27,000トークンを消費してしまう問題についての相談です。より効率的な方法を模索しています。トークン消費の最適化が課題となっています。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q35kuo/27k_tokens_eaten_by_mcp_tools_before_i_even_start/" class="article-link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
+        .block-list li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #E91E63;
+            font-size: 0.8em;
+        }
 
-<div class="article-card">
-<h2 class="article-title">Claude Code Creator Says AI Wrote 100% of His Code Last Month</h2>
-<div class="article-meta">
-<span class="source-badge">reddit</span>
-<span>日時不明</span>
-</div>
-<div class="article-summary">
-Claude Codeの開発者が、先月のコードの100%をAIが書いたと発言しています。AI支援開発の実用性を示す事例として注目されています。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q36s9l/claude_code_creator_says_ai_wrote_100_of_his_code/" class="article-link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
+        .highlight {
+            background: linear-gradient(transparent 60%, #FFE0B2 60%);
+            font-weight: 700;
+            padding: 2px 4px;
+            color: #E65100;
+        }
 
-<div class="article-card">
-<h2 class="article-title">Token usage through the roof? Let Anthropic know</h2>
-<div class="article-meta">
-<span class="source-badge">reddit</span>
-<span>日時不明</span>
-</div>
-<div class="article-summary">
-トークン使用量が急増している場合、Anthropicにフィードバックを送ることを推奨する投稿です。使用状況の報告が改善につながる可能性があります。
-</div>
-<a href="https://www.reddit.com/r/ClaudeCode/comments/1q39rq8/token_usage_through_the_roof_let_anthropic_know/" class="article-link" target="_blank" rel="noopener noreferrer">参照元を開く</a>
-</div>
+        /* プログレスバー */
+        .progress-bar {
+            margin: 25px 0;
+            background: #FCE4EC;
+            border-radius: 15px;
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+        }
 
-<div class="article-card">
-<h2 class="article-title">Is Claude Code better on the Terminal?</h2>
-<div class="article-meta">
-<span class="source-badge">reddit</span>
-<span>日時不明</span>
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #E91E63 0%, #F06292 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 15px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9em;
+            transition: width 1.5s ease;
+        }
+
+        /* 比較表 */
+        .comparison-table {
+            margin: 25px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .comparison-row {
+            display: flex;
+            border-bottom: 1px solid #FCE4EC;
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-cell {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .comparison-cell.header {
+            background: linear-gradient(135deg, #E91E63 0%, #F06292 100%);
+            color: white;
+            font-weight: 700;
+        }
+
+        .comparison-cell:nth-child(odd) {
+            background: #FFF;
+        }
+
+        .comparison-cell:nth-child(even) {
+            background: #FCE4EC;
+        }
+
+        /* アクセントカラー */
+        .accent-green {
+            color: #4CAF50;
+            font-weight: 700;
+        }
+
+        .accent-blue {
+            color: #2196F3;
+            font-weight: 700;
+        }
+
+        .accent-orange {
+            color: #FF9800;
+            font-weight: 700;
+        }
+
+        /* タグ */
+        .tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: 700;
+            margin: 5px 5px 5px 0;
+        }
+
+        .tag.hot {
+            background: #FFEBEE;
+            color: #C62828;
+        }
+
+        .tag.new {
+            background: #E3F2FD;
+            color: #1565C0;
+        }
+
+        .tag.tool {
+            background: #F3E5F5;
+            color: #6A1B9A;
+        }
+
+        .tag.issue {
+            background: #FFF3E0;
+            color: #E65100;
+        }
+
+        /* 引用セクション */
+        .quote-section {
+            margin: 50px 40px 40px;
+            padding: 35px;
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-left: 6px solid #4CAF50;
+            border-radius: 15px;
+            font-style: italic;
+            color: #2E7D32;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+        }
+
+        .quote-section::before {
+            content: '"';
+            font-size: 4em;
+            color: #4CAF50;
+            opacity: 0.3;
