@@ -1,141 +1,192 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>今日のAIニュース</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 3px solid #333;
-            padding-bottom: 20px;
-        }
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: #222;
-        }
-        .date {
-            color: #666;
-            font-size: 1.1em;
-        }
-        .article-card {
-            background-color: #fff;
-            border: 1px solid #e0e0e0;
-            border-radius: 6px;
-            padding: 25px;
-            margin-bottom: 25px;
-            transition: box-shadow 0.3s ease;
-        }
-        .article-card:hover {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        .article-title {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #111;
-        }
-        .article-meta {
-            display: inline-block;
-            background-color: #007bff;
-            color: #fff;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        .article-meta.openai {
-            background-color: #10a37f;
-        }
-        .article-meta.google {
-            background-color: #4285f4;
-        }
-        .article-meta.microsoft {
-            background-color: #00a4ef;
-        }
-        .article-meta.reddit {
-            background-color: #ff4500;
-        }
-        .article-meta.other {
-            background-color: #6c757d;
-        }
-        .article-summary {
-            color: #555;
-            margin-bottom: 15px;
-            font-size: 1.05em;
-        }
-        .article-link {
-            display: inline-block;
-            color: #007bff;
-            text-decoration: none;
-            font-weight: 600;
-            border-bottom: 2px solid transparent;
-            transition: border-bottom 0.2s ease;
-        }
-        .article-link:hover {
-            border-bottom: 2px solid #007bff;
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            .header h1 {
-                font-size: 2em;
-            }
-            .article-title {
-                font-size: 1.3em;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今日のAIニュース</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.date {
+  font-size: 1.1em;
+  color: #666;
+}
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.news-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  transition: box-shadow 0.3s ease;
+}
+
+.news-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.news-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.source-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: bold;
+  color: #fff;
+}
+
+.source-openai {
+  background-color: #10a37f;
+}
+
+.source-google {
+  background-color: #4285f4;
+}
+
+.source-microsoft {
+  background-color: #00a4ef;
+}
+
+.source-reddit {
+  background-color: #ff4500;
+}
+
+.source-other {
+  background-color: #666;
+}
+
+.news-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.news-summary {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+
+.news-link {
+  display: inline-block;
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.news-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .news-title {
+    font-size: 1.3em;
+  }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>今日のAIニュース</h1>
-            <p class="date">2024-01-15</p>
-        </div>
+<div class="container">
+<header>
+<h1>今日のAIニュース</h1>
+<p class="date">2024-01-15</p>
+</header>
 
-        <div class="article-card">
-            <h2 class="article-title">Concrete AI safety problems</h2>
-            <span class="article-meta openai">OpenAI</span>
-            <div class="article-summary">
-                OpenAIはBerkeley大学とStanford大学の研究者と共に、Google Brainが主導する論文「Concrete Problems in AI Safety」の共著者となりました。この論文は、現代の機械学習システムが意図した通りに動作することを保証するための多くの研究課題を探求しています。AIの安全性に関する具体的な問題を明確化し、実用的な研究の方向性を示す重要な取り組みです。
-            </div>
-            <a href="https://openai.com/index/concrete-ai-safety-problems" target="_blank" rel="noopener noreferrer" class="article-link">元記事を読む →</a>
-        </div>
+<div class="news-list">
 
-        <div class="article-card">
-            <h2 class="article-title">Weight normalization: A simple reparameterization to accelerate training of deep neural networks</h2>
-            <span class="article-meta openai">OpenAI</span>
-            <div class="article-summary">
-                深層ニューラルネットワークの訓練を高速化するための、重み正規化という新しい手法に関する研究が発表されました。シンプルな再パラメータ化を通じて、ディープラーニングモデルの学習効率を向上させる技術的アプローチです。
-            </div>
-            <a href="https://openai.com/index/weight-normalization" target="_blank" rel="noopener noreferrer" class="article-link">元記事を読む →</a>
-        </div>
+<div class="news-card">
+<div class="news-header">
+<span class="source-tag source-openai">OpenAI</span>
+</div>
+<h2 class="news-title">Concrete AI safety problems</h2>
+<p class="news-summary">OpenAIは、Berkeley大学とStanford大学の研究者とともに、Google Brainが主導する論文「Concrete Problems in AI Safety」の共著者となりました。この論文では、現代の機械学習システムが意図した通りに動作することを保証するための多くの研究課題を探求しています。AI安全性に関する具体的な問題を明確化し、実践的なアプローチを提示する重要な研究です。</p>
+<a class="news-link" href="https://openai.com/index/concrete-ai-safety-problems" target="_blank">元記事を読む →</a>
+</div>
 
-    </div>
+<div class="news-card">
+<div class="news-header">
+<span class="source-tag source-openai">OpenAI</span>
+</div>
+<h2 class="news-title">Weight normalization: A simple reparameterization to accelerate training of deep neural networks</h2>
+<p class="news-summary">深層ニューラルネットワークの訓練を高速化するシンプルな再パラメータ化手法である「重み正規化」に関する研究が発表されました。この技術は、ディープラーニングモデルのトレーニングプロセスを効率化することを目的としています。</p>
+<a class="news-link" href="https://openai.com/index/weight-normalization" target="_blank">元記事を読む →</a>
+</div>
+
+<div class="news-card">
+<div class="news-header">
+<span class="source-tag source-google">Google</span>
+</div>
+<h2 class="news-title">You can now verify Google AI-generated videos in the Gemini app.</h2>
+<p class="news-summary">Googleは、GeminiアプリでAIによって生成された動画を検証できる新機能を導入しました。コンテンツの透明性を高めるツールの拡張により、ユーザーは動画がGoogle AIによって編集または作成されたものかどうかを簡単に確認できるようになります。AI生成コンテンツの識別を容易にすることで、情報の信頼性向上を図る取り組みです。</p>
+<a class="news-link" href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" target="_blank">元記事を読む →</a>
+</div>
+
+<div class="news-card">
+<div class="news-header">
+<span class="source-tag source-microsoft">Microsoft</span>
+</div>
+<h2 class="news-title">The opportunity at home – can AI drive innovation in personal assistant devices and sign language?</h2>
+<p class="news-summary">Microsoftは、AIが家庭内のパーソナルアシスタントデバイスと手話技術においてどのようにイノベーションを推進できるかについて探求しています。アクセシビリティの向上を目指し、AI技術を活用して日常生活における支援機能の革新を目指す取り組みが紹介されています。</p>
+<a class="news-link" href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" target="_blank">元記事を読む →</a>
+</div>
+
+</div>
+</div>
 </body>
 </html>
