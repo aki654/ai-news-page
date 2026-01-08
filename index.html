@@ -4,227 +4,301 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI News Today - 最新AI動向レポート</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
-            padding: 0;
-            background: linear-gradient(180deg, #F8F9FA 0%, #FFFFFF 100%);
+            padding: 20px;
+            background: #F5F7FA;
             font-family: 'Noto Sans JP', sans-serif;
             color: #333;
-            line-height: 1.8;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 40px 30px;
+            padding: 40px;
             background: #FFFFFF;
-            border: none;
-            box-shadow: 0 0 40px rgba(0,0,0,0.06);
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
         }
 
-        header {
+        .page-header {
             text-align: center;
             margin-bottom: 40px;
             padding-bottom: 30px;
-            border-bottom: 3px solid #F0F0F0;
+            border-bottom: 2px solid #EAEAEA;
         }
 
-        .main-title {
-            font-size: 24px;
-            color: #666;
+        .page-header h1 {
+            font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
+            font-size: 28px;
+            color: #333;
+            margin: 0 0 8px 0;
             font-weight: 700;
-            font-family: 'M PLUS Rounded 1c', sans-serif;
-            margin-bottom: 8px;
         }
 
-        .sub-title {
+        .page-header .subtitle {
             font-size: 14px;
-            color: #999;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .page-header .date {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .article-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 28px;
             margin-bottom: 30px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+            border: 1px solid #F0F0F0;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .article-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #10A37F;
-            margin-bottom: 20px;
-            line-height: 1.4;
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
         }
 
-        .meta-info {
+        .article-header {
             display: flex;
-            justify-content: center;
-            gap: 20px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
             flex-wrap: wrap;
-            align-items: center;
-            font-size: 14px;
-            color: #666;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .source-badge {
-            background: #10A37F;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-weight: 700;
-        }
-
-        .lead-section {
-            background: #E6F7F2;
-            border-left: 4px solid #10A37F;
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 40px;
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 1.6;
-        }
-
-        .timeline {
-            margin-bottom: 40px;
-        }
-
-        .timeline::before {
-            display: none;
-        }
-
-        .block {
-            position: relative;
-            margin-bottom: 24px;
-            background: #FFFFFF;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            border: 1px solid #F0F0F0;
-            border-left: none;
-        }
-
-        .block::before {
-            display: none;
-        }
-
-        .block-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
-        }
-
-        .block-number {
             display: inline-block;
-            background: #10A37F;
+            padding: 6px 14px;
+            border-radius: 20px;
             color: white;
-            padding: 4px 12px;
-            border-radius: 8px;
+            font-size: 12px;
             font-weight: 700;
-            font-size: 14px;
         }
 
-        .block-title {
+        .source-badge.openai {
+            background: #10A37F;
+        }
+
+        .source-badge.google {
+            background: #4285F4;
+        }
+
+        .source-badge.microsoft {
+            background: #00A4EF;
+        }
+
+        .source-badge.reddit {
+            background: #FF4500;
+        }
+
+        .article-date {
+            font-size: 13px;
+            color: #888;
+        }
+
+        .article-title {
             font-size: 20px;
             font-weight: 700;
+            margin: 16px 0;
+            line-height: 1.4;
+        }
+
+        .article-title.openai {
+            color: #10A37F;
+        }
+
+        .article-title.google {
+            color: #4285F4;
+        }
+
+        .article-title.microsoft {
+            color: #00A4EF;
+        }
+
+        .article-title.reddit {
+            color: #FF4500;
+        }
+
+        .article-summary {
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin: 16px 0;
+            font-size: 14px;
+            line-height: 1.7;
+            border-left: 4px solid;
+        }
+
+        .article-summary.openai {
+            background: #E6F7F2;
+            border-left-color: #10A37F;
+        }
+
+        .article-summary.google {
+            background: #E8F0FE;
+            border-left-color: #4285F4;
+        }
+
+        .article-summary.microsoft {
+            background: #E6F6FD;
+            border-left-color: #00A4EF;
+        }
+
+        .article-summary.reddit {
+            background: #FFF0EB;
+            border-left-color: #FF4500;
+        }
+
+        .points-section {
+            margin: 20px 0;
+        }
+
+        .points-section h3 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
             color: #333;
         }
 
-        .block-content ul {
+        .points-list {
             list-style: none;
-            padding-left: 0;
+            padding: 0;
+            margin: 0;
         }
 
-        .block-content li {
-            padding-left: 24px;
-            margin-bottom: 12px;
+        .points-list li {
             position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.6;
         }
 
-        .block-content li::before {
-            content: "•";
-            color: #10A37F;
-            font-weight: 700;
+        .points-list li::before {
+            content: '';
             position: absolute;
-            left: 8px;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
         }
 
-        .block-content strong {
-            color: #10A37F;
-            font-weight: 700;
+        .points-list.openai li::before {
+            background: #10A37F;
         }
 
-        footer {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px dashed #E0E0E0;
-            text-align: center;
+        .points-list.google li::before {
+            background: #4285F4;
         }
 
-        .footer-title {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 16px;
-            font-weight: 700;
+        .points-list.microsoft li::before {
+            background: #00A4EF;
         }
 
-        .link-button {
+        .points-list.reddit li::before {
+            background: #FF4500;
+        }
+
+        .read-more {
             display: inline-block;
-            background: #E6F7F2;
-            color: #10A37F;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 8px;
             text-decoration: none;
-            font-weight: 700;
-            margin-bottom: 20px;
-            transition: all 0.3s;
-        }
-
-        .link-button:hover {
-            background: #10A37F;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 12px;
+            transition: opacity 0.2s;
             color: white;
         }
 
-        .credit {
-            font-size: 12px;
-            color: #999;
-            margin-top: 20px;
+        .read-more.openai {
+            background: #10A37F;
+        }
+
+        .read-more.google {
+            background: #4285F4;
+        }
+
+        .read-more.microsoft {
+            background: #00A4EF;
+        }
+
+        .read-more.reddit {
+            background: #FF4500;
+        }
+
+        .read-more:hover {
+            opacity: 0.85;
+        }
+
+        .page-footer {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 2px solid #EAEAEA;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .page-footer p {
+            margin: 4px 0;
         }
 
         @media print {
             body {
                 background: white;
+                padding: 0;
             }
+
             .container {
                 box-shadow: none;
                 padding: 20px;
             }
-            .link-button {
-                display: none;
+
+            .article-card {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #DDD;
+            }
+
+            .article-card:hover {
+                transform: none;
+                box-shadow: none;
             }
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px 15px;
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
             }
-            .article-title {
+
+            .container {
+                padding: 20px;
+                border-radius: 12px;
+            }
+
+            .page-header h1 {
                 font-size: 24px;
             }
-            .lead-section {
-                font-size: 16px;
+
+            .article-card {
+                padding: 20px;
             }
-            .block-title {
+
+            .article-title {
                 font-size: 18px;
             }
         }
@@ -232,73 +306,117 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="main-title">🤖 AI News Today</div>
-            <div class="sub-title">～ 最新AI動向レポート ～</div>
-            <h1 class="article-title">AI安全性の具体的な課題：機械学習システムの安全性研究</h1>
-            <div class="meta-info">
-                <div class="meta-item">
-                    📅 配信日: 日付情報なし
-                </div>
-                <div class="meta-item">
-                    🏢 <span class="source-badge">OpenAI</span>
-                </div>
-            </div>
-        </header>
-
-        <div class="lead-section">
-            AIが意図した通りに動作することを保証するには、どのような研究課題があるのか？
+        <div class="page-header">
+            <h1>🤖 AI News Today</h1>
+            <div class="subtitle">～ 最新AI動向レポート ～</div>
+            <div class="date">📅 配信日: 2026年1月8日</div>
         </div>
 
-        <div class="timeline">
-            <div class="block">
-                <div class="block-header">
-                    <span class="block-number">[01]</span>
-                    <span class="block-title">💡 何が発表されたか</span>
-                </div>
-                <div class="block-content">
-                    <ul>
-                        <li><strong>OpenAI、Berkeley、Stanfordの研究者</strong>がGoogle Brainと共同で論文「Concrete Problems in AI Safety」を発表</li>
-                        <li>現代の<strong>機械学習システムの安全性</strong>に関する具体的な研究課題を探求</li>
-                        <li>AIシステムが<strong>意図した通りに動作することを保証</strong>するための多様な問題を分析</li>
-                    </ul>
-                </div>
+        <div class="article-card">
+            <div class="article-header">
+                <span class="source-badge openai">OpenAI</span>
+                <span class="article-date">📅 日付未公開</span>
             </div>
-
-            <div class="block">
-                <div class="block-header">
-                    <span class="block-number">[02]</span>
-                    <span class="block-title">🎯 なぜ重要か</span>
-                </div>
-                <div class="block-content">
-                    <ul>
-                        <li>AI技術の実用化が進む中、<strong>安全性の確保</strong>は最優先課題となっている</li>
-                        <li>複数の主要研究機関が協力することで、<strong>業界横断的な安全基準</strong>の構築が可能に</li>
-                        <li>理論だけでなく<strong>具体的な問題</strong>に焦点を当てることで、実装可能な解決策の開発を促進</li>
-                    </ul>
-                </div>
+            <h2 class="article-title openai">具体的なAI安全性の問題</h2>
+            <div class="article-summary openai">
+                OpenAIは、バークレー大学とスタンフォード大学の研究者と共同で、Google Brainが主導する論文「AI安全性における具体的問題」を発表しました。この論文では、現代の機械学習システムが意図した通りに動作することを保証するための、多くの研究課題を探求しています。
             </div>
-
-            <div class="block">
-                <div class="block-header">
-                    <span class="block-number">[03]</span>
-                    <span class="block-title">🚀 今後の影響・展望</span>
-                </div>
-                <div class="block-content">
-                    <ul>
-                        <li>AI安全性研究の<strong>標準的なフレームワーク</strong>として業界全体に影響を与える可能性</li>
-                        <li>より<strong>信頼性の高いAIシステム</strong>の開発が加速し、実用化の障壁が低下</li>
-                        <li>今後のAI規制や<strong>ガイドライン策定</strong>の基礎となる研究として注目される</li>
-                    </ul>
-                </div>
+            <div class="points-section">
+                <h3>💡 ポイント</h3>
+                <ul class="points-list openai">
+                    <li><strong>AI安全性</strong>に関する具体的な研究課題を提示</li>
+                    <li>OpenAI、バークレー、スタンフォード、Google Brainの<strong>共同研究</strong></li>
+                    <li>機械学習システムの<strong>意図通りの動作保証</strong>に焦点</li>
+                </ul>
             </div>
+            <a href="https://openai.com/index/concrete-ai-safety-problems" class="read-more openai" target="_blank">🔗 詳細を読む</a>
         </div>
 
-        <footer>
-            <div class="footer-title">📰 出典・詳細情報</div>
-            <a href="https://openai.com/index/concrete-ai-safety-problems" class="link-button" target="_blank">🔗 元記事を読む</a>
-            <div class="credit">Generated by AI News Today</div>
-        </footer>
+        <div class="article-card">
+            <div class="article-header">
+                <span class="source-badge openai">OpenAI</span>
+                <span class="article-date">📅 日付未公開</span>
+            </div>
+            <h2 class="article-title openai">重み正規化：ディープニューラルネットワークの学習を加速するシンプルな再パラメータ化</h2>
+            <div class="article-summary openai">
+                OpenAIが、ディープニューラルネットワークの学習を効率化する新しい技術「重み正規化」について発表しました。この手法は、シンプルな再パラメータ化により、学習の高速化を実現します。
+            </div>
+            <div class="points-section">
+                <h3>💡 ポイント</h3>
+                <ul class="points-list openai">
+                    <li><strong>重み正規化</strong>という新しい学習最適化手法</li>
+                    <li>ディープニューラルネットワークの<strong>学習速度を向上</strong></li>
+                    <li>シンプルな再パラメータ化で実装が容易</li>
+                </ul>
+            </div>
+            <a href="https://openai.com/index/weight-normalization" class="read-more openai" target="_blank">🔗 詳細を読む</a>
+        </div>
+
+        <div class="article-card">
+            <div class="article-header">
+                <span class="source-badge google">Google</span>
+                <span class="article-date">📅 日付未公開</span>
+            </div>
+            <h2 class="article-title google">Geminiアプリで生成されたGoogle AIの動画を検証できるようになりました</h2>
+            <div class="article-summary google">
+                Googleは、AI生成コンテンツの透明性を高めるツールを拡張しました。Geminiアプリで、動画がGoogle AIによって編集または作成されたかどうかを確認できるようになり、AI生成コンテンツの識別がより簡単になります。
+            </div>
+            <div class="points-section">
+                <h3>💡 ポイント</h3>
+                <ul class="points-list google">
+                    <li><strong>コンテンツ透明性ツール</strong>の拡張により信頼性向上</li>
+                    <li>Geminiアプリ内でAI生成動画の<strong>検証機能</strong>を提供</li>
+                    <li>AI生成コンテンツの<strong>識別を簡単に</strong>実現</li>
+                </ul>
+            </div>
+            <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="read-more google" target="_blank">🔗 詳細を読む</a>
+        </div>
+
+        <div class="article-card">
+            <div class="article-header">
+                <span class="source-badge microsoft">Microsoft</span>
+                <span class="article-date">📅 日付未公開</span>
+            </div>
+            <h2 class="article-title microsoft">家庭でのチャンス – AIはパーソナルアシスタントデバイスと手話においてイノベーションを推進できるか？</h2>
+            <div class="article-summary microsoft">
+                Microsoftは、AIがパーソナルアシスタントデバイスと手話技術においてイノベーションを促進する可能性について探求しています。家庭環境でのアクセシビリティ向上を目指し、AIの新たな活用方法を提案しています。
+            </div>
+            <div class="points-section">
+                <h3>💡 ポイント</h3>
+                <ul class="points-list microsoft">
+                    <li>家庭向け<strong>パーソナルアシスタントデバイス</strong>のAI活用</li>
+                    <li><strong>手話技術</strong>へのAI応用でアクセシビリティ向上</li>
+                    <li>日常生活における<strong>イノベーション</strong>の可能性を探求</li>
+                </ul>
+            </div>
+            <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="read-more microsoft" target="_blank">🔗 詳細を読む</a>
+        </div>
+
+        <div class="article-card">
+            <div class="article-header">
+                <span class="source-badge reddit">Reddit</span>
+                <span class="article-date">📅 日付未公開</span>
+            </div>
+            <h2 class="article-title reddit">claude.ai/settings/usage が動作しない？</h2>
+            <div class="article-summary reddit">
+                Redditユーザーから、Claudeの使用状況ページ（claude.ai/settings/usage）が正常に動作しないという報告がありました。アクセスや表示に関する技術的な問題が議論されています。
+            </div>
+            <div class="points-section">
+                <h3>💡 ポイント</h3>
+                <ul class="points-list reddit">
+                    <li>Claudeの<strong>使用状況ページ</strong>の動作不具合を報告</li>
+                    <li>コミュニティで<strong>技術的問題</strong>について議論中</li>
+                    <li>Claudeのサービス利用における<strong>ユーザー体験</strong>に関する課題</li>
+                </ul>
+            </div>
+            <a href="https://www.reddit.com/r/ClaudeCode/comments/1q6l2x3/httpsclaudeaisettingsusage_doesnt_work/" class="read-more reddit" target="_blank">🔗 詳細を読む</a>
+        </div>
+
+        <div class="page-footer">
+            <p>─────────────────────────────────</p>
+            <p>Generated by AI News Today</p>
+            <p>Powered by Claude AI</p>
+        </div>
     </div>
 </body>
 </html>
