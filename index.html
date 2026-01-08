@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI News Report</title>
+    <title>AI News Infographic Report</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=M+PLUS+Rounded+1c:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=M+PLUS+Rounded+1c:wght@500;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,270 +16,192 @@
         
         body {
             font-family: 'Noto Sans JP', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 40px 20px;
-            line-height: 1.8;
+            line-height: 1.7;
             color: #333;
+            background: linear-gradient(180deg, #F5F5F5 0%, #FFFFFF 100%);
+            padding: 40px 20px;
         }
         
         .container {
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 0 60px rgba(0,0,0,0.08);
+            border-radius: 20px;
             overflow: hidden;
         }
         
-        .article {
-            padding: 40px;
+        .report-section {
             margin-bottom: 40px;
-            border-bottom: 2px solid #f0f0f0;
+            padding: 40px;
         }
         
-        .article:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
+        .header {
+            text-align: center;
+            padding: 50px 40px 40px;
+            background: linear-gradient(135deg, #E6F7F2 0%, #ffffff 100%);
         }
         
-        .badge {
+        .source-badge {
             display: inline-block;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-        
-        .openai-badge {
             background: #10A37F;
             color: white;
-        }
-        
-        .google-badge {
-            background: #4285F4;
-            color: white;
-        }
-        
-        .microsoft-badge {
-            background: #00A4EF;
-            color: white;
-        }
-        
-        .reddit-badge {
-            background: #FF4500;
-            color: white;
-        }
-        
-        .title {
-            font-family: 'M PLUS Rounded 1c', sans-serif;
-            font-size: 32px;
-            font-weight: 900;
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-        
-        .openai-title {
-            color: #10A37F;
-        }
-        
-        .google-title {
-            color: #4285F4;
-        }
-        
-        .microsoft-title {
-            color: #00A4EF;
-        }
-        
-        .reddit-title {
-            color: #FF4500;
-        }
-        
-        .date {
-            color: #666;
+            padding: 10px 24px;
+            border-radius: 20px;
             font-size: 14px;
+            font-weight: 700;
             margin-bottom: 24px;
         }
         
-        .lead {
-            padding: 20px 24px;
-            border-radius: 12px;
-            border-left: 4px solid;
-            margin-bottom: 32px;
-            font-size: 18px;
-            font-weight: 500;
+        .main-title {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 32px;
+            font-weight: 900;
+            color: #10A37F;
+            margin: 20px 0 24px;
+            line-height: 1.4;
         }
         
-        .openai-lead {
+        .date {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .lead-section {
             background: #E6F7F2;
-            border-left-color: #10A37F;
+            padding: 24px 28px;
+            border-left: 4px solid #10A37F;
+            border-radius: 8px;
+            margin-bottom: 40px;
         }
         
-        .google-lead {
-            background: #E8F0FE;
-            border-left-color: #4285F4;
-        }
-        
-        .microsoft-lead {
-            background: #E6F6FD;
-            border-left-color: #00A4EF;
-        }
-        
-        .reddit-lead {
-            background: #FFF0EB;
-            border-left-color: #FF4500;
+        .lead-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
         }
         
         .timeline {
             position: relative;
-            padding-left: 50px;
+            padding-left: 80px;
         }
         
         .timeline::before {
             content: '';
             position: absolute;
-            left: 20px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, #e0e0e0 0%, #f5f5f5 100%);
+            left: 22px;
+            top: 50px;
+            bottom: 50px;
+            width: 3px;
+            background: linear-gradient(180deg, #10A37F 0%, #E6F7F2 100%);
         }
         
-        .block {
+        .timeline-block {
             position: relative;
-            margin-bottom: 32px;
-            transition: transform 0.3s ease;
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
         }
         
-        .block:hover {
+        .timeline-block:hover {
             transform: translateX(5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
         }
         
-        .block::before {
-            content: '';
+        .timeline-marker {
             position: absolute;
-            left: -38px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
+            left: -58px;
+            top: 28px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #10A37F 0%, #0d8a6a 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(16,163,127,0.3);
         }
         
-        .openai-block::before {
-            background: #10A37F;
-        }
-        
-        .google-block::before {
-            background: #4285F4;
-        }
-        
-        .microsoft-block::before {
-            background: #00A4EF;
-        }
-        
-        .reddit-block::before {
-            background: #FF4500;
-        }
-        
-        .block-title {
-            font-family: 'M PLUS Rounded 1c', sans-serif;
+        .timeline-title {
             font-size: 20px;
             font-weight: 700;
-            margin-bottom: 12px;
+            color: #10A37F;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
         
-        .block-content ul {
+        .timeline-content ul {
             list-style: none;
             padding-left: 0;
         }
         
-        .block-content li {
-            padding: 8px 0 8px 24px;
+        .timeline-content li {
             position: relative;
-            font-size: 16px;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            font-size: 15px;
         }
         
-        .block-content li::before {
-            content: '▸';
+        .timeline-content li::before {
+            content: '';
             position: absolute;
             left: 0;
+            top: 10px;
+            width: 8px;
+            height: 8px;
+            background: #10A37F;
+            border-radius: 50%;
+        }
+        
+        .timeline-content strong {
+            color: #10A37F;
             font-weight: 700;
         }
         
-        .openai-block .block-content li::before {
-            color: #10A37F;
+        .footer-section {
+            border-top: 2px dashed #E6F7F2;
+            padding-top: 30px;
+            text-align: center;
         }
         
-        .google-block .block-content li::before {
-            color: #4285F4;
+        .footer-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #666;
+            margin-bottom: 20px;
         }
         
-        .microsoft-block .block-content li::before {
-            color: #00A4EF;
+        .footer-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
         
-        .reddit-block .block-content li::before {
-            color: #FF4500;
-        }
-        
-        .footer {
-            margin-top: 32px;
-            padding-top: 24px;
-            border-top: 2px solid #f0f0f0;
-        }
-        
-        .source-link {
+        .footer-link {
             display: inline-block;
+            background: #10A37F;
+            color: white;
             padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 700;
-            color: white;
-            transition: all 0.3s ease;
             font-size: 14px;
+            transition: all 0.3s ease;
         }
         
-        .openai-link {
-            background: #10A37F;
-        }
-        
-        .openai-link:hover {
-            background: #0d8c6d;
-            box-shadow: 0 4px 12px rgba(16, 163, 127, 0.3);
-        }
-        
-        .google-link {
-            background: #4285F4;
-        }
-        
-        .google-link:hover {
-            background: #3367d6;
-            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
-        }
-        
-        .microsoft-link {
-            background: #00A4EF;
-        }
-        
-        .microsoft-link:hover {
-            background: #008aca;
-            box-shadow: 0 4px 12px rgba(0, 164, 239, 0.3);
-        }
-        
-        .reddit-link {
-            background: #FF4500;
-        }
-        
-        .reddit-link:hover {
-            background: #e03d00;
-            box-shadow: 0 4px 12px rgba(255, 69, 0, 0.3);
+        .footer-link:hover {
+            background: #0d8a6a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(16,163,127,0.3);
         }
         
         @media print {
@@ -293,262 +215,258 @@
                 max-width: 100%;
             }
             
-            .article {
+            .timeline-block {
                 page-break-inside: avoid;
             }
         }
         
-        @media (max-width: 768px) {
-            body {
-                padding: 20px 10px;
-            }
-            
-            .article {
+        @media (max-width: 600px) {
+            .report-section {
                 padding: 24px;
             }
             
-            .title {
+            .header {
+                padding: 30px 24px 24px;
+            }
+            
+            .main-title {
                 font-size: 24px;
             }
             
-            .lead {
-                font-size: 16px;
+            .timeline {
+                padding-left: 60px;
             }
             
-            .block-title {
-                font-size: 18px;
+            .timeline-marker {
+                left: -48px;
+                width: 36px;
+                height: 36px;
+                font-size: 14px;
+            }
+            
+            .timeline::before {
+                left: 18px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="article">
-            <div class="badge openai-badge">OpenAI</div>
-            <h1 class="title openai-title">Concrete AI safety problems</h1>
-            <div class="date">公開日未定</div>
-            
-            <div class="lead openai-lead">
-                OpenAI、Berkeley、Stanfordの研究者がGoogle Brainと共同で、現代の機械学習システムが意図通りに動作することを保証するための具体的な安全性課題を探求する論文を発表
+        <div class="header">
+            <div class="source-badge">🤖 OpenAI News</div>
+            <h1 class="main-title">具体的なAI安全性の問題：機械学習システムの安全な運用に向けた研究</h1>
+            <div class="date">📅 2024年</div>
+        </div>
+        
+        <div class="report-section">
+            <div class="lead-section">
+                <p class="lead-text">▌AIが意図通りに動作しない時、私たちはどう対処すべきか？</p>
             </div>
             
             <div class="timeline">
-                <div class="block openai-block">
-                    <h3 class="block-title"><span>💡</span> 何が発表されたか</h3>
-                    <div class="block-content">
+                <div class="timeline-block">
+                    <div class="timeline-marker">01</div>
+                    <h3 class="timeline-title">💡 何が発表されたか</h3>
+                    <div class="timeline-content">
                         <ul>
-                            <li>Google Brain主導の論文「Concrete Problems in AI Safety」が公開</li>
-                            <li>OpenAI、Berkeley、Stanfordの研究者が共著者として参加</li>
-                            <li>機械学習システムの安全性に関する具体的な研究課題を提示</li>
+                            <li><strong>Google Brain主導の共同研究</strong>として、OpenAI、バークレー大学、スタンフォード大学の研究者が参加</li>
+                            <li>論文タイトル「<strong>Concrete Problems in AI Safety</strong>」を発表</li>
+                            <li>現代の機械学習システムが<strong>意図した通りに動作することを保証する</strong>ための具体的な研究課題を探求</li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="block openai-block">
-                    <h3 class="block-title"><span>🎯</span> なぜ重要か</h3>
-                    <div class="block-content">
+                <div class="timeline-block">
+                    <div class="timeline-marker">02</div>
+                    <h3 class="timeline-title">🎯 なぜ重要か</h3>
+                    <div class="timeline-content">
                         <ul>
-                            <li>主要AI研究機関が協力し、AI安全性の重要性を共同で提起</li>
-                            <li>AIシステムが意図した通りに動作することの保証が課題として明確化</li>
-                            <li>実用的なAI展開における安全性研究の方向性を示す</li>
+                            <li>AI技術の急速な発展に伴い、<strong>安全性の確保</strong>が喫緊の課題に</li>
+                            <li>学術界のトップ機関が連携し、理論だけでなく<strong>実践的な問題</strong>に焦点を当てた点が画期的</li>
+                            <li>機械学習システムの予期しない動作を防ぐための<strong>研究基盤</strong>を確立</li>
                         </ul>
                     </div>
                 </div>
                 
-                <div class="block openai-block">
-                    <h3 class="block-title"><span>🚀</span> 今後の影響・展望</h3>
-                    <div class="block-content">
+                <div class="timeline-block">
+                    <div class="timeline-marker">03</div>
+                    <h3 class="timeline-title">🚀 今後の影響・展望</h3>
+                    <div class="timeline-content">
                         <ul>
-                            <li>AI安全性研究の標準的な枠組みとして業界に影響を与える可能性</li>
-                            <li>産学連携によるAI安全性研究の加速が期待される</li>
-                            <li>より安全で信頼性の高いAIシステムの開発基盤を構築</li>
+                            <li>AI開発における<strong>安全性標準</strong>の策定に貢献</li>
+                            <li>企業や研究機関がAIシステムを実装する際の<strong>ガイドライン</strong>として活用可能</li>
+                            <li>より<strong>信頼性の高いAI技術</strong>の実現に向けた研究の加速が期待される</li>
                         </ul>
                     </div>
                 </div>
             </div>
             
-            <div class="footer">
-                <a href="https://openai.com/index/concrete-ai-safety-problems" class="source-link openai-link" target="_blank">📄 記事を読む - OpenAI</a>
+            <div class="footer-section">
+                <p class="footer-title">📰 出典・詳細情報</p>
+                <div class="footer-links">
+                    <a href="https://openai.com/index/concrete-ai-safety-problems" class="footer-link" target="_blank">🔗 元記事を読む</a>
+                    <a href="#" class="footer-link">📋 OpenAI</a>
+                </div>
             </div>
         </div>
-
-        <div class="article">
-            <div class="badge openai-badge">OpenAI</div>
-            <h1 class="title openai-title">Weight normalization: A simple reparameterization to accelerate training of deep neural networks</h1>
-            <div class="date">公開日未定</div>
-            
-            <div class="lead openai-lead">
-                深層ニューラルネットワークの学習を高速化するシンプルな再パラメータ化手法「Weight Normalization」をOpenAIが発表
+    </div>
+    
+    <div class="container" style="margin-top: 40px;">
+        <div class="header" style="background: linear-gradient(135deg, #E8F0FE 0%, #ffffff 100%);">
+            <div class="source-badge" style="background: #4285F4;">🔍 Google News</div>
+            <h1 class="main-title" style="color: #4285F4;">Geminiアプリで生成されたAI動画を検証可能に：透明性向上への新機能</h1>
+            <div class="date">📅 2024年</div>
+        </div>
+        
+        <div class="report-section">
+            <div class="lead-section" style="background: #E8F0FE; border-left-color: #4285F4;">
+                <p class="lead-text">▌この動画は本物？AIが作った？ —— Google が答えを提供します</p>
             </div>
             
             <div class="timeline">
-                <div class="block openai-block">
-                    <h3 class="block-title"><span>💡</span> 何が発表されたか</h3>
-                    <div class="block-content">
-                        <ul>
-                            <li>深層ニューラルネットワークの学習高速化技術「Weight Normalization」を提案</li>
-                            <li>シンプルな重み再パラメータ化によるアプローチを採用</li>
-                            <li>実装が容易で既存の学習手法に組み込み可能</li>
-                        </ul>
-                    </div>
-                </div>
+                <style>
+                    .google-timeline::before { background: linear-gradient(180deg, #4285F4 0%, #E8F0FE 100%); }
+                    .google-marker { background: linear-gradient(135deg, #4285F4 0%, #3367d6 100%); box-shadow: 0 4px 12px rgba(66,133,244,0.3); }
+                    .google-title { color: #4285F4; }
+                    .google-content li::before { background: #4285F4; }
+                    .google-content strong { color: #4285F4; }
+                    .google-link { background: #4285F4; }
+                    .google-link:hover { background: #3367d6; box-shadow: 0 4px 12px rgba(66,133,244,0.3); }
+                </style>
                 
-                <div class="block openai-block">
-                    <h3 class="block-title"><span>🎯</span> なぜ重要か</h3>
-                    <div class="block-content">
-                        <ul>
-                            <li>深層学習モデルの学習時間短縮により開発効率が向上</li>
-                            <li>複雑な手法を必要とせず、実用性が高い</li>
-                            <li>研究開発コストの削減に貢献する技術革新</li>
-                        </ul>
+                <div class="timeline google-timeline">
+                    <div class="timeline-block">
+                        <div class="timeline-marker google-marker">01</div>
+                        <h3 class="timeline-title google-title">💡 何が発表されたか</h3>
+                        <div class="timeline-content google-content">
+                            <ul>
+                                <li><strong>Geminiアプリ</strong>でGoogle AIが生成・編集した動画を検証できる機能を追加</li>
+                                <li><strong>コンテンツ透明性ツール</strong>を拡張し、AI生成コンテンツの識別を容易に</li>
+                                <li>ユーザーが動画の真正性を<strong>簡単に確認</strong>できる仕組みを実装</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="block openai-block">
-                    <h3 class="block-title"><span>🚀</span> 今後の影響・展望</h3>
-                    <div class="block-content">
-                        <ul>
-                            <li>大規模モデルの学習効率化により、より高度なAI開発が可能に</li>
-                            <li>学習の安定性向上により、新しいアーキテクチャの探索が促進</li>
-                            <li>深層学習フレームワークへの標準実装が期待される</li>
-                        </ul>
+                    
+                    <div class="timeline-block">
+                        <div class="timeline-marker google-marker">02</div>
+                        <h3 class="timeline-title google-title">🎯 なぜ重要か</h3>
+                        <div class="timeline-content google-content">
+                            <ul>
+                                <li>AI生成動画の普及により、<strong>偽情報対策</strong>の必要性が急増</li>
+                                <li>コンテンツの<strong>信頼性と透明性</strong>を確保することで、ユーザーの判断を支援</li>
+                                <li>メディアリテラシーの向上と<strong>デジタル社会の健全性</strong>維持に貢献</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-block">
+                        <div class="timeline-marker google-marker">03</div>
+                        <h3 class="timeline-title google-title">🚀 今後の影響・展望</h3>
+                        <div class="timeline-content google-content">
+                            <ul>
+                                <li>AI生成コンテンツの<strong>標準的な検証手法</strong>として業界に影響を与える可能性</li>
+                                <li>他のプラットフォームも同様の<strong>透明性機能</strong>を導入する流れが加速</li>
+                                <li><strong>責任あるAI開発</strong>の模範として、より安全なデジタル環境の構築に寄与</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="footer">
-                <a href="https://openai.com/index/weight-normalization" class="source-link openai-link" target="_blank">📄 記事を読む - OpenAI</a>
+            <div class="footer-section">
+                <p class="footer-title">📰 出典・詳細情報</p>
+                <div class="footer-links">
+                    <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="footer-link google-link" target="_blank">🔗 元記事を読む</a>
+                    <a href="#" class="footer-link google-link">📋 Google</a>
+                </div>
             </div>
         </div>
-
-        <div class="article">
-            <div class="badge google-badge">Google</div>
-            <h1 class="title google-title">You can now verify Google AI-generated videos in the Gemini app.</h1>
-            <div class="date">公開日未定</div>
-            
-            <div class="lead google-lead">
-                GoogleがGeminiアプリでAI生成動画の検証機能を導入し、コンテンツ透明性ツールを拡張してAI生成コンテンツの識別を容易に
+    </div>
+    
+    <div class="container" style="margin-top: 40px;">
+        <div class="header" style="background: linear-gradient(135deg, #E6F6FD 0%, #ffffff 100%);">
+            <div class="source-badge" style="background: #00A4EF;">💼 Microsoft News</div>
+            <h1 class="main-title" style="color: #00A4EF;">家庭でのイノベーション：AIがパーソナルアシスタントと手話技術を革新</h1>
+            <div class="date">📅 2024年</div>
+        </div>
+        
+        <div class="report-section">
+            <div class="lead-section" style="background: #E6F6FD; border-left-color: #00A4EF;">
+                <p class="lead-text">▌AIは家庭内のコミュニケーションをどう変えるのか？</p>
             </div>
             
             <div class="timeline">
-                <div class="block google-block">
-                    <h3 class="block-title"><span>💡</span> 何が発表されたか</h3>
-                    <div class="block-content">
-                        <ul>
-                            <li>GeminiアプリでAI生成動画の検証機能が利用可能に</li>
-                            <li>Google AIによって編集または作成された動画を識別可能</li>
-                            <li>コンテンツ透明性ツールの拡張により、AI生成コンテンツの識別が簡単に</li>
-                        </ul>
-                    </div>
-                </div>
+                <style>
+                    .microsoft-timeline::before { background: linear-gradient(180deg, #00A4EF 0%, #E6F6FD 100%); }
+                    .microsoft-marker { background: linear-gradient(135deg, #00A4EF 0%, #0078d4 100%); box-shadow: 0 4px 12px rgba(0,164,239,0.3); }
+                    .microsoft-title { color: #00A4EF; }
+                    .microsoft-content li::before { background: #00A4EF; }
+                    .microsoft-content strong { color: #00A4EF; }
+                    .microsoft-link { background: #00A4EF; }
+                    .microsoft-link:hover { background: #0078d4; box-shadow: 0 4px 12px rgba(0,164,239,0.3); }
+                </style>
                 
-                <div class="block google-block">
-                    <h3 class="block-title"><span>🎯</span> なぜ重要か</h3>
-                    <div class="block-content">
-                        <ul>
-                            <li>AI生成コンテンツの透明性確保により、誤情報対策を強化</li>
-                            <li>ユーザーが真正性を簡単に確認できる環境を提供</li>
-                            <li>責任あるAI開発の姿勢を示す重要な取り組み</li>
-                        </ul>
+                <div class="timeline microsoft-timeline">
+                    <div class="timeline-block">
+                        <div class="timeline-marker microsoft-marker">01</div>
+                        <h3 class="timeline-title microsoft-title">💡 何が発表されたか</h3>
+                        <div class="timeline-content microsoft-content">
+                            <ul>
+                                <li>家庭向け<strong>パーソナルアシスタントデバイス</strong>へのAI統合による革新を提案</li>
+                                <li><strong>手話認識・翻訳技術</strong>へのAI活用の可能性を探求</li>
+                                <li><strong>アクセシビリティ向上</strong>を目的とした家庭内AI技術の開発方針を発表</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="block google-block">
-                    <h3 class="block-title"><span>🚀</span> 今後の影響・展望</h3>
-                    <div class="block-content">
-                        <ul>
-                            <li>AI生成コンテンツの識別標準化に向けた業界の動きを加速</li>
-                            <li>メディアリテラシー向上とデジタル信頼性の強化に貢献</li>
-                            <li>他のプラットフォームへの同様の機能導入を促進する可能性</li>
-                        </ul>
+                    
+                    <div class="timeline-block">
+                        <div class="timeline-marker microsoft-marker">02</div>
+                        <h3 class="timeline-title microsoft-title">🎯 なぜ重要か</h3>
+                        <div class="timeline-content microsoft-content">
+                            <ul>
+                                <li>聴覚障害者のコミュニケーション障壁を<strong>大幅に軽減</strong>する可能性</li>
+                                <li>家庭内での<strong>インクルーシブな環境</strong>構築に向けた具体的なソリューション</li>
+                                <li>AI技術が<strong>社会的包摂</strong>に貢献する実例として注目</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-block">
+                        <div class="timeline-marker microsoft-marker">03</div>
+                        <h3 class="timeline-title microsoft-title">🚀 今後の影響・展望</h3>
+                        <div class="timeline-content microsoft-content">
+                            <ul>
+                                <li>スマートホームデバイスに<strong>アクセシビリティ機能</strong>が標準搭載される未来</li>
+                                <li>手話通訳の<strong>リアルタイム自動化</strong>により、コミュニケーションの自由度が向上</li>
+                                <li>障害の有無に関わらず、誰もが快適に暮らせる<strong>ユニバーサルデザイン</strong>の推進</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <div class="footer">
-                <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="source-link google-link" target="_blank">📄 記事を読む - Google</a>
+            <div class="footer-section">
+                <p class="footer-title">📰 出典・詳細情報</p>
+                <div class="footer-links">
+                    <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="footer-link microsoft-link" target="_blank">🔗 元記事を読む</a>
+                    <a href="#" class="footer-link microsoft-link">📋 Microsoft</a>
+                </div>
             </div>
         </div>
-
-        <div class="article">
-            <div class="badge microsoft-badge">Microsoft</div>
-            <h1 class="title microsoft-title">The opportunity at home – can AI drive innovation in personal assistant devices and sign language?</h1>
-            <div class="date">公開日未定</div>
-            
-            <div class="lead microsoft-lead">
-                Microsoftが家庭におけるAIの可能性を探求し、パーソナルアシスタントデバイスと手話分野でのAIイノベーションについて提案
-            </div>
-            
-            <div class="timeline">
-                <div class="block microsoft-block">
-                    <h3 class="block-title"><span>💡</span> 何が発表されたか</h3>
-                    <div class="block-content">
-                        <ul>
-                            <li>家庭向けAI技術におけるイノベーションの機会を提示</li>
-                            <li>パーソナルアシスタントデバイスへのAI応用を検討</li>
-                            <li>手話認識・翻訳分野でのAI活用の可能性を探求</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="block microsoft-block">
-                    <h3 class="block-title"><span>🎯</span> なぜ重要か</h3>
-                    <div class="block-content">
-                        <ul>
-                            <li>アクセシビリティ向上により、障がい者のデジタル体験を改善</li>
-                            <li>日常生活におけるAIの実用的な応用を拡大</li>
-                            <li>インクルーシブなテクノロジー開発への取り組みを示す</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="block microsoft-block">
-                    <h3 class="block-title"><span>🚀</span> 今後の影響・展望</h3>
-                    <div class="block-content">
-                        <ul>
-                            <li>手話コミュニケーションの障壁を低減し、社会的包摂を促進</li>
-                            <li>家庭内AIアシスタントの機能拡張により、生活の質が向上</li>
-                            <li>アクセシビリティ技術の標準化に向けた業界の動きを加速</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer">
-                <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="source-link microsoft-link" target="_blank">📄 記事を読む - Microsoft</a>
-            </div>
+    </div>
+    
+    <div class="container" style="margin-top: 40px; margin-bottom: 40px;">
+        <div class="header" style="background: linear-gradient(135deg, #FFF0EB 0%, #ffffff 100%);">
+            <div class="source-badge" style="background: #FF4500;">💬 Reddit Discussion</div>
+            <h1 class="main-title" style="color: #FF4500;">Claude使用量ページにアクセスできない？ユーザーから問題報告</h1>
+            <div class="date">📅 2024年</div>
         </div>
-
-        <div class="article">
-            <div class="badge reddit-badge">Reddit</div>
-            <h1 class="title reddit-title">https://claude.ai/settings/usage doesn't work?</h1>
-            <div class="date">公開日未定</div>
-            
-            <div class="lead reddit-lead">
-                Reddit上でClaudeの使用状況確認ページにアクセスできない問題が報告され、ユーザー間で議論が発生
+        
+        <div class="report-section">
+            <div class="lead-section" style="background: #FFF0EB; border-left-color: #FF4500;">
+                <p class="lead-text">▌Claude の使用量確認ページが機能しない—これは自分だけの問題？</p>
             </div>
             
             <div class="timeline">
-                <div class="block reddit-block">
-                    <h3 class="block-title"><span>💡</span> 何が発表されたか</h3>
-                    <div class="block-content">
-                        <ul>
-                            <li>Claude AIの使用状況ページ（/settings/usage）へのアクセス問題が報告</li>
-                            <li>Reddit ClaudeCodeコミュニティで複数のユーザーが同様の問題を共有</li>
-                            <li>技術的なトラブルまたはサービス変更の可能性</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="block reddit-block">
-                    <h3 class="block-title"><span>🎯</span> なぜ重要か</h3>
-                    <div class="block-content">
-                        <ul>
-                            <li>ユーザーが使用量を確認できないことで、コスト管理に影響</li>
-                            <li>APIやサブスクリプション利用者にとって重要な機能</li>
-                            <li>プラットフォームの透明性とユーザー体験の課題を浮き彫りに</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class
+                <style>
+                    .reddit-timeline::before { background: linear-gradient(180deg, #FF4500 0%, #FFF0EB 100
