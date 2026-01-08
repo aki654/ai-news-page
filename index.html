@@ -1,199 +1,343 @@
-```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIニュース デイリーレポート</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background-color: #f5f6f8;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        header {
-            background-color: #fff;
-            padding: 40px 32px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin-bottom: 32px;
-        }
-        h1 {
-            font-size: 2em;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-        }
-        .date {
-            font-size: 0.95em;
-            color: #666;
-        }
-        .summary-section {
-            background-color: #fff;
-            padding: 32px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin-bottom: 48px;
-        }
-        .summary-section h2 {
-            font-size: 1.4em;
-            color: #1a1a1a;
-            margin-bottom: 16px;
-            border-left: 4px solid #4285f4;
-            padding-left: 12px;
-        }
-        .summary-section p {
-            font-size: 1.05em;
-            color: #444;
-            line-height: 1.9;
-        }
-        .news-section {
-            margin-bottom: 48px;
-        }
-        .news-section h2 {
-            font-size: 1.5em;
-            color: #1a1a1a;
-            margin-bottom: 24px;
-            padding-bottom: 12px;
-            border-bottom: 3px solid #e0e0e0;
-        }
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-        .news-card {
-            background-color: #fff;
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-        .news-card h3 {
-            font-size: 1.2em;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-            font-weight: bold;
-            line-height: 1.5;
-        }
-        .news-meta {
-            font-size: 0.85em;
-            color: #999;
-            margin-bottom: 16px;
-        }
-        .news-description {
-            font-size: 0.95em;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        .news-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #4285f4;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.9em;
-            transition: background-color 0.3s;
-        }
-        .news-link:hover {
-            background-color: #357ae8;
-        }
-        .no-news {
-            background-color: #fff;
-            padding: 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            color: #666;
-            font-style: italic;
-        }
-        @media (max-width: 768px) {
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-            h1 {
-                font-size: 1.6em;
-            }
-            .news-section h2 {
-                font-size: 1.3em;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI News Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+  padding: 20px;
+  line-height: 1.7;
+  color: #2c3e50;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.header {
+  padding: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-align: center;
+}
+
+.main-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 2.5em;
+  font-weight: 800;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.subtitle {
+  font-size: 1.1em;
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+.article-grid {
+  display: grid;
+  gap: 30px;
+  padding: 40px;
+}
+
+.article-card {
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.article-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+.article-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  background: var(--accent-color);
+}
+
+.openai-card {
+  --accent-color: #10A37F;
+  background: linear-gradient(135deg, #f0fdf9 0%, #e6fcf5 100%);
+}
+
+.google-card {
+  --accent-color: #4285F4;
+  background: linear-gradient(135deg, #f0f7ff 0%, #e3f2fd 100%);
+}
+
+.microsoft-card {
+  --accent-color: #00A4EF;
+  background: linear-gradient(135deg, #f0faff 0%, #e1f5fe 100%);
+}
+
+.source-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.openai-badge {
+  background: linear-gradient(135deg, #10A37F 0%, #1A7F64 100%);
+}
+
+.google-badge {
+  background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
+}
+
+.microsoft-badge {
+  background: linear-gradient(135deg, #00A4EF 0%, #7FBA00 100%);
+}
+
+.article-title {
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.article-body {
+  color: #4a5568;
+  font-size: 0.95em;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.article-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9em;
+  transition: gap 0.3s ease;
+}
+
+.article-link:hover {
+  gap: 12px;
+}
+
+.key-points {
+  background: rgba(255,255,255,0.6);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.key-points-title {
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 12px;
+  font-size: 0.95em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.key-points ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.key-points li {
+  padding: 8px 0;
+  padding-left: 24px;
+  position: relative;
+  font-size: 0.9em;
+  color: #4a5568;
+}
+
+.key-points li::before {
+  content: '●';
+  position: absolute;
+  left: 8px;
+  color: var(--accent-color);
+  font-size: 0.8em;
+}
+
+.footer {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  color: white;
+  padding: 30px 40px;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+.summary-box {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-radius: 16px;
+  padding: 25px;
+  margin: 30px 40px;
+  border-left: 5px solid #f59e0b;
+}
+
+.summary-title {
+  font-weight: 700;
+  color: #92400e;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.summary-text {
+  color: #78350f;
+  font-size: 0.95em;
+  line-height: 1.7;
+}
+
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+  .container {
+    box-shadow: none;
+  }
+  .article-card:hover {
+    transform: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .main-title {
+    font-size: 1.8em;
+  }
+  .article-grid {
+    padding: 20px;
+  }
+  .article-card {
+    padding: 20px;
+  }
+  .header {
+    padding: 30px 20px;
+  }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>AIニュース デイリーレポート</h1>
-            <p class="date">2024年版レポート</p>
-        </header>
+<div class="container">
+  <div class="header">
+    <div class="main-title">🤖 AI News Digest</div>
+    <div class="subtitle">最新のAI技術動向とイノベーション</div>
+  </div>
 
-        <div class="summary-section">
-            <h2>本日のサマリー</h2>
-            <p>本日は主要AI企業から重要な発表が相次ぎました。OpenAIからは機械学習システムの安全性に関する論文と、ニューラルネットワークの学習高速化技術が発表されました。Googleは生成AIコンテンツの透明性向上に向けて、Geminiアプリで動画の検証機能を導入。Microsoftはアクセシビリティ分野に焦点を当て、AIを活用したパーソナルアシスタントデバイスと手話技術の革新について言及しています。AI技術の安全性・信頼性・包括性の向上が共通テーマとなった一日でした。</p>
-        </div>
+  <div class="summary-box">
+    <div class="summary-title">📊 今日のハイライト</div>
+    <div class="summary-text">OpenAI、Google、Microsoftが揃って重要な発表を実施。AI安全性の研究、生成コンテンツの検証技術、そしてアクセシビリティ分野での活用が焦点に。</div>
+  </div>
 
-        <div class="news-section">
-            <h2>OpenAI</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <h3>Concrete AI safety problems</h3>
-                    <p class="news-meta">OpenAI</p>
-                    <p class="news-description">OpenAIはGoogle Brain、バークレー、スタンフォード大学の研究者と共同で「AI安全性の具体的問題」に関する論文を発表。現代の機械学習システムが意図した通りに動作することを保証するための研究課題を探求しています。</p>
-                    <a href="https://openai.com/index/concrete-ai-safety-problems" class="news-link" target="_blank">参照元を開く</a>
-                </div>
-                <div class="news-card">
-                    <h3>Weight normalization: A simple reparameterization to accelerate training of deep neural networks</h3>
-                    <p class="news-meta">OpenAI</p>
-                    <p class="news-description">深層ニューラルネットワークの学習を加速するための「重み正規化」という新しい再パラメータ化手法に関する研究が発表されました。シンプルな手法ながら、学習効率の大幅な向上が期待されます。</p>
-                    <a href="https://openai.com/index/weight-normalization" class="news-link" target="_blank">参照元を開く</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>Google</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <h3>You can now verify Google AI-generated videos in the Gemini app.</h3>
-                    <p class="news-meta">Google</p>
-                    <p class="news-description">Googleはコンテンツの透明性向上のため、Geminiアプリで動画がGoogle AIによって編集・生成されたかを確認できる機能を提供開始。AI生成コンテンツの識別を容易にし、ユーザーの信頼性向上を図ります。</p>
-                    <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="news-link" target="_blank">参照元を開く</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>Microsoft</h2>
-            <div class="news-grid">
-                <div class="news-card">
-                    <h3>The opportunity at home – can AI drive innovation in personal assistant devices and sign language?</h3>
-                    <p class="news-meta">Microsoft</p>
-                    <p class="news-description">Microsoftがアクセシビリティ分野でのAI活用について発表。家庭内でのパーソナルアシスタントデバイスと手話技術の革新にAIがどのように貢献できるかを探る内容で、包括的な技術開発への取り組みを示しています。</p>
-                    <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="news-link" target="_blank">参照元を開く</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="news-section">
-            <h2>Reddit</h2>
-            <div class="no-news">本日は大きな更新はありませんでした</div>
-        </div>
-
-        <div class="news-section">
-            <h2>Other</h2>
-            <div class="no-news">本日は大きな更新はありませんでした</div>
-        </div>
+  <div class="article-grid">
+    <div class="article-card openai-card">
+      <span class="source-badge openai-badge">OpenAI</span>
+      <h2 class="article-title">Concrete AI safety problems</h2>
+      <div class="article-body">
+        OpenAIはGoogle Brain、バークレー、スタンフォードの研究者と共同で「AI安全性における具体的な問題」に関する論文を発表。現代の機械学習システムが意図した通りに動作することを保証するための研究課題を探求しています。
+      </div>
+      <div class="key-points">
+        <div class="key-points-title">🔍 重要ポイント</div>
+        <ul>
+          <li>複数の主要研究機関による共同研究</li>
+          <li>機械学習の安全性と信頼性に焦点</li>
+          <li>システムの意図通りの動作を保証する研究</li>
+        </ul>
+      </div>
+      <a href="https://openai.com/index/concrete-ai-safety-problems" class="article-link" target="_blank">詳細を読む →</a>
     </div>
+
+    <div class="article-card openai-card">
+      <span class="source-badge openai-badge">OpenAI</span>
+      <h2 class="article-title">Weight normalization: A simple reparameterization to accelerate training of deep neural networks</h2>
+      <div class="article-body">
+        深層ニューラルネットワークの学習を高速化するためのシンプルな再パラメータ化手法「Weight Normalization」に関する研究発表。
+      </div>
+      <div class="key-points">
+        <div class="key-points-title">🔍 重要ポイント</div>
+        <ul>
+          <li>ディープラーニングの学習効率を改善</li>
+          <li>シンプルで実装しやすい手法</li>
+          <li>ニューラルネットワークの最適化技術</li>
+        </ul>
+      </div>
+      <a href="https://openai.com/index/weight-normalization" class="article-link" target="_blank">詳細を読む →</a>
+    </div>
+
+    <div class="article-card google-card">
+      <span class="source-badge google-badge">Google</span>
+      <h2 class="article-title">You can now verify Google AI-generated videos in the Gemini app</h2>
+      <div class="article-body">
+        Googleがコンテンツ透明性ツールを拡張し、GeminiアプリでAI生成動画を検証できる機能を追加。AI生成コンテンツの識別を容易にする取り組みを強化しています。
+      </div>
+      <div class="key-points">
+        <div class="key-points-title">🔍 重要ポイント</div>
+        <ul>
+          <li>AI生成動画の検証機能を実装</li>
+          <li>コンテンツ透明性の向上に貢献</li>
+          <li>GeminiアプリでSynthID技術を活用</li>
+        </ul>
+      </div>
+      <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="article-link" target="_blank">詳細を読む →</a>
+    </div>
+
+    <div class="article-card microsoft-card">
+      <span class="source-badge microsoft-badge">Microsoft</span>
+      <h2 class="article-title">The opportunity at home – can AI drive innovation in personal assistant devices and sign language?</h2>
+      <div class="article-body">
+        MicrosoftがAIを活用した個人アシスタントデバイスと手話技術のイノベーションについて探求。家庭内でのAI活用とアクセシビリティ向上の可能性に注目しています。
+      </div>
+      <div class="key-points">
+        <div class="key-points-title">🔍 重要ポイント</div>
+        <ul>
+          <li>家庭用AIアシスタントの進化</li>
+          <li>手話認識技術への応用</li>
+          <li>アクセシビリティの大幅な改善</li>
+        </ul>
+      </div>
+      <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="article-link" target="_blank">詳細を読む →</a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">🌐 AI News Report | 各ソースからの最新情報をまとめています</div>
+  </div>
+</div>
 </body>
 </html>
-```
