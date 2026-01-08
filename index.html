@@ -11,7 +11,7 @@
             box-sizing: border-box;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
             line-height: 1.8;
             color: #333;
             background-color: #f5f5f5;
@@ -22,93 +22,136 @@
             margin: 0 auto;
             background-color: #fff;
             padding: 30px;
-            border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        header {
+            border-bottom: 3px solid #333;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
         }
         h1 {
             font-size: 28px;
-            color: #1a1a1a;
             margin-bottom: 10px;
-            border-bottom: 3px solid #4CAF50;
-            padding-bottom: 10px;
         }
         .date {
-            font-size: 14px;
             color: #666;
-            margin-bottom: 30px;
+            font-size: 14px;
         }
         .summary {
-            background-color: #f0f8ff;
+            background-color: #f9f9f9;
             padding: 20px;
-            border-left: 4px solid #2196F3;
-            margin-bottom: 40px;
-            font-size: 16px;
+            margin-bottom: 30px;
+            border-left: 4px solid #333;
         }
         .summary h2 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #1976D2;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        .summary p {
+            font-size: 15px;
+            line-height: 1.8;
         }
         .section {
             margin-bottom: 40px;
         }
         .section h2 {
             font-size: 22px;
-            color: #2c3e50;
             margin-bottom: 20px;
             padding-bottom: 8px;
-            border-bottom: 2px solid #e0e0e0;
+            border-bottom: 2px solid #ddd;
         }
         .article {
             margin-bottom: 25px;
-            padding: 15px;
-            background-color: #fafafa;
-            border-radius: 5px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+        .article:last-child {
+            border-bottom: none;
         }
         .article h3 {
             font-size: 18px;
-            color: #1a1a1a;
             margin-bottom: 8px;
+            line-height: 1.5;
         }
-        .article-date {
+        .article .meta {
+            color: #999;
             font-size: 13px;
-            color: #888;
             margin-bottom: 10px;
         }
-        .article-summary {
+        .article .description {
             font-size: 15px;
-            color: #555;
             margin-bottom: 12px;
+            color: #555;
         }
-        .article-link {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: #4CAF50;
-            color: #fff;
+        .article a {
+            color: #0066cc;
             text-decoration: none;
-            border-radius: 4px;
             font-size: 14px;
-            transition: background-color 0.3s;
         }
-        .article-link:hover {
-            background-color: #45a049;
+        .article a:hover {
+            text-decoration: underline;
         }
         .no-news {
             color: #999;
             font-style: italic;
-            padding: 10px 0;
-        }
-        hr {
-            border: none;
-            border-top: 1px solid #e0e0e0;
-            margin: 30px 0;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>AIニュース デイリーレポート</h1>
-        <p class="date">生成日: 2024-01-15</p>
+        <header>
+            <h1>AIニュース デイリーレポート</h1>
+            <p class="date">2024-12-19</p>
+        </header>
 
-        <div class="summary">
-            <h2>📋
+        <section class="summary">
+            <h2>📌 本日のサマリー</h2>
+            <p>
+                本日はOpenAIから2本の技術論文関連のニュースが公開されました。AI安全性に関する具体的な研究課題を探求する論文と、ディープニューラルネットワークの訓練を高速化する重み正規化手法に関する内容です。Google Brain、Berkeley、Stanfordの研究者との共同研究も含まれており、AI安全性と機械学習の基礎技術に焦点が当てられています。
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>OpenAI</h2>
+            
+            <article class="article">
+                <h3>Concrete AI safety problems</h3>
+                <p class="meta">公開日時：情報なし</p>
+                <p class="description">
+                    Google Brainの研究者が主導し、OpenAI、Berkeley、Stanfordの研究者が共著者として参加した論文「Concrete Problems in AI Safety」が発表されました。この論文では、現代の機械学習システムが意図した通りに動作することを保証するための様々な研究課題を探求しています。
+                </p>
+                <a href="https://openai.com/index/concrete-ai-safety-problems" target="_blank">参照元を開く →</a>
+            </article>
+
+            <article class="article">
+                <h3>Weight normalization: A simple reparameterization to accelerate training of deep neural networks</h3>
+                <p class="meta">公開日時：情報なし</p>
+                <p class="description">
+                    ディープニューラルネットワークの訓練を高速化するためのシンプルな再パラメータ化手法である「重み正規化（Weight Normalization）」に関する研究が公開されました。この手法により、深層学習モデルの学習効率の向上が期待されます。
+                </p>
+                <a href="https://openai.com/index/weight-normalization" target="_blank">参照元を開く →</a>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2>Google</h2>
+            <p class="no-news">本日は大きな更新はありませんでした。</p>
+        </section>
+
+        <section class="section">
+            <h2>Microsoft</h2>
+            <p class="no-news">本日は大きな更新はありませんでした。</p>
+        </section>
+
+        <section class="section">
+            <h2>Reddit</h2>
+            <p class="no-news">本日は大きな更新はありませんでした。</p>
+        </section>
+
+        <section class="section">
+            <h2>Other</h2>
+            <p class="no-news">本日は大きな更新はありませんでした。</p>
+        </section>
+    </div>
+</body>
+</html>
