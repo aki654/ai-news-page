@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI News Today - 最新AI動向レポート</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -17,7 +15,6 @@
             padding: 20px;
             background: #F5F7FA;
             font-family: 'Noto Sans JP', sans-serif;
-            color: #333;
         }
 
         .container {
@@ -37,7 +34,6 @@
         }
 
         .page-header h1 {
-            font-family: 'M PLUS Rounded 1c', 'Noto Sans JP', sans-serif;
             font-size: 28px;
             color: #333;
             margin: 0 0 8px 0;
@@ -47,12 +43,12 @@
         .page-header .subtitle {
             font-size: 14px;
             color: #666;
-            margin-bottom: 16px;
+            margin: 0 0 20px 0;
         }
 
         .page-header .date {
             font-size: 14px;
-            color: #888;
+            color: #999;
         }
 
         .article-card {
@@ -70,13 +66,11 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.1);
         }
 
-        .article-header {
+        .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 16px;
-            flex-wrap: wrap;
-            gap: 8px;
         }
 
         .source-badge {
@@ -88,25 +82,25 @@
             font-weight: 700;
         }
 
-        .source-badge.openai {
-            background: #10A37F;
+        .source-openai {
+            background-color: #10A37F;
         }
 
-        .source-badge.google {
-            background: #4285F4;
+        .source-google {
+            background-color: #4285F4;
         }
 
-        .source-badge.microsoft {
-            background: #00A4EF;
+        .source-microsoft {
+            background-color: #00A4EF;
         }
 
-        .source-badge.reddit {
-            background: #FF4500;
+        .source-reddit {
+            background-color: #FF4500;
         }
 
-        .article-date {
-            font-size: 13px;
-            color: #888;
+        .published-date {
+            font-size: 12px;
+            color: #999;
         }
 
         .article-title {
@@ -116,19 +110,19 @@
             line-height: 1.4;
         }
 
-        .article-title.openai {
+        .title-openai {
             color: #10A37F;
         }
 
-        .article-title.google {
+        .title-google {
             color: #4285F4;
         }
 
-        .article-title.microsoft {
+        .title-microsoft {
             color: #00A4EF;
         }
 
-        .article-title.reddit {
+        .title-reddit {
             color: #FF4500;
         }
 
@@ -141,23 +135,23 @@
             border-left: 4px solid;
         }
 
-        .article-summary.openai {
-            background: #E6F7F2;
+        .summary-openai {
+            background-color: #E6F7F2;
             border-left-color: #10A37F;
         }
 
-        .article-summary.google {
-            background: #E8F0FE;
+        .summary-google {
+            background-color: #E8F0FE;
             border-left-color: #4285F4;
         }
 
-        .article-summary.microsoft {
-            background: #E6F6FD;
+        .summary-microsoft {
+            background-color: #E6F6FD;
             border-left-color: #00A4EF;
         }
 
-        .article-summary.reddit {
-            background: #FFF0EB;
+        .summary-reddit {
+            background-color: #FFF0EB;
             border-left-color: #FF4500;
         }
 
@@ -166,7 +160,7 @@
         }
 
         .points-section h3 {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
             margin-bottom: 12px;
             color: #333;
@@ -196,20 +190,20 @@
             border-radius: 50%;
         }
 
-        .points-list.openai li::before {
-            background: #10A37F;
+        .points-openai li::before {
+            background-color: #10A37F;
         }
 
-        .points-list.google li::before {
-            background: #4285F4;
+        .points-google li::before {
+            background-color: #4285F4;
         }
 
-        .points-list.microsoft li::before {
-            background: #00A4EF;
+        .points-microsoft li::before {
+            background-color: #00A4EF;
         }
 
-        .points-list.reddit li::before {
-            background: #FF4500;
+        .points-reddit li::before {
+            background-color: #FF4500;
         }
 
         .read-more {
@@ -224,37 +218,37 @@
             color: white;
         }
 
-        .read-more.openai {
-            background: #10A37F;
-        }
-
-        .read-more.google {
-            background: #4285F4;
-        }
-
-        .read-more.microsoft {
-            background: #00A4EF;
-        }
-
-        .read-more.reddit {
-            background: #FF4500;
-        }
-
         .read-more:hover {
             opacity: 0.85;
         }
 
+        .btn-openai {
+            background-color: #10A37F;
+        }
+
+        .btn-google {
+            background-color: #4285F4;
+        }
+
+        .btn-microsoft {
+            background-color: #00A4EF;
+        }
+
+        .btn-reddit {
+            background-color: #FF4500;
+        }
+
         .page-footer {
             text-align: center;
+            margin-top: 60px;
             padding-top: 30px;
-            margin-top: 40px;
             border-top: 2px solid #EAEAEA;
-            color: #888;
+            color: #999;
             font-size: 13px;
         }
 
         .page-footer p {
-            margin: 4px 0;
+            margin: 5px 0;
         }
 
         @media print {
@@ -271,12 +265,10 @@
             .article-card {
                 page-break-inside: avoid;
                 box-shadow: none;
-                border: 1px solid #DDD;
             }
 
             .article-card:hover {
                 transform: none;
-                box-shadow: none;
             }
         }
 
@@ -287,15 +279,15 @@
 
             .container {
                 padding: 20px;
-                border-radius: 12px;
-            }
-
-            .page-header h1 {
-                font-size: 24px;
+                border-radius: 10px;
             }
 
             .article-card {
                 padding: 20px;
+            }
+
+            .page-header h1 {
+                font-size: 24px;
             }
 
             .article-title {
@@ -313,103 +305,103 @@
         </div>
 
         <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge openai">OpenAI</span>
-                <span class="article-date">📅 日付未公開</span>
+            <div class="card-header">
+                <span class="source-badge source-openai">OpenAI</span>
+                <span class="published-date">📅 日付未公開</span>
             </div>
-            <h2 class="article-title openai">具体的なAI安全性の問題</h2>
-            <div class="article-summary openai">
-                OpenAIは、バークレー大学とスタンフォード大学の研究者と共同で、Google Brainが主導する論文「AI安全性における具体的問題」を発表しました。この論文では、現代の機械学習システムが意図した通りに動作することを保証するための、多くの研究課題を探求しています。
+            <h2 class="article-title title-openai">具体的なAI安全性の問題</h2>
+            <div class="article-summary summary-openai">
+                OpenAIはBerkeley、Stanfordの研究者とともに、Google Brainが主導する論文「Concrete Problems in AI Safety」の共著者として参加しました。この論文は、現代の機械学習システムが意図通りに動作することを保証するための多くの研究課題を探求しています。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list openai">
-                    <li><strong>AI安全性</strong>に関する具体的な研究課題を提示</li>
-                    <li>OpenAI、バークレー、スタンフォード、Google Brainの<strong>共同研究</strong></li>
-                    <li>機械学習システムの<strong>意図通りの動作保証</strong>に焦点</li>
+                <ul class="points-list points-openai">
+                    <li><strong>AI安全性</strong>に関する具体的な研究課題を体系化</li>
+                    <li>OpenAI、Google Brain、Berkeley、Stanfordの<strong>共同研究</strong></li>
+                    <li>機械学習システムの<strong>意図的な動作保証</strong>にフォーカス</li>
                 </ul>
             </div>
-            <a href="https://openai.com/index/concrete-ai-safety-problems" class="read-more openai" target="_blank">🔗 詳細を読む</a>
+            <a href="https://openai.com/index/concrete-ai-safety-problems" class="read-more btn-openai" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge openai">OpenAI</span>
-                <span class="article-date">📅 日付未公開</span>
+            <div class="card-header">
+                <span class="source-badge source-openai">OpenAI</span>
+                <span class="published-date">📅 日付未公開</span>
             </div>
-            <h2 class="article-title openai">重み正規化：ディープニューラルネットワークの学習を加速するシンプルな再パラメータ化</h2>
-            <div class="article-summary openai">
-                OpenAIが、ディープニューラルネットワークの学習を効率化する新しい技術「重み正規化」について発表しました。この手法は、シンプルな再パラメータ化により、学習の高速化を実現します。
+            <h2 class="article-title title-openai">重み正規化：深層ニューラルネットワークの学習を加速するシンプルな再パラメータ化</h2>
+            <div class="article-summary summary-openai">
+                深層ニューラルネットワークの学習を効率化する新しい手法「重み正規化」に関する研究です。この技術は、ネットワークの重みを再パラメータ化することで学習プロセスを加速します。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list openai">
-                    <li><strong>重み正規化</strong>という新しい学習最適化手法</li>
-                    <li>ディープニューラルネットワークの<strong>学習速度を向上</strong></li>
+                <ul class="points-list points-openai">
+                    <li><strong>重み正規化</strong>による学習の高速化手法を提案</li>
+                    <li>深層ニューラルネットワークの<strong>効率的な学習</strong>を実現</li>
                     <li>シンプルな再パラメータ化で実装が容易</li>
                 </ul>
             </div>
-            <a href="https://openai.com/index/weight-normalization" class="read-more openai" target="_blank">🔗 詳細を読む</a>
+            <a href="https://openai.com/index/weight-normalization" class="read-more btn-openai" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge google">Google</span>
-                <span class="article-date">📅 日付未公開</span>
+            <div class="card-header">
+                <span class="source-badge source-google">Google</span>
+                <span class="published-date">📅 日付未公開</span>
             </div>
-            <h2 class="article-title google">Geminiアプリで生成されたGoogle AIの動画を検証できるようになりました</h2>
-            <div class="article-summary google">
-                Googleは、AI生成コンテンツの透明性を高めるツールを拡張しました。Geminiアプリで、動画がGoogle AIによって編集または作成されたかどうかを確認できるようになり、AI生成コンテンツの識別がより簡単になります。
+            <h2 class="article-title title-google">GeminiアプリでGoogle AIが生成した動画を検証可能に</h2>
+            <div class="article-summary summary-google">
+                Googleはコンテンツの透明性ツールを拡張し、AI生成コンテンツをより簡単に識別できるようにしました。Geminiアプリで、動画がGoogle AIによって編集または作成されたかどうかを確認できるようになりました。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list google">
-                    <li><strong>コンテンツ透明性ツール</strong>の拡張により信頼性向上</li>
-                    <li>Geminiアプリ内でAI生成動画の<strong>検証機能</strong>を提供</li>
-                    <li>AI生成コンテンツの<strong>識別を簡単に</strong>実現</li>
+                <ul class="points-list points-google">
+                    <li><strong>AI生成動画の検証機能</strong>をGeminiアプリに追加</li>
+                    <li>コンテンツの<strong>透明性と信頼性</strong>を向上</li>
+                    <li>Google AIによる編集・生成の判別が可能に</li>
                 </ul>
             </div>
-            <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="read-more google" target="_blank">🔗 詳細を読む</a>
+            <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="read-more btn-google" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge microsoft">Microsoft</span>
-                <span class="article-date">📅 日付未公開</span>
+            <div class="card-header">
+                <span class="source-badge source-microsoft">Microsoft</span>
+                <span class="published-date">📅 日付未公開</span>
             </div>
-            <h2 class="article-title microsoft">家庭でのチャンス – AIはパーソナルアシスタントデバイスと手話においてイノベーションを推進できるか？</h2>
-            <div class="article-summary microsoft">
-                Microsoftは、AIがパーソナルアシスタントデバイスと手話技術においてイノベーションを促進する可能性について探求しています。家庭環境でのアクセシビリティ向上を目指し、AIの新たな活用方法を提案しています。
+            <h2 class="article-title title-microsoft">家庭での機会 - AIはパーソナルアシスタントデバイスと手話でイノベーションを推進できるか？</h2>
+            <div class="article-summary summary-microsoft">
+                MicrosoftがAI技術を活用した家庭向けパーソナルアシスタントデバイスと手話技術の革新について探求しています。アクセシビリティの向上とAIの家庭内での活用可能性に焦点を当てた記事です。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list microsoft">
-                    <li>家庭向け<strong>パーソナルアシスタントデバイス</strong>のAI活用</li>
+                <ul class="points-list points-microsoft">
+                    <li>AIを活用した<strong>パーソナルアシスタントデバイス</strong>の革新</li>
                     <li><strong>手話技術</strong>へのAI応用でアクセシビリティ向上</li>
-                    <li>日常生活における<strong>イノベーション</strong>の可能性を探求</li>
+                    <li>家庭内でのAI活用による新しい可能性を提示</li>
                 </ul>
             </div>
-            <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="read-more microsoft" target="_blank">🔗 詳細を読む</a>
+            <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="read-more btn-microsoft" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge reddit">Reddit</span>
-                <span class="article-date">📅 日付未公開</span>
+            <div class="card-header">
+                <span class="source-badge source-reddit">Reddit</span>
+                <span class="published-date">📅 日付未公開</span>
             </div>
-            <h2 class="article-title reddit">claude.ai/settings/usage が動作しない？</h2>
-            <div class="article-summary reddit">
-                Redditユーザーから、Claudeの使用状況ページ（claude.ai/settings/usage）が正常に動作しないという報告がありました。アクセスや表示に関する技術的な問題が議論されています。
+            <h2 class="article-title title-reddit">claude.ai/settings/usage が動作しない？</h2>
+            <div class="article-summary summary-reddit">
+                Reddit上でClaudeの使用状況ページ（claude.ai/settings/usage）が正常に動作しないという技術的な問題が報告されています。ユーザー間で同様の問題が共有され、解決策が議論されています。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list reddit">
-                    <li>Claudeの<strong>使用状況ページ</strong>の動作不具合を報告</li>
-                    <li>コミュニティで<strong>技術的問題</strong>について議論中</li>
-                    <li>Claudeのサービス利用における<strong>ユーザー体験</strong>に関する課題</li>
+                <ul class="points-list points-reddit">
+                    <li>Claudeの<strong>使用状況ページ</strong>へのアクセス問題</li>
+                    <li>コミュニティでの<strong>技術的トラブルシューティング</strong></li>
+                    <li>ユーザー体験の改善に向けた議論</li>
                 </ul>
             </div>
-            <a href="https://www.reddit.com/r/ClaudeCode/comments/1q6l2x3/httpsclaudeaisettingsusage_doesnt_work/" class="read-more reddit" target="_blank">🔗 詳細を読む</a>
+            <a href="https://www.reddit.com/r/ClaudeCode/comments/1q6l2x3/httpsclaudeaisettingsusage_doesnt_work/" class="read-more btn-reddit" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="page-footer">
