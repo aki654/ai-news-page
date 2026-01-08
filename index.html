@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -11,106 +12,121 @@
             box-sizing: border-box;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
             line-height: 1.8;
-            background-color: #f5f5f5;
             color: #333;
+            background-color: #f5f6f8;
             padding: 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 1100px;
             margin: 0 auto;
         }
         header {
-            background: white;
+            background-color: #fff;
             padding: 40px 32px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
             margin-bottom: 32px;
         }
         h1 {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 12px;
+            font-size: 2em;
             color: #1a1a1a;
+            margin-bottom: 12px;
         }
         .date {
-            font-size: 14px;
+            font-size: 0.95em;
             color: #666;
         }
         .summary-section {
-            background: white;
-            padding: 24px;
+            background-color: #fff;
+            padding: 32px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin-bottom: 32px;
-        }
-        .summary-section h2 {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 16px;
-            color: #1a1a1a;
-            border-bottom: 2px solid #e0e0e0;
-            padding-bottom: 8px;
-        }
-        .summary-section p {
-            font-size: 15px;
-            line-height: 1.9;
-            color: #444;
-        }
-        .source-section {
             margin-bottom: 48px;
         }
-        .source-section h2 {
-            font-size: 22px;
-            font-weight: bold;
-            margin-bottom: 20px;
+        .summary-section h2 {
+            font-size: 1.4em;
             color: #1a1a1a;
-            padding-left: 12px;
+            margin-bottom: 16px;
             border-left: 4px solid #4285f4;
+            padding-left: 12px;
         }
-        .article-card {
-            background: white;
+        .summary-section p {
+            font-size: 1.05em;
+            color: #444;
+            line-height: 1.9;
+        }
+        .news-section {
+            margin-bottom: 48px;
+        }
+        .news-section h2 {
+            font-size: 1.5em;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #e0e0e0;
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .news-card {
+            background-color: #fff;
             padding: 24px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            margin-bottom: 32px;
         }
-        .article-card h3 {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 12px;
+        .news-card h3 {
+            font-size: 1.2em;
             color: #1a1a1a;
+            margin-bottom: 12px;
+            font-weight: bold;
             line-height: 1.5;
         }
-        .article-meta {
-            font-size: 13px;
-            color: #888;
+        .news-meta {
+            font-size: 0.85em;
+            color: #999;
             margin-bottom: 16px;
         }
-        .article-summary {
-            font-size: 15px;
-            line-height: 1.9;
+        .news-description {
+            font-size: 0.95em;
             color: #555;
+            line-height: 1.8;
             margin-bottom: 20px;
         }
-        .article-link {
+        .news-link {
             display: inline-block;
             padding: 10px 20px;
             background-color: #4285f4;
-            color: white;
+            color: #fff;
             text-decoration: none;
             border-radius: 6px;
-            font-size: 14px;
-            transition: background-color 0.2s;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
         }
-        .article-link:hover {
-            background-color: #3367d6;
+        .news-link:hover {
+            background-color: #357ae8;
         }
-        .no-update {
-            font-size: 14px;
-            color: #999;
+        .no-news {
+            background-color: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            color: #666;
             font-style: italic;
+        }
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .news-section h2 {
+                font-size: 1.3em;
+            }
         }
     </style>
 </head>
@@ -118,71 +134,66 @@
     <div class="container">
         <header>
             <h1>AIニュース デイリーレポート</h1>
-            <p class="date">2024年（生成日）</p>
+            <p class="date">2024年版レポート</p>
         </header>
 
-        <section class="summary-section">
-            <h2>本日のトピックス</h2>
-            <p>本日は、AI技術の安全性と実用化に関する話題が中心となりました。OpenAIとGoogle Brainによる共同研究ではAIシステムの安全性に関する具体的な課題が提示され、GoogleはAI生成動画の検証機能を公開しました。また、Microsoftはアクセシビリティ分野でのAI活用について発表し、家庭内デバイスや手話支援におけるAI応用の可能性を示しました。AI技術の透明性と社会実装が進展しています。</p>
-        </section>
+        <div class="summary-section">
+            <h2>本日のサマリー</h2>
+            <p>本日は主要AI企業から重要な発表が相次ぎました。OpenAIからは機械学習システムの安全性に関する論文と、ニューラルネットワークの学習高速化技術が発表されました。Googleは生成AIコンテンツの透明性向上に向けて、Geminiアプリで動画の検証機能を導入。Microsoftはアクセシビリティ分野に焦点を当て、AIを活用したパーソナルアシスタントデバイスと手話技術の革新について言及しています。AI技術の安全性・信頼性・包括性の向上が共通テーマとなった一日でした。</p>
+        </div>
 
-        <section class="source-section">
+        <div class="news-section">
             <h2>OpenAI</h2>
-            
-            <article class="article-card">
-                <h3>Concrete AI safety problems</h3>
-                <p class="article-meta">OpenAI / 公開日時不明</p>
-                <div class="article-summary">
-                    OpenAIはBerkeley大学、Stanford大学の研究者と共に、Google Brain主導の論文「Concrete Problems in AI Safety」を共同執筆しました。この論文では、現代の機械学習システムが意図したとおりに動作することを保証するための、多くの研究課題について探求しています。AI安全性に関する具体的な問題提起として注目されます。
+            <div class="news-grid">
+                <div class="news-card">
+                    <h3>Concrete AI safety problems</h3>
+                    <p class="news-meta">OpenAI</p>
+                    <p class="news-description">OpenAIはGoogle Brain、バークレー、スタンフォード大学の研究者と共同で「AI安全性の具体的問題」に関する論文を発表。現代の機械学習システムが意図した通りに動作することを保証するための研究課題を探求しています。</p>
+                    <a href="https://openai.com/index/concrete-ai-safety-problems" class="news-link" target="_blank">参照元を開く</a>
                 </div>
-                <a href="https://openai.com/index/concrete-ai-safety-problems" class="article-link" target="_blank">参照元を開く</a>
-            </article>
-
-            <article class="article-card">
-                <h3>Weight normalization: A simple reparameterization to accelerate training of deep neural networks</h3>
-                <p class="article-meta">OpenAI / 公開日時不明</p>
-                <div class="article-summary">
-                    深層ニューラルネットワークの学習を加速させるためのシンプルな再パラメータ化手法である「重み正規化（Weight Normalization）」に関する技術論文が公開されました。この手法により、深層学習モデルのトレーニング効率が向上することが期待されます。
+                <div class="news-card">
+                    <h3>Weight normalization: A simple reparameterization to accelerate training of deep neural networks</h3>
+                    <p class="news-meta">OpenAI</p>
+                    <p class="news-description">深層ニューラルネットワークの学習を加速するための「重み正規化」という新しい再パラメータ化手法に関する研究が発表されました。シンプルな手法ながら、学習効率の大幅な向上が期待されます。</p>
+                    <a href="https://openai.com/index/weight-normalization" class="news-link" target="_blank">参照元を開く</a>
                 </div>
-                <a href="https://openai.com/index/weight-normalization" class="article-link" target="_blank">参照元を開く</a>
-            </article>
-        </section>
+            </div>
+        </div>
 
-        <section class="source-section">
+        <div class="news-section">
             <h2>Google</h2>
-            
-            <article class="article-card">
-                <h3>You can now verify Google AI-generated videos in the Gemini app.</h3>
-                <p class="article-meta">Google / 公開日時不明</p>
-                <div class="article-summary">
-                    Googleはコンテンツの透明性向上ツールを拡張し、AI生成コンテンツをより簡単に識別できるようにしました。Geminiアプリ内で、動画がGoogle AIによって編集または作成されたものかを確認できる機能が追加されています。SynthID技術を活用した信頼性向上の取り組みです。
+            <div class="news-grid">
+                <div class="news-card">
+                    <h3>You can now verify Google AI-generated videos in the Gemini app.</h3>
+                    <p class="news-meta">Google</p>
+                    <p class="news-description">Googleはコンテンツの透明性向上のため、Geminiアプリで動画がGoogle AIによって編集・生成されたかを確認できる機能を提供開始。AI生成コンテンツの識別を容易にし、ユーザーの信頼性向上を図ります。</p>
+                    <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="news-link" target="_blank">参照元を開く</a>
                 </div>
-                <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="article-link" target="_blank">参照元を開く</a>
-            </article>
-        </section>
+            </div>
+        </div>
 
-        <section class="source-section">
+        <div class="news-section">
             <h2>Microsoft</h2>
-            
-            <article class="article-card">
-                <h3>The opportunity at home – can AI drive innovation in personal assistant devices and sign language?</h3>
-                <p class="article-meta">Microsoft / 公開日時不明</p>
-                <div class="article-summary">
-                    Microsoftは、AIが家庭内のパーソナルアシスタントデバイスや手話におけるイノベーションを推進できる可能性について発表しました。アクセシビリティ分野でのAI活用により、より多くの人々が技術の恩恵を受けられる環境の実現を目指しています。
+            <div class="news-grid">
+                <div class="news-card">
+                    <h3>The opportunity at home – can AI drive innovation in personal assistant devices and sign language?</h3>
+                    <p class="news-meta">Microsoft</p>
+                    <p class="news-description">Microsoftがアクセシビリティ分野でのAI活用について発表。家庭内でのパーソナルアシスタントデバイスと手話技術の革新にAIがどのように貢献できるかを探る内容で、包括的な技術開発への取り組みを示しています。</p>
+                    <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="news-link" target="_blank">参照元を開く</a>
                 </div>
-                <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="article-link" target="_blank">参照元を開く</a>
-            </article>
-        </section>
+            </div>
+        </div>
 
-        <section class="source-section">
+        <div class="news-section">
             <h2>Reddit</h2>
-            <p class="no-update">本日は大きな更新はありませんでした</p>
-        </section>
+            <div class="no-news">本日は大きな更新はありませんでした</div>
+        </div>
 
-        <section class="source-section">
+        <div class="news-section">
             <h2>Other</h2>
-            <p class="no-update">本日は大きな更新はありませんでした</p>
-        </section>
+            <div class="no-news">本日は大きな更新はありませんでした</div>
+        </div>
     </div>
 </body>
 </html>
+```
