@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI News Today - 最新AI動向レポート</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
@@ -38,15 +38,14 @@
         .page-header h1 {
             font-size: 28px;
             color: #333;
-            font-weight: 700;
-            margin-bottom: 8px;
+            margin: 0 0 8px 0;
             font-family: 'M PLUS Rounded 1c', sans-serif;
         }
 
         .page-header .subtitle {
             font-size: 14px;
             color: #666;
-            margin-bottom: 16px;
+            margin: 0 0 16px 0;
         }
 
         .page-header .date {
@@ -87,23 +86,23 @@
             font-weight: 700;
         }
 
-        .source-openai {
+        .source-badge.openai {
             background: #10A37F;
         }
 
-        .source-google {
+        .source-badge.google {
             background: #4285F4;
         }
 
-        .source-microsoft {
+        .source-badge.microsoft {
             background: #00A4EF;
         }
 
-        .source-reddit {
+        .source-badge.reddit {
             background: #FF4500;
         }
 
-        .published-date {
+        .publish-date {
             font-size: 13px;
             color: #888;
         }
@@ -115,19 +114,19 @@
             line-height: 1.4;
         }
 
-        .title-openai {
+        .article-title.openai {
             color: #10A37F;
         }
 
-        .title-google {
+        .article-title.google {
             color: #4285F4;
         }
 
-        .title-microsoft {
+        .article-title.microsoft {
             color: #00A4EF;
         }
 
-        .title-reddit {
+        .article-title.reddit {
             color: #FF4500;
         }
 
@@ -140,24 +139,24 @@
             border-left: 4px solid;
         }
 
-        .summary-openai {
+        .article-summary.openai {
             background: #E6F7F2;
-            border-color: #10A37F;
+            border-left-color: #10A37F;
         }
 
-        .summary-google {
+        .article-summary.google {
             background: #E8F0FE;
-            border-color: #4285F4;
+            border-left-color: #4285F4;
         }
 
-        .summary-microsoft {
+        .article-summary.microsoft {
             background: #E6F6FD;
-            border-color: #00A4EF;
+            border-left-color: #00A4EF;
         }
 
-        .summary-reddit {
+        .article-summary.reddit {
             background: #FFF0EB;
-            border-color: #FF4500;
+            border-left-color: #FF4500;
         }
 
         .points-section {
@@ -166,13 +165,15 @@
 
         .points-section h3 {
             font-size: 16px;
-            margin-bottom: 12px;
             color: #333;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
 
         .points-list {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .points-list li {
@@ -193,19 +194,19 @@
             border-radius: 50%;
         }
 
-        .points-openai li::before {
+        .points-list.openai li::before {
             background: #10A37F;
         }
 
-        .points-google li::before {
+        .points-list.google li::before {
             background: #4285F4;
         }
 
-        .points-microsoft li::before {
+        .points-list.microsoft li::before {
             background: #00A4EF;
         }
 
-        .points-reddit li::before {
+        .points-list.reddit li::before {
             background: #FF4500;
         }
 
@@ -221,24 +222,24 @@
             color: white;
         }
 
-        .read-more:hover {
-            opacity: 0.85;
-        }
-
-        .read-more-openai {
+        .read-more.openai {
             background: #10A37F;
         }
 
-        .read-more-google {
+        .read-more.google {
             background: #4285F4;
         }
 
-        .read-more-microsoft {
+        .read-more.microsoft {
             background: #00A4EF;
         }
 
-        .read-more-reddit {
+        .read-more.reddit {
             background: #FF4500;
+        }
+
+        .read-more:hover {
+            opacity: 0.85;
         }
 
         .page-footer {
@@ -248,10 +249,6 @@
             border-top: 2px solid #EAEAEA;
             color: #888;
             font-size: 13px;
-        }
-
-        .page-footer p {
-            margin: 5px 0;
         }
 
         @media print {
@@ -266,8 +263,8 @@
             }
 
             .article-card {
-                box-shadow: none;
                 page-break-inside: avoid;
+                box-shadow: none;
             }
 
             .article-card:hover {
@@ -309,195 +306,196 @@
 
         <div class="article-card">
             <div class="article-header">
-                <span class="source-badge source-openai">OpenAI</span>
+                <span class="source-badge openai">OpenAI</span>
+                <span class="publish-date">📅 更新日不明</span>
             </div>
-            <h2 class="article-title title-openai">具体的なAI安全性の問題</h2>
-            <div class="article-summary summary-openai">
-                OpenAIはバークレーとスタンフォードの研究者と共に、Google Brainが主導する論文「Concrete Problems in AI Safety」を発表しました。この論文は、現代の機械学習システムが意図通りに動作することを保証するための多くの研究課題を探求しています。
+            <h2 class="article-title openai">AI安全性の具体的な問題</h2>
+            <div class="article-summary openai">
+                OpenAIはバークレー大学とスタンフォード大学の研究者と共に、Google Brainが主導する論文「AI安全性における具体的問題」の共著者として参加しています。この論文は、現代の機械学習システムが意図した通りに動作することを保証するための多くの研究課題を探求しています。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list points-openai">
-                    <li>複数の研究機関（<strong>OpenAI、Berkeley、Stanford、Google Brain</strong>）が協力</li>
-                    <li>機械学習システムの<strong>安全な動作</strong>を保証する具体的な問題に焦点</li>
-                    <li>AI安全性研究の<strong>実践的なアプローチ</strong>を提示</li>
+                <ul class="points-list openai">
+                    <li><strong>複数の大学・企業</strong>が協力してAI安全性の研究を推進</li>
+                    <li>機械学習システムの<strong>意図通りの動作</strong>を保証する課題に焦点</li>
+                    <li>AI技術の安全な発展に向けた<strong>具体的な問題</strong>を提起</li>
                 </ul>
             </div>
-            <a href="https://openai.com/index/concrete-ai-safety-problems" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+            <a href="https://openai.com/index/concrete-ai-safety-problems" class="read-more openai" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
             <div class="article-header">
-                <span class="source-badge source-openai">OpenAI</span>
+                <span class="source-badge openai">OpenAI</span>
+                <span class="publish-date">📅 更新日不明</span>
             </div>
-            <h2 class="article-title title-openai">重み正規化: ディープニューラルネットワークの学習を加速する簡単な再パラメータ化</h2>
-            <div class="article-summary summary-openai">
-                ディープニューラルネットワークの学習を高速化するための重み正規化手法に関する技術論文です。シンプルな再パラメータ化によって学習効率を向上させるアプローチを提案しています。
+            <h2 class="article-title openai">重み正規化：深層ニューラルネットワークの学習を加速する簡単な再パラメータ化</h2>
+            <div class="article-summary openai">
+                深層ニューラルネットワークの学習を高速化するための重み正規化技術に関する研究です。この手法は、パラメータの再定義により学習効率を改善します。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list points-openai">
-                    <li><strong>重み正規化</strong>によるニューラルネットワークの学習加速</li>
-                    <li>シンプルで実装しやすい<strong>再パラメータ化手法</strong></li>
-                    <li>ディープラーニングの<strong>効率化</strong>に貢献</li>
+                <ul class="points-list openai">
+                    <li><strong>重み正規化</strong>による学習の高速化手法を提案</li>
+                    <li>深層ニューラルネットワークの<strong>学習効率</strong>を改善</li>
+                    <li>シンプルな再パラメータ化で実装が<strong>容易</strong></li>
                 </ul>
             </div>
-            <a href="https://openai.com/index/weight-normalization" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+            <a href="https://openai.com/index/weight-normalization" class="read-more openai" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
             <div class="article-header">
-                <span class="source-badge source-google">Google</span>
+                <span class="source-badge google">Google</span>
+                <span class="publish-date">📅 更新日不明</span>
             </div>
-            <h2 class="article-title title-google">GeminiアプリでGoogle AIが生成した動画を検証できるようになりました</h2>
-            <div class="article-summary summary-google">
-                GoogleはAI生成コンテンツをより簡単に識別できるよう、コンテンツ透明性ツールを拡張しました。Geminiアプリで、動画がGoogle AIで編集または作成されたかどうかを確認できるようになりました。
+            <h2 class="article-title google">GeminiアプリでGoogle AI生成動画の検証が可能に</h2>
+            <div class="article-summary google">
+                Googleは、AI生成コンテンツをより簡単に識別できるよう、コンテンツ透明性ツールを拡張しています。Geminiアプリで、動画がGoogle AIによって編集または作成されたものかを確認できるようになりました。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list points-google">
-                    <li><strong>AI生成動画の検証機能</strong>をGeminiアプリに追加</li>
-                    <li>コンテンツの<strong>透明性向上</strong>を目指す取り組み</li>
-                    <li>Google AIで作成・編集された動画を<strong>簡単に識別</strong>可能に</li>
+                <ul class="points-list google">
+                    <li><strong>SynthID技術</strong>を使用してAI生成動画を識別</li>
+                    <li>Geminiアプリでの<strong>検証機能</strong>を実装</li>
+                    <li>コンテンツの<strong>透明性向上</strong>により信頼性を確保</li>
                 </ul>
             </div>
-            <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="read-more read-more-google" target="_blank">🔗 詳細を読む</a>
+            <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="read-more google" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
             <div class="article-header">
-                <span class="source-badge source-microsoft">Microsoft</span>
+                <span class="source-badge microsoft">Microsoft</span>
+                <span class="publish-date">📅 更新日不明</span>
             </div>
-            <h2 class="article-title title-microsoft">家庭での機会 - AIはパーソナルアシスタントデバイスと手話においてイノベーションを推進できるか？</h2>
-            <div class="article-summary summary-microsoft">
-                Microsoftは、AIが家庭用パーソナルアシスタントデバイスと手話技術においてどのようにイノベーションを推進できるかについて探求しています。アクセシビリティ向上のための新たな可能性を提示しています。
+            <h2 class="article-title microsoft">家庭での可能性 - AIはパーソナルアシスタントデバイスと手話でイノベーションを推進できるか？</h2>
+            <div class="article-summary microsoft">
+                Microsoftは、AIを活用したパーソナルアシスタントデバイスと手話技術の革新について探求しています。アクセシビリティの向上と家庭環境でのAI活用の可能性に焦点を当てています。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list points-microsoft">
-                    <li>AIを活用した<strong>パーソナルアシスタントデバイス</strong>の革新</li>
-                    <li><strong>手話技術</strong>へのAI応用の可能性</li>
-                    <li><strong>アクセシビリティ</strong>の向上を目指す取り組み</li>
+                <ul class="points-list microsoft">
+                    <li><strong>パーソナルアシスタント</strong>デバイスへのAI統合</li>
+                    <li><strong>手話認識</strong>技術の革新による障壁の除去</li>
+                    <li>家庭環境での<strong>アクセシビリティ</strong>向上を目指す</li>
                 </ul>
             </div>
-            <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="read-more read-more-microsoft" target="_blank">🔗 詳細を読む</a>
+            <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="read-more microsoft" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
             <div class="article-header">
-                <span class="source-badge source-reddit">Reddit</span>
+                <span class="source-badge reddit">Reddit</span>
+                <span class="publish-date">📅 更新日不明</span>
             </div>
-            <h2 class="article-title title-reddit">claude.ai/settings/usage が機能しない？</h2>
-            <div class="article-summary summary-reddit">
-                RedditのClaudeCodeコミュニティで、Claudeの使用状況ページにアクセスできない問題が報告されています。ユーザー間でこの技術的な問題についての議論が行われています。
+            <h2 class="article-title reddit">claude.ai/settings/usage が動作しない？</h2>
+            <div class="article-summary reddit">
+                Claudeの使用状況ページにアクセスできないという技術的な問題についてのReddit投稿です。ユーザーがClaudeのダッシュボード機能に関する問題を報告しています。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list points-reddit">
+                <ul class="points-list reddit">
                     <li>Claudeの<strong>使用状況ページ</strong>へのアクセス問題</li>
-                    <li>ユーザーコミュニティでの<strong>技術的トラブル</strong>の共有</li>
-                    <li>サービスの<strong>可用性</strong>に関する課題</li>
+                    <li>ユーザーからの<strong>技術的な問題</strong>の報告</li>
+                    <li>Claude設定画面の<strong>機能障害</strong>の可能性</li>
                 </ul>
             </div>
-            <a href="https://www.reddit.com/r/ClaudeCode/comments/1q6l2x3/httpsclaudeaisettingsusage_doesnt_work/" class="read-more read-more-reddit" target="_blank">🔗 詳細を読む</a>
+            <a href="https://www.reddit.com/r/ClaudeCode/comments/1q6l2x3/httpsclaudeaisettingsusage_doesnt_work/" class="read-more reddit" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
             <div class="article-header">
-                <span class="source-badge source-openai">OpenAI</span>
+                <span class="source-badge openai">OpenAI</span>
+                <span class="publish-date">📅 更新日不明</span>
             </div>
-            <h2 class="article-title title-openai">Team++</h2>
-            <div class="article-summary summary-openai">
-                OpenAIは過去数ヶ月間で素晴らしい人材を迎え入れたことを発表しました。チームの拡大を続けており、現在も積極的に採用を行っています。
+            <h2 class="article-title openai">Team++（チーム強化）</h2>
+            <div class="article-summary openai">
+                OpenAIが過去数ヶ月間で素晴らしい人材を迎え入れたことを発表しています。チームの拡大と継続的な採用活動について報告しています。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list points-openai">
-                    <li>OpenAIチームに<strong>新メンバー</strong>が多数参加</li>
-                    <li>組織の<strong>継続的な成長</strong>と拡大</li>
-                    <li>引き続き<strong>人材募集中</strong></li>
+                <ul class="points-list openai">
+                    <li><strong>優秀な人材</strong>がOpenAIに参加</li>
+                    <li>継続的な<strong>採用活動</strong>を実施中</li>
+                    <li>組織の<strong>成長と拡大</strong>を推進</li>
                 </ul>
             </div>
-            <a href="https://openai.com/index/team-plus-plus" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+            <a href="https://openai.com/index/team-plus-plus" class="read-more openai" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
             <div class="article-header">
-                <span class="source-badge source-openai">OpenAI</span>
+                <span class="source-badge openai">OpenAI</span>
+                <span class="publish-date">📅 更新日不明</span>
             </div>
-            <h2 class="article-title title-openai">PieterとShivonを歓迎！</h2>
-            <div class="article-summary summary-openai">
-                OpenAIはチームに新たに2名のメンバーを迎えることを発表しました。PieterとShivonの参加により、チーム体制がさらに強化されます。
+            <h2 class="article-title openai">PieterとShivonを歓迎します！</h2>
+            <div class="article-summary openai">
+                OpenAIが新たに2名のチームメンバーを迎え入れたことを発表しています。組織体制の強化に関する追加の更新情報です。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list points-openai">
-                    <li><strong>2名の重要メンバー</strong>（PieterとShivon）が参加</li>
-                    <li>OpenAIの<strong>チーム体制強化</strong></li>
-                    <li>組織の<strong>継続的な成長</strong>を示す動き</li>
+                <ul class="points-list openai">
+                    <li><strong>2名の新メンバー</strong>がチームに加入</li>
+                    <li>OpenAIの<strong>組織強化</strong>を継続</li>
+                    <li>チーム体制の<strong>さらなる拡充</strong></li>
                 </ul>
             </div>
-            <a href="https://openai.com/index/welcome-pieter-and-shivon" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+            <a href="https://openai.com/index/welcome-pieter-and-shivon" class="read-more openai" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
             <div class="article-header">
-                <span class="source-badge source-openai">OpenAI</span>
+                <span class="source-badge openai">OpenAI</span>
+                <span class="publish-date">📅 更新日不明</span>
             </div>
-            <h2 class="article-title title-openai">OpenAI Gym ベータ版</h2>
-            <div class="article-summary summary-openai">
-                OpenAIは強化学習アルゴリズムの開発と比較のためのツールキット「OpenAI Gym」のパブリックベータ版をリリースしました。シミュレートされたロボットからAtariゲームまで、多様な環境を提供し、結果の比較と再現が可能です。
+            <h2 class="article-title openai">OpenAI Gym ベータ版</h2>
+            <div class="article-summary openai">
+                OpenAIが強化学習アルゴリズムの開発と比較のためのツールキット「OpenAI Gym」のパブリックベータ版をリリースしました。シミュレートされたロボットからAtariゲームまで、さまざまな環境と結果の比較・再現のためのサイトで構成されています。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list points-openai">
-                    <li><strong>強化学習</strong>アルゴリズム開発のための統合ツールキット</li>
-                    <li>ロボットシミュレーションから<strong>Atariゲーム</strong>まで多様な環境</li>
-                    <li>結果の<strong>比較と再現性</strong>を支援するプラットフォーム</li>
+                <ul class="points-list openai">
+                    <li><strong>強化学習</strong>アルゴリズム開発用のツールキット</li>
+                    <li>多様な<strong>環境スイート</strong>を提供（ロボット、ゲームなど）</li>
+                    <li>研究結果の<strong>比較と再現</strong>を容易にする</li>
                 </ul>
             </div>
-            <a href="https://openai.com/index/openai-gym-beta" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+            <a href="https://openai.com/index/openai-gym-beta" class="read-more openai" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
             <div class="article-header">
-                <span class="source-badge source-openai">OpenAI</span>
+                <span class="source-badge openai">OpenAI</span>
+                <span class="publish-date">📅 更新日不明</span>
             </div>
-            <h2 class="article-title title-openai">半教師あり文書分類のための敵対的学習法</h2>
-            <div class="article-summary summary-openai">
-                半教師あり学習における文書分類の精度を向上させるための敵対的学習手法に関する技術論文です。ラベル付きデータとラベルなしデータの両方を活用する革新的なアプローチを提案しています。
+            <h2 class="article-title openai">半教師あり学習によるテキスト分類のための敵対的学習手法</h2>
+            <div class="article-summary openai">
+                テキスト分類タスクにおける半教師あり学習に敵対的学習を適用する研究です。少量のラベル付きデータで高精度な分類を実現する手法を探求しています。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list points-openai">
-                    <li><strong>敵対的学習</strong>を文書分類に応用</li>
-                    <li><strong>半教師あり学習</strong>による効率的なモデル訓練</li>
-                    <li>ラベル付きデータの<strong>必要量を削減</strong></li>
+                <ul class="points-list openai">
+                    <li><strong>敵対的学習</strong>を半教師あり学習に適用</li>
+                    <li>テキスト分類の<strong>精度向上</strong>を実現</li>
+                    <li>少量のラベルデータで<strong>効率的な学習</strong></li>
                 </ul>
             </div>
-            <a href="https://openai.com/index/adversarial-training-methods-for-semi-supervised-text-classification" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+            <a href="https://openai.com/index/adversarial-training-methods-for-semi-supervised-text-classification" class="read-more openai" target="_blank">🔗 詳細を読む</a>
         </div>
 
         <div class="article-card">
             <div class="article-header">
-                <span class="source-badge source-openai">OpenAI</span>
+                <span class="source-badge openai">OpenAI</span>
+                <span class="publish-date">📅 更新日不明</span>
             </div>
-            <h2 class="article-title title-openai">チーム更新</h2>
-            <div class="article-summary summary-openai">
-                OpenAIは最新のチームメンバーを歓迎すると発表しました。組織の成長を続けており、引き続き優秀な人材を募集しています。
+            <h2 class="article-title openai">チームアップデート</h2>
+            <div class="article-summary openai">
+                OpenAIの最新のチームメンバーを歓迎する発表です。継続的な採用活動により、組織の成長を続けています。
             </div>
             <div class="points-section">
                 <h3>💡 ポイント</h3>
-                <ul class="points-list points-openai">
-                    <li>OpenAIに<strong>新メンバー</strong>が参加</li>
-                    <li>チームの<strong>継続的な拡大</strong></li>
-                    <li><strong>採用活動</strong>を積極的に継続中</li>
-                </ul>
-            </div>
-            <a href="https://openai.com/index/team-update" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
-        </div>
-
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge source-openai">OpenAI</span>
-            </div>
+                <ul class="points-list openai">
+                    <li><strong>新しいメンバー</strong>の加入を発表</li>
+                    <li>継続的な<strong>人材募集</strong>を実施</li>
+                    <li>組織の<strong>継続的な成長</strong
