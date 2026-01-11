@@ -1,501 +1,516 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI News Today - 最新AI動向レポート</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI News Today - 最新AI動向レポート</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* {
+  box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            padding: 20px;
-            background: #F5F7FA;
-            font-family: 'Noto Sans JP', sans-serif;
-        }
+body {
+  margin: 0;
+  padding: 20px;
+  background: #F5F7FA;
+  font-family: 'Noto Sans JP', sans-serif;
+}
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px;
-            background: #FFFFFF;
-            border-radius: 20px;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.08);
-        }
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  background: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+}
 
-        .page-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 2px solid #EAEAEA;
-        }
+.page-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+  border-bottom: 2px solid #EAEAEA;
+}
 
-        .page-header h1 {
-            font-size: 28px;
-            color: #333;
-            margin: 0 0 8px 0;
-            font-family: 'M PLUS Rounded 1c', sans-serif;
-        }
+.page-header h1 {
+  font-size: 28px;
+  color: #333;
+  margin: 0 0 10px 0;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
 
-        .page-header .subtitle {
-            font-size: 14px;
-            color: #666;
-            margin: 0 0 16px 0;
-        }
+.page-header .subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 20px 0;
+}
 
-        .page-header .date {
-            font-size: 14px;
-            color: #888;
-        }
+.page-header .date {
+  font-size: 14px;
+  color: #888;
+}
 
-        .article-card {
-            background: #FFFFFF;
-            border-radius: 16px;
-            padding: 28px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-            border: 1px solid #F0F0F0;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+.article-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  border: 1px solid #F0F0F0;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-        .article-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        }
+.article-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+}
 
-        .article-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
-        .source-badge {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            color: white;
-            font-size: 12px;
-            font-weight: 700;
-        }
+.source-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+}
 
-        .source-badge.openai {
-            background: #10A37F;
-        }
+.source-openai {
+  background: #10A37F;
+}
 
-        .source-badge.google {
-            background: #4285F4;
-        }
+.source-google {
+  background: #4285F4;
+}
 
-        .source-badge.microsoft {
-            background: #00A4EF;
-        }
+.source-microsoft {
+  background: #00A4EF;
+}
 
-        .source-badge.reddit {
-            background: #FF4500;
-        }
+.source-reddit {
+  background: #FF4500;
+}
 
-        .publish-date {
-            font-size: 13px;
-            color: #888;
-        }
+.article-date {
+  font-size: 13px;
+  color: #888;
+}
 
-        .article-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 16px 0;
-            line-height: 1.4;
-        }
+.article-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 16px 0;
+  line-height: 1.4;
+}
 
-        .article-title.openai {
-            color: #10A37F;
-        }
+.title-openai {
+  color: #10A37F;
+}
 
-        .article-title.google {
-            color: #4285F4;
-        }
+.title-google {
+  color: #4285F4;
+}
 
-        .article-title.microsoft {
-            color: #00A4EF;
-        }
+.title-microsoft {
+  color: #00A4EF;
+}
 
-        .article-title.reddit {
-            color: #FF4500;
-        }
+.title-reddit {
+  color: #FF4500;
+}
 
-        .article-summary {
-            padding: 16px 20px;
-            border-radius: 8px;
-            margin: 16px 0;
-            font-size: 14px;
-            line-height: 1.7;
-            border-left: 4px solid;
-        }
+.article-summary {
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.7;
+  border-left: 4px solid;
+}
 
-        .article-summary.openai {
-            background: #E6F7F2;
-            border-left-color: #10A37F;
-        }
+.summary-openai {
+  background: #E6F7F2;
+  border-color: #10A37F;
+}
 
-        .article-summary.google {
-            background: #E8F0FE;
-            border-left-color: #4285F4;
-        }
+.summary-google {
+  background: #E8F0FE;
+  border-color: #4285F4;
+}
 
-        .article-summary.microsoft {
-            background: #E6F6FD;
-            border-left-color: #00A4EF;
-        }
+.summary-microsoft {
+  background: #E6F6FD;
+  border-color: #00A4EF;
+}
 
-        .article-summary.reddit {
-            background: #FFF0EB;
-            border-left-color: #FF4500;
-        }
+.summary-reddit {
+  background: #FFF0EB;
+  border-color: #FF4500;
+}
 
-        .points-section {
-            margin: 20px 0;
-        }
+.points-section {
+  margin: 20px 0;
+}
 
-        .points-section h3 {
-            font-size: 16px;
-            color: #333;
-            margin-bottom: 12px;
-            font-weight: 700;
-        }
+.points-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #333;
+}
 
-        .points-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+.points-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-        .points-list li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 8px;
-            font-size: 14px;
-            line-height: 1.6;
-        }
+.points-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
 
-        .points-list li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 8px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
+.points-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
 
-        .points-list.openai li::before {
-            background: #10A37F;
-        }
+.points-openai li::before {
+  background: #10A37F;
+}
 
-        .points-list.google li::before {
-            background: #4285F4;
-        }
+.points-google li::before {
+  background: #4285F4;
+}
 
-        .points-list.microsoft li::before {
-            background: #00A4EF;
-        }
+.points-microsoft li::before {
+  background: #00A4EF;
+}
 
-        .points-list.reddit li::before {
-            background: #FF4500;
-        }
+.points-reddit li::before {
+  background: #FF4500;
+}
 
-        .read-more {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            margin-top: 12px;
-            transition: opacity 0.2s;
-            color: white;
-        }
+.read-more {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 12px;
+  color: white;
+  transition: opacity 0.2s;
+}
 
-        .read-more.openai {
-            background: #10A37F;
-        }
+.read-more:hover {
+  opacity: 0.85;
+}
 
-        .read-more.google {
-            background: #4285F4;
-        }
+.read-more-openai {
+  background: #10A37F;
+}
 
-        .read-more.microsoft {
-            background: #00A4EF;
-        }
+.read-more-google {
+  background: #4285F4;
+}
 
-        .read-more.reddit {
-            background: #FF4500;
-        }
+.read-more-microsoft {
+  background: #00A4EF;
+}
 
-        .read-more:hover {
-            opacity: 0.85;
-        }
+.read-more-reddit {
+  background: #FF4500;
+}
 
-        .page-footer {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px solid #EAEAEA;
-            color: #888;
-            font-size: 13px;
-        }
+.page-footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid #EAEAEA;
+  color: #888;
+  font-size: 13px;
+}
 
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
+.page-footer p {
+  margin: 5px 0;
+}
 
-            .container {
-                box-shadow: none;
-                padding: 20px;
-            }
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+  
+  .container {
+    box-shadow: none;
+    padding: 20px;
+  }
+  
+  .article-card {
+    page-break-inside: avoid;
+    box-shadow: none;
+  }
+}
 
-            .article-card {
-                page-break-inside: avoid;
-                box-shadow: none;
-            }
-
-            .article-card:hover {
-                transform: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            .container {
-                padding: 20px;
-                border-radius: 10px;
-            }
-
-            .article-card {
-                padding: 20px;
-            }
-
-            .page-header h1 {
-                font-size: 24px;
-            }
-
-            .article-title {
-                font-size: 18px;
-            }
-        }
-    </style>
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  .container {
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .article-card {
+    padding: 20px;
+  }
+  
+  .page-header h1 {
+    font-size: 24px;
+  }
+  
+  .article-title {
+    font-size: 18px;
+  }
+}
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="page-header">
-            <h1>🤖 AI News Today</h1>
-            <div class="subtitle">～ 最新AI動向レポート ～</div>
-            <div class="date">📅 配信日: 2026年1月8日</div>
-        </div>
+<div class="container">
+<div class="page-header">
+<h1>🤖 AI News Today</h1>
+<div class="subtitle">～ 最新AI動向レポート ～</div>
+<div class="date">📅 配信日: 2026年1月8日</div>
+</div>
 
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge openai">OpenAI</span>
-                <span class="publish-date">📅 更新日不明</span>
-            </div>
-            <h2 class="article-title openai">AI安全性の具体的な問題</h2>
-            <div class="article-summary openai">
-                OpenAIはバークレー大学とスタンフォード大学の研究者と共に、Google Brainが主導する論文「AI安全性における具体的問題」の共著者として参加しています。この論文は、現代の機械学習システムが意図した通りに動作することを保証するための多くの研究課題を探求しています。
-            </div>
-            <div class="points-section">
-                <h3>💡 ポイント</h3>
-                <ul class="points-list openai">
-                    <li><strong>複数の大学・企業</strong>が協力してAI安全性の研究を推進</li>
-                    <li>機械学習システムの<strong>意図通りの動作</strong>を保証する課題に焦点</li>
-                    <li>AI技術の安全な発展に向けた<strong>具体的な問題</strong>を提起</li>
-                </ul>
-            </div>
-            <a href="https://openai.com/index/concrete-ai-safety-problems" class="read-more openai" target="_blank">🔗 詳細を読む</a>
-        </div>
+<div class="article-card">
+<div class="article-header">
+<span class="source-badge source-openai">OpenAI</span>
+<span class="article-date">📅 日付不明</span>
+</div>
+<h2 class="article-title title-openai">AI安全性に関する具体的な問題</h2>
+<div class="article-summary summary-openai">
+OpenAIはBerkeleyとStanfordの研究者と共同で、Google Brainが主導する「AI安全性における具体的な問題」に関する論文を発表しました。この論文は、現代の機械学習システムが意図した通りに動作することを保証するための多くの研究課題を探求しています。
+</div>
+<div class="points-section">
+<div class="points-title">💡 ポイント</div>
+<ul class="points-list points-openai">
+<li><strong>複数の大学・企業が協力</strong>してAI安全性の研究を推進</li>
+<li>機械学習システムの<strong>意図通りの動作保証</strong>が課題</li>
+<li>AI安全性の<strong>具体的な研究問題</strong>を体系的に整理</li>
+</ul>
+</div>
+<a href="https://openai.com/index/concrete-ai-safety-problems" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+</div>
 
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge openai">OpenAI</span>
-                <span class="publish-date">📅 更新日不明</span>
-            </div>
-            <h2 class="article-title openai">重み正規化：深層ニューラルネットワークの学習を加速する簡単な再パラメータ化</h2>
-            <div class="article-summary openai">
-                深層ニューラルネットワークの学習を高速化するための重み正規化技術に関する研究です。この手法は、パラメータの再定義により学習効率を改善します。
-            </div>
-            <div class="points-section">
-                <h3>💡 ポイント</h3>
-                <ul class="points-list openai">
-                    <li><strong>重み正規化</strong>による学習の高速化手法を提案</li>
-                    <li>深層ニューラルネットワークの<strong>学習効率</strong>を改善</li>
-                    <li>シンプルな再パラメータ化で実装が<strong>容易</strong></li>
-                </ul>
-            </div>
-            <a href="https://openai.com/index/weight-normalization" class="read-more openai" target="_blank">🔗 詳細を読む</a>
-        </div>
+<div class="article-card">
+<div class="article-header">
+<span class="source-badge source-openai">OpenAI</span>
+<span class="article-date">📅 日付不明</span>
+</div>
+<h2 class="article-title title-openai">重み正規化: ディープニューラルネットワークの訓練を加速するシンプルな再パラメータ化</h2>
+<div class="article-summary summary-openai">
+OpenAIによるディープニューラルネットワークの訓練を効率化する新しい技術についての研究発表です。重み正規化という手法を用いることで、学習プロセスの高速化を実現します。
+</div>
+<div class="points-section">
+<div class="points-title">💡 ポイント</div>
+<ul class="points-list points-openai">
+<li><strong>重み正規化</strong>という新しい最適化手法を提案</li>
+<li>ディープラーニングの<strong>訓練速度を向上</strong></li>
+<li>シンプルな実装で効果的な結果を実現</li>
+</ul>
+</div>
+<a href="https://openai.com/index/weight-normalization" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+</div>
 
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge google">Google</span>
-                <span class="publish-date">📅 更新日不明</span>
-            </div>
-            <h2 class="article-title google">GeminiアプリでGoogle AI生成動画の検証が可能に</h2>
-            <div class="article-summary google">
-                Googleは、AI生成コンテンツをより簡単に識別できるよう、コンテンツ透明性ツールを拡張しています。Geminiアプリで、動画がGoogle AIによって編集または作成されたものかを確認できるようになりました。
-            </div>
-            <div class="points-section">
-                <h3>💡 ポイント</h3>
-                <ul class="points-list google">
-                    <li><strong>SynthID技術</strong>を使用してAI生成動画を識別</li>
-                    <li>Geminiアプリでの<strong>検証機能</strong>を実装</li>
-                    <li>コンテンツの<strong>透明性向上</strong>により信頼性を確保</li>
-                </ul>
-            </div>
-            <a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="read-more google" target="_blank">🔗 詳細を読む</a>
-        </div>
+<div class="article-card">
+<div class="article-header">
+<span class="source-badge source-google">Google</span>
+<span class="article-date">📅 日付不明</span>
+</div>
+<h2 class="article-title title-google">GeminiアプリでGoogle AI生成動画を検証可能に</h2>
+<div class="article-summary summary-google">
+Googleはコンテンツの透明性ツールを拡張し、AI生成コンテンツをより簡単に識別できるようにしました。GeminiアプリでGoogle AIによって編集または作成された動画を確認できるようになりました。
+</div>
+<div class="points-section">
+<div class="points-title">💡 ポイント</div>
+<ul class="points-list points-google">
+<li><strong>AI生成動画の検証機能</strong>をGeminiアプリに追加</li>
+<li>コンテンツの<strong>透明性向上</strong>を目指す取り組み</li>
+<li>Google AIで作成・編集された動画を識別可能に</li>
+</ul>
+</div>
+<a href="https://blog.google/innovation-and-ai/products/verify-google-ai-videos-gemini-app/" class="read-more read-more-google" target="_blank">🔗 詳細を読む</a>
+</div>
 
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge microsoft">Microsoft</span>
-                <span class="publish-date">📅 更新日不明</span>
-            </div>
-            <h2 class="article-title microsoft">家庭での可能性 - AIはパーソナルアシスタントデバイスと手話でイノベーションを推進できるか？</h2>
-            <div class="article-summary microsoft">
-                Microsoftは、AIを活用したパーソナルアシスタントデバイスと手話技術の革新について探求しています。アクセシビリティの向上と家庭環境でのAI活用の可能性に焦点を当てています。
-            </div>
-            <div class="points-section">
-                <h3>💡 ポイント</h3>
-                <ul class="points-list microsoft">
-                    <li><strong>パーソナルアシスタント</strong>デバイスへのAI統合</li>
-                    <li><strong>手話認識</strong>技術の革新による障壁の除去</li>
-                    <li>家庭環境での<strong>アクセシビリティ</strong>向上を目指す</li>
-                </ul>
-            </div>
-            <a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="read-more microsoft" target="_blank">🔗 詳細を読む</a>
-        </div>
+<div class="article-card">
+<div class="article-header">
+<span class="source-badge source-microsoft">Microsoft</span>
+<span class="article-date">📅 日付不明</span>
+</div>
+<h2 class="article-title title-microsoft">家庭での機会：AIがパーソナルアシスタントデバイスと手話にイノベーションをもたらすか</h2>
+<div class="article-summary summary-microsoft">
+Microsoftがアクセシビリティ分野でのAI活用について探求しています。パーソナルアシスタントデバイスや手話認識技術において、AIが家庭環境でどのような革新をもたらすかを検討しています。
+</div>
+<div class="points-section">
+<div class="points-title">💡 ポイント</div>
+<ul class="points-list points-microsoft">
+<li><strong>アクセシビリティ向上</strong>にAI技術を活用</li>
+<li>パーソナルアシスタントデバイスの<strong>家庭での可能性</strong>を探求</li>
+<li><strong>手話認識</strong>など支援技術の進化を推進</li>
+</ul>
+</div>
+<a href="https://blogs.microsoft.com/accessibility/the-opportunity-at-home-can-ai-drive-innovation-in-personal-assistant-devices-and-sign-language/" class="read-more read-more-microsoft" target="_blank">🔗 詳細を読む</a>
+</div>
 
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge reddit">Reddit</span>
-                <span class="publish-date">📅 更新日不明</span>
-            </div>
-            <h2 class="article-title reddit">claude.ai/settings/usage が動作しない？</h2>
-            <div class="article-summary reddit">
-                Claudeの使用状況ページにアクセスできないという技術的な問題についてのReddit投稿です。ユーザーがClaudeのダッシュボード機能に関する問題を報告しています。
-            </div>
-            <div class="points-section">
-                <h3>💡 ポイント</h3>
-                <ul class="points-list reddit">
-                    <li>Claudeの<strong>使用状況ページ</strong>へのアクセス問題</li>
-                    <li>ユーザーからの<strong>技術的な問題</strong>の報告</li>
-                    <li>Claude設定画面の<strong>機能障害</strong>の可能性</li>
-                </ul>
-            </div>
-            <a href="https://www.reddit.com/r/ClaudeCode/comments/1q6l2x3/httpsclaudeaisettingsusage_doesnt_work/" class="read-more reddit" target="_blank">🔗 詳細を読む</a>
-        </div>
+<div class="article-card">
+<div class="article-header">
+<span class="source-badge source-reddit">Reddit</span>
+<span class="article-date">📅 日付不明</span>
+</div>
+<h2 class="article-title title-reddit">claude.ai/settings/usage が動作しない？</h2>
+<div class="article-summary summary-reddit">
+ClaudeAIの使用状況ページにアクセスできない問題についてのRedditコミュニティでの議論です。ユーザーがサービスの設定や使用量の確認に関する技術的な問題を報告しています。
+</div>
+<div class="points-section">
+<div class="points-title">💡 ポイント</div>
+<ul class="points-list points-reddit">
+<li>Claudeの<strong>使用状況ページ</strong>へのアクセス問題</li>
+<li>コミュニティでの<strong>技術的トラブルシューティング</strong></li>
+<li>サービスの安定性に関するユーザーフィードバック</li>
+</ul>
+</div>
+<a href="https://www.reddit.com/r/ClaudeCode/comments/1q6l2x3/httpsclaudeaisettingsusage_doesnt_work/" class="read-more read-more-reddit" target="_blank">🔗 詳細を読む</a>
+</div>
 
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge openai">OpenAI</span>
-                <span class="publish-date">📅 更新日不明</span>
-            </div>
-            <h2 class="article-title openai">Team++（チーム強化）</h2>
-            <div class="article-summary openai">
-                OpenAIが過去数ヶ月間で素晴らしい人材を迎え入れたことを発表しています。チームの拡大と継続的な採用活動について報告しています。
-            </div>
-            <div class="points-section">
-                <h3>💡 ポイント</h3>
-                <ul class="points-list openai">
-                    <li><strong>優秀な人材</strong>がOpenAIに参加</li>
-                    <li>継続的な<strong>採用活動</strong>を実施中</li>
-                    <li>組織の<strong>成長と拡大</strong>を推進</li>
-                </ul>
-            </div>
-            <a href="https://openai.com/index/team-plus-plus" class="read-more openai" target="_blank">🔗 詳細を読む</a>
-        </div>
+<div class="article-card">
+<div class="article-header">
+<span class="source-badge source-openai">OpenAI</span>
+<span class="article-date">📅 日付不明</span>
+</div>
+<h2 class="article-title title-openai">Team++</h2>
+<div class="article-summary summary-openai">
+OpenAIが過去数ヶ月間で素晴らしい人材を迎えたことを発表しています。チームの拡大とともに、引き続き採用活動を継続していることも伝えています。
+</div>
+<div class="points-section">
+<div class="points-title">💡 ポイント</div>
+<ul class="points-list points-openai">
+<li><strong>優秀な人材</strong>が多数OpenAIに参加</li>
+<li>組織の<strong>継続的な成長</strong>と拡大</li>
+<li>現在も積極的に<strong>採用活動中</strong></li>
+</ul>
+</div>
+<a href="https://openai.com/index/team-plus-plus" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+</div>
 
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge openai">OpenAI</span>
-                <span class="publish-date">📅 更新日不明</span>
-            </div>
-            <h2 class="article-title openai">PieterとShivonを歓迎します！</h2>
-            <div class="article-summary openai">
-                OpenAIが新たに2名のチームメンバーを迎え入れたことを発表しています。組織体制の強化に関する追加の更新情報です。
-            </div>
-            <div class="points-section">
-                <h3>💡 ポイント</h3>
-                <ul class="points-list openai">
-                    <li><strong>2名の新メンバー</strong>がチームに加入</li>
-                    <li>OpenAIの<strong>組織強化</strong>を継続</li>
-                    <li>チーム体制の<strong>さらなる拡充</strong></li>
-                </ul>
-            </div>
-            <a href="https://openai.com/index/welcome-pieter-and-shivon" class="read-more openai" target="_blank">🔗 詳細を読む</a>
-        </div>
+<div class="article-card">
+<div class="article-header">
+<span class="source-badge source-openai">OpenAI</span>
+<span class="article-date">📅 日付不明</span>
+</div>
+<h2 class="article-title title-openai">PieterとShivonを歓迎！</h2>
+<div class="article-summary summary-openai">
+OpenAIが新たに2名の重要メンバーを迎えたことを発表しています。チームの継続的な強化を示す人事アップデートです。
+</div>
+<div class="points-section">
+<div class="points-title">💡 ポイント</div>
+<ul class="points-list points-openai">
+<li><strong>2名の新メンバー</strong>がOpenAIに加入</li>
+<li>組織の<strong>リーダーシップ強化</strong></li>
+<li>チーム体制のさらなる充実</li>
+</ul>
+</div>
+<a href="https://openai.com/index/welcome-pieter-and-shivon" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+</div>
 
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge openai">OpenAI</span>
-                <span class="publish-date">📅 更新日不明</span>
-            </div>
-            <h2 class="article-title openai">OpenAI Gym ベータ版</h2>
-            <div class="article-summary openai">
-                OpenAIが強化学習アルゴリズムの開発と比較のためのツールキット「OpenAI Gym」のパブリックベータ版をリリースしました。シミュレートされたロボットからAtariゲームまで、さまざまな環境と結果の比較・再現のためのサイトで構成されています。
-            </div>
-            <div class="points-section">
-                <h3>💡 ポイント</h3>
-                <ul class="points-list openai">
-                    <li><strong>強化学習</strong>アルゴリズム開発用のツールキット</li>
-                    <li>多様な<strong>環境スイート</strong>を提供（ロボット、ゲームなど）</li>
-                    <li>研究結果の<strong>比較と再現</strong>を容易にする</li>
-                </ul>
-            </div>
-            <a href="https://openai.com/index/openai-gym-beta" class="read-more openai" target="_blank">🔗 詳細を読む</a>
-        </div>
+<div class="article-card">
+<div class="article-header">
+<span class="source-badge source-openai">OpenAI</span>
+<span class="article-date">📅 日付不明</span>
+</div>
+<h2 class="article-title title-openai">OpenAI Gym ベータ版</h2>
+<div class="article-summary summary-openai">
+OpenAIが強化学習アルゴリズムの開発と比較のためのツールキット「OpenAI Gym」のパブリックベータ版をリリースしました。シミュレートされたロボットからAtariゲームまで、増え続ける環境のスイートと結果の比較・再現のためのサイトが含まれています。
+</div>
+<div class="points-section">
+<div class="points-title">💡 ポイント</div>
+<ul class="points-list points-openai">
+<li><strong>強化学習の研究ツール</strong>をオープンソースで提供</li>
+<li>多様な<strong>シミュレーション環境</strong>を用意</li>
+<li>研究結果の<strong>比較と再現</strong>を容易にするプラットフォーム</li>
+</ul>
+</div>
+<a href="https://openai.com/index/openai-gym-beta" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+</div>
 
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge openai">OpenAI</span>
-                <span class="publish-date">📅 更新日不明</span>
-            </div>
-            <h2 class="article-title openai">半教師あり学習によるテキスト分類のための敵対的学習手法</h2>
-            <div class="article-summary openai">
-                テキスト分類タスクにおける半教師あり学習に敵対的学習を適用する研究です。少量のラベル付きデータで高精度な分類を実現する手法を探求しています。
-            </div>
-            <div class="points-section">
-                <h3>💡 ポイント</h3>
-                <ul class="points-list openai">
-                    <li><strong>敵対的学習</strong>を半教師あり学習に適用</li>
-                    <li>テキスト分類の<strong>精度向上</strong>を実現</li>
-                    <li>少量のラベルデータで<strong>効率的な学習</strong></li>
-                </ul>
-            </div>
-            <a href="https://openai.com/index/adversarial-training-methods-for-semi-supervised-text-classification" class="read-more openai" target="_blank">🔗 詳細を読む</a>
-        </div>
+<div class="article-card">
+<div class="article-header">
+<span class="source-badge source-openai">OpenAI</span>
+<span class="article-date">📅 日付不明</span>
+</div>
+<h2 class="article-title title-openai">半教師あり学習のための敵対的訓練手法テキスト分類</h2>
+<div class="article-summary summary-openai">
+OpenAIによる半教師あり学習を用いたテキスト分類の敵対的訓練手法に関する研究です。少量のラベル付きデータで効果的な学習を実現する技術について探求しています。
+</div>
+<div class="points-section">
+<div class="points-title">💡 ポイント</div>
+<ul class="points-list points-openai">
+<li><strong>敵対的訓練</strong>を活用した新しい学習手法</li>
+<li><strong>半教師あり学習</strong>でデータ効率を向上</li>
+<li>テキスト分類タスクの精度改善</li>
+</ul>
+</div>
+<a href="https://openai.com/index/adversarial-training-methods-for-semi-supervised-text-classification" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+</div>
 
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge openai">OpenAI</span>
-                <span class="publish-date">📅 更新日不明</span>
-            </div>
-            <h2 class="article-title openai">チームアップデート</h2>
-            <div class="article-summary openai">
-                OpenAIの最新のチームメンバーを歓迎する発表です。継続的な採用活動により、組織の成長を続けています。
-            </div>
-            <div class="points-section">
-                <h3>💡 ポイント</h3>
-                <ul class="points-list openai">
-                    <li><strong>新しいメンバー</strong>の加入を発表</li>
-                    <li>継続的な<strong>人材募集</strong>を実施</li>
-                    <li>組織の<strong>継続的な成長</strong
+<div class="article-card">
+<div class="article-header">
+<span class="source-badge source-openai">OpenAI</span>
+<span class="article-date">📅 日付不明</span>
+</div>
+<h2 class="article-title title-openai">チームアップデート</h2>
+<div class="article-summary summary-openai">
+OpenAIが最新のチームメンバーを歓迎する発表です。引き続き採用活動を行っていることも強調されています。
+</div>
+<div class="points-section">
+<div class="points-title">💡 ポイント</div>
+<ul class="points-list points-openai">
+<li><strong>新メンバー</strong>がOpenAIに加入</li>
+<li>チームの<strong>継続的な拡大</strong></li>
+<li>引き続き<strong>人材募集中</strong></li>
+</ul>
+</div>
+<a href="https://openai.com/index/team-update" class="read-more read-more-openai" target="_blank">🔗 詳細を読む</a>
+</div>
+
+<div class="article-card">
+<div class="article-header">
+<span class="source-badge source-openai">OpenAI</span>
+<span class="article-date">📅 日付不明</span>
+</div>
+<h2 class="article-title title-openai">生成モデル</h2>
+<div class="article-summary summary-openai">
+OpenAIが生成モデルの強化と利用に関する4つのプロジェクトについて説明しています。教師なし学習技術の一分野である生成モデルについて、その定義、重要性、今後の方向性を詳しく解説しています。
+</div>
+<div class="points-section">
+<div class="points-title">💡 ポイント</div>
+<ul
