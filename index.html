@@ -7,16 +7,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             margin: 0;
             padding: 20px;
             background: #F5F7FA;
             font-family: 'Noto Sans JP', sans-serif;
         }
-        
+
         .container {
             max-width: 900px;
             margin: 0 auto;
@@ -25,34 +27,32 @@
             border-radius: 20px;
             box-shadow: 0 4px 30px rgba(0,0,0,0.08);
         }
-        
+
         .page-header {
             text-align: center;
             margin-bottom: 40px;
             padding-bottom: 30px;
             border-bottom: 2px solid #EAEAEA;
         }
-        
+
         .page-header h1 {
             font-size: 28px;
-            font-weight: 700;
             color: #333;
-            margin: 0 0 8px 0;
+            margin-bottom: 8px;
             font-family: 'M PLUS Rounded 1c', sans-serif;
         }
-        
+
         .page-header .subtitle {
             font-size: 14px;
             color: #666;
-            margin: 8px 0;
+            margin-bottom: 16px;
         }
-        
+
         .page-header .date {
             font-size: 14px;
             color: #888;
-            margin-top: 12px;
         }
-        
+
         .article-card {
             background: #FFFFFF;
             border-radius: 16px;
@@ -62,12 +62,12 @@
             border: 1px solid #F0F0F0;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-        
+
         .article-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 30px rgba(0,0,0,0.1);
         }
-        
+
         .article-header {
             display: flex;
             justify-content: space-between;
@@ -76,7 +76,7 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-        
+
         .source-badge {
             display: inline-block;
             padding: 6px 14px;
@@ -85,98 +85,50 @@
             font-size: 12px;
             font-weight: 700;
         }
-        
-        .source-badge.openai {
+
+        .source-openai {
             background-color: #10A37F;
         }
-        
-        .source-badge.google {
-            background-color: #4285F4;
-        }
-        
-        .source-badge.microsoft {
-            background-color: #00A4EF;
-        }
-        
-        .source-badge.reddit {
-            background-color: #FF4500;
-        }
-        
-        .publish-date {
+
+        .published-date {
             font-size: 13px;
             color: #888;
         }
-        
+
         .article-title {
             font-size: 20px;
             font-weight: 700;
             margin: 16px 0;
             line-height: 1.4;
-            color: #333;
-        }
-        
-        .article-title.openai {
             color: #10A37F;
         }
-        
-        .article-title.google {
-            color: #4285F4;
-        }
-        
-        .article-title.microsoft {
-            color: #00A4EF;
-        }
-        
-        .article-title.reddit {
-            color: #FF4500;
-        }
-        
+
         .article-summary {
             padding: 16px 20px;
             border-radius: 8px;
             margin: 16px 0;
             font-size: 14px;
             line-height: 1.7;
-            border-left: 4px solid;
-        }
-        
-        .article-summary.openai {
             background-color: #E6F7F2;
-            border-left-color: #10A37F;
+            border-left: 4px solid #10A37F;
         }
-        
-        .article-summary.google {
-            background-color: #E8F0FE;
-            border-left-color: #4285F4;
-        }
-        
-        .article-summary.microsoft {
-            background-color: #E6F6FD;
-            border-left-color: #00A4EF;
-        }
-        
-        .article-summary.reddit {
-            background-color: #FFF0EB;
-            border-left-color: #FF4500;
-        }
-        
+
         .points-section {
             margin: 20px 0;
         }
-        
+
         .points-section h3 {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             color: #333;
             margin-bottom: 12px;
         }
-        
+
         .points-list {
             list-style: none;
             padding: 0;
-            margin: 0;
         }
-        
+
         .points-list li {
             position: relative;
             padding-left: 20px;
@@ -185,7 +137,7 @@
             line-height: 1.6;
             color: #555;
         }
-        
+
         .points-list li::before {
             content: '';
             position: absolute;
@@ -194,24 +146,9 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-        }
-        
-        .points-list.openai li::before {
             background-color: #10A37F;
         }
-        
-        .points-list.google li::before {
-            background-color: #4285F4;
-        }
-        
-        .points-list.microsoft li::before {
-            background-color: #00A4EF;
-        }
-        
-        .points-list.reddit li::before {
-            background-color: #FF4500;
-        }
-        
+
         .read-more {
             display: inline-block;
             padding: 10px 20px;
@@ -221,29 +158,14 @@
             font-weight: 600;
             margin-top: 12px;
             transition: opacity 0.2s;
+            background-color: #10A37F;
             color: white;
         }
-        
-        .read-more.openai {
-            background-color: #10A37F;
-        }
-        
-        .read-more.google {
-            background-color: #4285F4;
-        }
-        
-        .read-more.microsoft {
-            background-color: #00A4EF;
-        }
-        
-        .read-more.reddit {
-            background-color: #FF4500;
-        }
-        
+
         .read-more:hover {
             opacity: 0.85;
         }
-        
+
         .page-footer {
             text-align: center;
             margin-top: 50px;
@@ -252,50 +174,50 @@
             color: #888;
             font-size: 13px;
         }
-        
+
         .page-footer p {
             margin: 5px 0;
         }
-        
+
         @media print {
             body {
                 background: white;
                 padding: 0;
             }
-            
+
             .container {
                 box-shadow: none;
                 padding: 20px;
             }
-            
+
             .article-card {
                 page-break-inside: avoid;
                 box-shadow: none;
             }
-            
+
             .article-card:hover {
                 transform: none;
             }
         }
-        
+
         @media (max-width: 768px) {
             body {
                 padding: 10px;
             }
-            
+
             .container {
                 padding: 20px;
                 border-radius: 12px;
             }
-            
+
             .page-header h1 {
                 font-size: 24px;
             }
-            
+
             .article-card {
                 padding: 20px;
             }
-            
+
             .article-title {
                 font-size: 18px;
             }
@@ -304,41 +226,43 @@
 </head>
 <body>
     <div class="container">
-        <div class="page-header">
+        <header class="page-header">
             <h1>🤖 AI News Today</h1>
             <p class="subtitle">～ 最新AI動向レポート ～</p>
-            <p class="date">📅 配信日: 2025年01月22日</p>
-        </div>
-        
-        <div class="article-card">
-            <div class="article-header">
-                <span class="source-badge openai">OpenAI</span>
-                <span class="publish-date">📅 日付不明</span>
-            </div>
-            
-            <h2 class="article-title openai">OpenAIの紹介</h2>
-            
-            <div class="article-summary openai">
-                OpenAIは非営利の人工知能研究企業です。財務的リターンの制約を受けずに、人類全体に最も利益をもたらす方法でデジタルインテリジェンスを進歩させることを目標としています。
-            </div>
-            
-            <div class="points-section">
-                <h3>💡 ポイント</h3>
-                <ul class="points-list openai">
-                    <li><strong>非営利組織</strong>として人工知能の研究を行う企業</li>
-                    <li><strong>人類全体への貢献</strong>を最優先に、財務的制約なく研究を推進</li>
-                    <li>金銭的義務から解放されることで、<strong>ポジティブな人類への影響</strong>により集中できる体制を構築</li>
-                </ul>
-            </div>
-            
-            <a href="https://openai.com/index/introducing-openai" class="read-more openai" target="_blank" rel="noopener noreferrer">🔗 詳細を読む</a>
-        </div>
-        
-        <div class="page-footer">
+            <p class="date">📅 配信日: 2026年01月12日</p>
+        </header>
+
+        <main>
+            <article class="article-card">
+                <div class="article-header">
+                    <span class="source-badge source-openai">OpenAI</span>
+                    <span class="published-date">📅 公開日不明</span>
+                </div>
+
+                <h2 class="article-title">OpenAIの設立発表</h2>
+
+                <div class="article-summary">
+                    OpenAIは非営利の人工知能研究組織として設立されました。財務的なリターンの制約を受けず、人類全体に最も利益をもたらす形でデジタルインテリジェンスを発展させることを目指しています。財務的義務から解放されることで、より人間にポジティブな影響を与える研究に集中できます。
+                </div>
+
+                <div class="points-section">
+                    <h3>💡 ポイント</h3>
+                    <ul class="points-list">
+                        <li><strong>非営利組織</strong>として人工知能研究を推進する革新的なアプローチ</li>
+                        <li><strong>人類全体への貢献</strong>を最優先し、財務的制約に縛られない研究環境を実現</li>
+                        <li>ポジティブな社会的影響に焦点を当てた<strong>倫理的AI開発</strong>の先駆け</li>
+                    </ul>
+                </div>
+
+                <a href="https://openai.com/index/introducing-openai" class="read-more" target="_blank">🔗 詳細を読む</a>
+            </article>
+        </main>
+
+        <footer class="page-footer">
             <p>─────────────────────────────────</p>
             <p>Generated by AI News Today</p>
             <p>Powered by Claude AI</p>
-        </div>
+        </footer>
     </div>
 </body>
 </html>
